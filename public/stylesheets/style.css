@@ -34,7 +34,20 @@ a {
 }
 
 #logoText{
-  color: #ffffff;
+  color: #B4CFEC;
   padding: 8px;
-  font: 70px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 45px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#proP{
+  padding: 20px;  
+  display: inline-block;
+  align-content: left;
+  width: 150px;
+  height: 150px;
+}
+
+
+.myClass{
+    display: inline-block;
 }
