@@ -8,9 +8,12 @@ block content
   if (user)
     #logoText
       .lead prism
-    #myStyle
-      p
-      h1 #{user.username}
-      #myTitle
-        p <em>#{user.title}</em>
+    .container
+        #myStyle
+          img#proP.myClass(src="http://i.imgur.com/AHBihGm.png")
+          .myClass
+            p
+            h1 #{user.username}
+            #myTitle
+                p <em>#{user.title}</em>
     a(href="/logout") Logout
