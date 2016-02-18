@@ -24,6 +24,18 @@ a {
 #myStyle{
   text-align: center;
   align-content: center;
+  padding-top: 60px;
+  margin: auto;
+  width: auto;
+  color: #ffffff;
+  font: 14px;
+  font-family:'alegreya-sans.regular';
+}
+
+
+#myTitle{
+  text-align: center;
+  align-content: center;
   margin: auto;
   width: auto;
   color: #ffffff;
@@ -48,10 +60,14 @@ a {
 }
 
 #logoText{
+  top:0;
+  left:0;
+  font-size: 50px;
+  position: fixed;
   color: #B4CFEC;
-  padding: 8px;
-  font: 45px;
-  font-family: 'alegreya-sans.thin';
+  padding-top: 20px;
+  padding-left: 40px;
+  font-family: 'alegreya-sans.regular';
 }
 
 #proP{
@@ -83,7 +99,9 @@ form {
 }
 
 #btn{
-  color: #000000;
+  text-align: center;
+  align-content: center;
+  color: #ffffff;
   font: 14px;
   font-family: 'alegreya-sans.regular';
 
@@ -94,10 +112,11 @@ form {
 }
 
 #selLog{
+  font-family: 'alegreya-sans.regular';
   padding: 40px;
   position: fixed;
-  bottom: 0;
-  right: 0
+  top: 0;
+  right: 0;
 
 }
 

@@ -8,7 +8,7 @@ block content
 
   if (user)
     #logoText
-      .lead prism
+      p PRISM
     .container
         #myStyle
           img#proP.myClass(src= " " + user.propic)
@@ -16,4 +16,5 @@ block content
             h1 #{user.fullname}
             #myTitle
                 p <em>#{user.title}</em>
-    a(href="/logout") Logout
+    #selLog
+      a(href="/logout") Logout
