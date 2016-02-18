@@ -1,8 +1,19 @@
+@font-face{
+  font-family: "alegreya-sans.thin";
+  src: url('alegreya-sans.thin.ttf');
+}
+/*uploaded font for all text but title*/
+@font-face{
+  font-family: "alegreya-sans.regular";
+  src: url('alegreya-sans.regular.ttf');
+}
+
 body {
   color: #000000;
   background-color: #282828;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: 'alegreya-sans.thin';
 }
 
 a {
@@ -16,13 +27,16 @@ a {
   margin: auto;
   width: auto;
   color: #ffffff;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family:'alegreya-sans.thin';
 }
 
 #myTitle{
-  margin: auto;
+  margin:auto;
+  align-content: left;
   color: #ffffff;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 14px;
+  font-family: 'alegreya-sans.thin';
 }
 
 #imageStyle{
@@ -36,18 +50,78 @@ a {
 #logoText{
   color: #B4CFEC;
   padding: 8px;
-  font: 45px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: 45px;
+  font-family: 'alegreya-sans.thin';
 }
 
 #proP{
-  padding: 20px;  
+  vertical-align: middle;
+  padding: 20px;
   display: inline-block;
   align-content: left;
   width: 150px;
   height: 150px;
+  top: -20px;
 }
 
+form {
+  display: inline-block;
+  text-align: center;
+}
+
+#upForm{
+  color: #ffffff;
+  font: 14px;
+  font-family: 'alegreya-sans.regular';
+
+}
+
+#proPicInputTxt{
+  color: #000000;
+  font: 14px;
+  font-family: 'alegreya-sans.regular';
+}
+
+#btn{
+  color: #000000;
+  font: 14px;
+  font-family: 'alegreya-sans.regular';
+
+}
 
 .myClass{
-    display: inline-block;
+  display: inline-block;
+}
+
+#selLog{
+  padding: 40px;
+  position: fixed;
+  bottom: 0;
+  right: 0
+
+}
+
+.thumb {
+  width: 24px;
+  height: 24px;
+  float: none;
+  position: relative;
+  top: 7px;
+}
+
+form .progress {
+  line-height: 15px;
+}
+}
+
+.progress {
+  display: inline-block;
+  width: 100px;
+  border: 3px groove #CCC;
+}
+
+.progress div {
+  font-size: smaller;
+  background: orange;
+  width: 0;
 }

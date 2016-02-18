@@ -9,6 +9,7 @@ var passportLocalMongoose = require('passport-local-mongoose');
 //TYLER: the password is really stored as a salt and hash
 var Account = new Schema({
     username: String,
+    fullname: String,
     password: String,
     title: String,
     propic: String

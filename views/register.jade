@@ -5,21 +5,27 @@ extends layout
 
 block content
     .container
-        h1 Register Page
-        p.lead Say something worthwhile here.
-        br
-        form(role='form', action="/register",method="post", style='max-width: 300px;')
-            .form-group
-                input.form-control(type='text', name="username", placeholder='Enter Username')
-            .form-group
-                input.form-control(type='password', name="password", placeholder='Password')
-            .form-group
-                input.form-control(type='text', name="title", placeholder='Title')
-            .form-group
-                input.form-control(type='text', name="propic", placeholder='imgur link for propic')
-            button.btn.btn-default(type='submit') Submit
-        &nbsp;
+        #myStyle
+            h1 Prism
+            p.lead Be sure to fill out each section
+            br
+            form(role='form', action="/register",method="post", style='max-width: 300px;')
+                .form-group
+                    input.form-control(type='text', name="username", placeholder='Enter Username')
+                .form-group
+                    input.form-control(type='text', name="name", placeholder='Full Name')
+                .form-group
+                    input.form-control(type='password', name="password", placeholder='Password')
+                .form-group
+                    input.form-control(type='text', name="title", placeholder='Title')
+                .form-group
+                    p be sure your link ends with a .jpg or .png
+                    input.form-control(type='text', name="propic", placeholder='Profile Picture (image link)')
+                button.btn.btn-default(type='submit') Submit
+            &nbsp;
     a(href='/')
-        button.btn.btn-primary(type="button") Cancel
+        br
+        #myStyle
+            button.btn.btn-primary(type="button") Cancel
     br
     h4= info

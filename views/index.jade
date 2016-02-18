@@ -5,6 +5,7 @@ block content
     a(href="/login") Login
     br
     a(href="/register") Register
+
   if (user)
     #logoText
       .lead prism
@@ -12,9 +13,7 @@ block content
         #myStyle
           img#proP.myClass(src= " " + user.propic)
           .myClass
-            p
-            h1 #{user.username}
+            h1 #{user.fullname}
             #myTitle
                 p <em>#{user.title}</em>
-                p #{user.propic}
     a(href="/logout") Logout
