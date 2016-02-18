@@ -10,10 +10,11 @@ block content
       .lead prism
     .container
         #myStyle
-          img#proP.myClass(src="http://i.imgur.com/AHBihGm.png")
+          img#proP.myClass(src= " " + user.propic)
           .myClass
             p
             h1 #{user.username}
             #myTitle
                 p <em>#{user.title}</em>
+                p #{user.propic}
     a(href="/logout") Logout
