@@ -59,6 +59,10 @@ a {
   left: 0px;
 }
 
+.btn.sharp {
+  border-radius:0;
+}
+
 #logoText{
   top:0;
   left:0;

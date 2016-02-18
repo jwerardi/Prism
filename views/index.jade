@@ -2,9 +2,16 @@ extends layout
 <link type="text/css" rel="stylesheet" href="public/stylesheets/style.css" />
 block content
   if (!user)
-    a(href="/login") Login
-    br
-    a(href="/register") Register
+    .container
+      #myStyle
+          h1 PRISM
+        #btn
+          a(href="/login")
+            button.btn.btn-primary(type="button") Login
+          br
+          br
+          a(href="/register")
+            button.btn.btn-primary(type="button") Register
 
   if (user)
     #logoText
@@ -17,4 +24,5 @@ block content
             #myTitle
                 p <em>#{user.title}</em>
     #selLog
-      a(href="/logout") Logout
+      a(href="/logout")
+        button.btn.btn-primary(type="button") Logout
