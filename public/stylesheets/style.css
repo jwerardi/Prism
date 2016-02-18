@@ -29,7 +29,8 @@ a {
   width: auto;
   color: #ffffff;
   font: 14px;
-  font-family:'alegreya-sans.regular';
+  font-family: Courier New;
+  letter-spacing: 5px;
 }
 
 
@@ -72,6 +73,29 @@ a {
   padding-top: 20px;
   padding-left: 40px;
   font-family: 'alegreya-sans.regular';
+}
+
+.btn {
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  padding: 10px 20px 10px 20px;
+  font-family: Courier New;
+  border: solid #ffffff 2px;
+  color: #ffffff;
+  cursor:pointer;
+  overflow: hidden;
+  margin: 7px;
+}
+
+input, textarea {
+  font-size: 16px;
+  width: 20em;
+  font-family: Courier New;
+  color: #ffffff;
+  border: solid #ffffff 2px;
+  padding: 7px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255, 0);
 }
 
 #proP{

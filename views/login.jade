@@ -6,16 +6,17 @@ block content
     .container
         #myStyle
             h1 Login Page
-            p.lead Say something worthwhile here.
+            p.lead don't mess up
             br
-            form(role='form', action="/login",method="post", style='max-width: 300px;')
+            form(role='form', action="/login",method="post", style='max-width: 300px;', id="login")
                 .form-group
-                    input.form-control(type='text', name="username", placeholder='Enter Username')
+                    input.form-control(type='text', name="username", placeholder="Username" required)
                 .form-group
-                    input.form-control(type='password', name="password", placeholder='Password')
+                    input.form-control(type='password', name="password", placeholder="Password" required)
+                    br
+                    br
                 button.btn.btn-default(type='submit') Submit
+                a(href='/')
+                    button.btn(type="button") Cancel
             &nbsp;
-            br
-            br
-            a(href='/')
-                button.btn.btn-primary(type="button") Cancel
+

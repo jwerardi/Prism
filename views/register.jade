@@ -19,13 +19,11 @@ block content
                 .form-group
                     input.form-control(type='text', name="title", placeholder='Title')
                 .form-group
-                    p be sure your link ends with a .jpg or .png
                     input.form-control(type='text', name="propic", placeholder='Profile Picture (image link)')
+                    br
+                    br
                 button.btn.btn-default(type='submit') Submit
+                a(href='/')
+                        button.btn.btn-primary(type="button") Cancel
             &nbsp;
-    a(href='/')
-        br
-        #myStyle
-            button.btn.btn-primary(type="button") Cancel
-    br
     h4= info
