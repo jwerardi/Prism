@@ -1,0 +1,11 @@
+extends layout
+block content
+    #logoText
+        p PRISM
+    .container
+        #myStyle
+            img#proP.myClass(src= " " + usr.propic)
+            .myClass
+                h1 #{usr.fullname}
+                #myUserTitle
+                    p <em>#{usr.title}</em>

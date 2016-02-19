@@ -36,14 +36,6 @@ router.get('/login', function(req, res) {
   res.render('login', { user : req.user });
 });
 
-//IN PROGRESS when a user wants to see another user's profile
-router.get('/:username', function (req, res, next) {
-  Account.findByUsername(req.params.username, function(err, usr){
-      console.log(usr.username);
-      console.log(usr.title);
-  });
-});
-
 //send a request to login and handle any errors that may arise
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
@@ -74,6 +66,13 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
   }
 });
 */
+
+//IN PROGRESS when a user wants to see another user's profile
+router.get('/user/:username', function (req, res, next) {
+  Account.findByUsername(req.params.username, function(err, usr){
+    return res.render("user", {usr: usr});
+  });
+});
 
 router.get('/logout', function(req, res) {
   req.logout();
