@@ -1,21 +1,19 @@
 //
-   Created by tyler on 2/10/16.
+   Created by tyler on 2/10/16.edited by Alex C 3/19
 extends layout
 
 block content
     .container
         #myStyle
-            h1 Login Page
+            h1 login to prism
+            p.lead pre alpha build
             h4 #{info}
             br
-            form(role='form', action="/login",method="post", style='max-width: 300px;', id="login")
+            form(role='form', action="/login",method="post", style='max-width: 300px;')
                 .form-group
-                    input.form-control(type='text', name="username", placeholder="Username" required)
+                    input.form-control(type='text', name="username", placeholder='Enter Username')
                 .form-group
-                    input.form-control(type='password', name="password", placeholder="Password" required)
-                    br
-                    br
+                    input.form-control(type='password', name="password", placeholder='Password')
                 button.btn.btn-default(type='submit') Submit
                 a(href='/')
-                    button.btn(type="button") Cancel
-            &nbsp;
+                    button.btn.btn-primary(type="button") Cancel

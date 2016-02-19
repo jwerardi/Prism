@@ -4,26 +4,26 @@ block content
   if (!user)
     .container
       #myStyle
-          h1 Prism
-          p.lead A Photo Sharing Application
-        #btn
-          a(href="/login")
-            button.btn(type="button") Login
-          br
-          br
-          a(href="/register")
-            button.btn(type="button") Register
+        #bigLogo
+          h1 prism
+        p.lead A Photo Sharing Application
+      #btn
+        a(href="/login")
+          button.btn(type="button") Login
+      #btn
+        a(href="/register")
+          button.btn(type="button") Register
 
   if (user)
     #logoText
-      p PRISM
+      p prism
     .container
-        #myStyle
-          img#proP.myClass(src= " " + user.propic)
-          .myClass
-            h1 #{user.fullname}
-            #myUserTitle
-                p <em>#{user.title}</em>
+      #myStyle
+        img#proP.myClass(src= " " + user.propic)
+        .myClass
+          h1 #{user.fullname}
+          #myUserTitle
+            p <em>#{user.title}</em>
     #selLog
       a(href="/logout")
         button.btn.btn-primary(type="button") Logout
