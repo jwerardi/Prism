@@ -31,11 +31,20 @@ router.post('/register', function(req, res) {
   });
 });
 
+//gets the login page and passes it the logged in user
 router.get('/login', function(req, res) {
   res.render('login', { user : req.user });
 });
 
+//IN PROGRESS when a user wants to see another user's profile
+router.get('/:username', function (req, res, next) {
+  Account.findByUsername(req.params.username, function(err, usr){
+      console.log(usr.username);
+      console.log(usr.title);
+  });
+});
 
+//send a request to login and handle any errors that may arise
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {
