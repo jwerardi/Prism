@@ -7,10 +7,10 @@ block content
     .container
         #myStyle
             h1 Prism
+            h4 #{info}
             br
-            form(role='form', action="/register",method="post", style='max-width: 300px;')
+            form(role='form', action="/register",method="post", id='register',style='max-width: 300px;')
                 .form-group
-                    label #{failureMessage}
                     br
                     input.form-control(type='text', name="username", placeholder='Enter Username')
                 .form-group
