@@ -134,6 +134,21 @@ input, textarea {
   font-family: 'alegreya-sans.thin';
 }
 
+#bg {
+  filter: blur(30px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
 form {
   display: block;
   width: auto;
