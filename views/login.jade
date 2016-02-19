@@ -6,6 +6,7 @@ block content
     .container
         #myStyle
             h1 Login Page
+            h4 #{info}
             br
             form(role='form', action="/login",method="post", style='max-width: 300px;', id="login")
                 .form-group
@@ -18,4 +19,3 @@ block content
                 a(href='/')
                     button.btn(type="button") Cancel
             &nbsp;
-
