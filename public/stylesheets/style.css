@@ -69,8 +69,8 @@ a {
   left:0;
   font-size: 50px;
   position: fixed;
-  color: #B4CFEC;
-  padding-top: 20px;
+  color: #FFFFFF;
+  padding-top: 5px;
   padding-left: 40px;
   font-family: 'alegreya-sans.regular';
 }
@@ -106,6 +106,13 @@ input, textarea {
   width: 150px;
   height: 150px;
   top: -20px;
+}
+#myUserTitle{
+  margin:auto;
+  float: left;
+  color: #ffffff;
+  font: 14px;
+  font-family: 'alegreya-sans.thin';
 }
 
 form {

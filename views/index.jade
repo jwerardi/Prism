@@ -4,8 +4,8 @@ block content
   if (!user)
     .container
       #myStyle
-          h1 PRISM
-          p.lead The World's Most Innovate Imgur Profile in the World.
+          h1 Prism
+          p.lead A Photo Sharing Application
         #btn
           a(href="/login")
             button.btn(type="button") Login
@@ -22,7 +22,7 @@ block content
           img#proP.myClass(src= " " + user.propic)
           .myClass
             h1 #{user.fullname}
-            #myTitle
+            #myUserTitle
                 p <em>#{user.title}</em>
     #selLog
       a(href="/logout")
