@@ -5,8 +5,9 @@
 $(document).ready(function () {
     //validation rules
     $("#login").validate({
+        errorLabelContainer: '#errors',
         rules: {
-            "name": {
+            "username": {
                 required: true
             },
             "password": {
@@ -14,7 +15,7 @@ $(document).ready(function () {
             }
         },
         messages: {
-            "name": {
+            "username": {
                 required: "USERNAME REQUIRED"
             },
             "password": {

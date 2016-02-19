@@ -80,7 +80,7 @@ a {
   background-repeat:no-repeat;
   padding: 10px 20px 10px 20px;
   font-family: Courier New;
-  border: solid #ffffff 2px;
+  border: solid #ffffff 0.5px;
   color: #ffffff;
   cursor:pointer;
   overflow: hidden;
@@ -92,14 +92,14 @@ input, textarea {
   width: 20em;
   font-family: Courier New;
   color: #ffffff;
-  border: solid #ffffff 2px;
+  border: solid #ffffff 0.5px;
   padding: 7px;
   margin-bottom: 10px;
   background: rgba(255,255,255, 0);
 }
 
 #proP{
-  vertical-align: middle;
+  vertical-align: top;
   padding: 20px;
   display: inline-block;
   align-content: left;
