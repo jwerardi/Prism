@@ -135,6 +135,15 @@ input, textarea {
   background: rgba(255,255,255, 0);
 }
 
+::-webkit-input-placeholder {
+ font-size: 14px;
+}
+:-moz-placeholder { /* older Firefox*/
+ font-size:14px;
+}
+::-moz-placeholder { /* Firefox 19+ */ 
+ font-size: 14px;
+} 
 
 #proP{
   vertical-align:top;
