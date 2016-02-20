@@ -1,7 +1,7 @@
 extends layout
 block content
     #logoText
-        p PRISM
+        p prism
     if(currentuser)
         #selLog
             a(href="/")
@@ -16,6 +16,7 @@ block content
         #myStyle
             img#proP.myClass(src= " " + usr.propic)
             .myClass
-                h1 #{usr.fullname}
+                #fullName
+                    h1 #{usr.fullname}
                 #myUserTitle
                     p <em>#{usr.title}</em>
