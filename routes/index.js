@@ -83,6 +83,7 @@ router.post('/user/:id/update', function (req, res) {
         //if the user logged in isnt the one routed to
         if(usr.id!=req.user.id){
           console.log("nice try");
+
         //if the user id of the logged in user is the same as the one you're accessing
         }else{
           //if the username was changed
@@ -103,6 +104,7 @@ router.post('/user/:id/update', function (req, res) {
             usr.username = req.body.username;
             console.log(usr.username);
           }
+
           //full name
           if(req.body.name != req.user.fullname)
           {
@@ -110,6 +112,7 @@ router.post('/user/:id/update', function (req, res) {
             usr.fullname = req.body.name;
             console.log(usr.fullname);
           }
+
           //title
           if(req.body.title != req.user.title)
           {
@@ -117,6 +120,7 @@ router.post('/user/:id/update', function (req, res) {
             usr.title = req.body.title;
             console.log(usr.title);
           }
+
           //picture
           if(req.body.propic != req.user.propic)
           {
@@ -129,16 +133,16 @@ router.post('/user/:id/update', function (req, res) {
           usr.save(function(err) {
             if (err)
               console.log('error while attempting to update' + req.user.username);
-            else
+            else{
               console.log("updated: " + req.user.username);
-            req.login(usr, function(err){
-              if(err){
-                return next(err);
-              }
-              return res.redirect("/");
-            });
+              req.login(usr, function(err){
+                if(err){
+                  return next(err);
+                }
+                return res.redirect("/");
+              });
+            }
           });
-
         }
       }else{
         res.render('error', {message: "Not logged in"});
