@@ -2,9 +2,14 @@
  * Created by tyler on 2/18/16.
  */
 
+
+
+
 $(document).ready(function () {
     //validation rules
+    
     $("#login").validate({
+        
         errorLabelContainer: '#errors',
         rules: {
             "username": {
@@ -21,9 +26,15 @@ $(document).ready(function () {
             "password": {
                 required: "PASSWORD REQUIRED"
             }
-        }
+        }//,
+        
+        //highlight: function (element) {
+          //  $(element).parent().addClass("animated");
+        //}
     });
+    
     $("#register").validate({
+        
         errorLabelContainer: '#errors',
         rules: {
             "username": {
@@ -59,7 +70,11 @@ $(document).ready(function () {
             "name": {
                 required: "NAME REQUIRED"
             }
-        }
+        }//,
+        
+        //highlight: function (element) {
+        //    $(element).parent().addClass("animated");
+        //}
     });
     $("#update").validate({
         rules: {

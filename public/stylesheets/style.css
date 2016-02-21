@@ -10,6 +10,7 @@
 
 
 body {
+    
   color: #000000;
   background-color: #282828;
   padding: 50px;
@@ -31,6 +32,7 @@ a {
   color: #B4CFEC;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
+
 
 #fullName{
    font-family: "alegreya-sans.thin";
@@ -122,6 +124,15 @@ a {
 -moz-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
 box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
 }
+
+
+/*
+.animated{
+    transition: all 1s ease-in-out;
+    visibility: visible;
+}
+*/
+
 
 input, textarea {
   font-size: 16px;
