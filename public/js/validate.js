@@ -61,4 +61,41 @@ $(document).ready(function () {
             }
         }
     });
+    $("#update").validate({
+        rules: {
+            "username": {
+                required: true
+            },
+            "password": {
+                required: true
+            },
+            "title" : {
+                required: true
+            },
+            "propic": {
+                url: true,
+                extension: "jpg|png"
+            },
+            "name": {
+                required: true
+            }
+        },
+        messages: {
+            "username": {
+                required: "USERNAME REQUIRED"
+            },
+            "password": {
+                required: "PASSWORD REQUIRED"
+            },
+            "title" : {
+                required: "TITLE REQUIRED"
+            },
+            "propic": {
+                extension: "JPG/PNG REQUIRED"
+            },
+            "name": {
+                required: "NAME REQUIRED"
+            }
+        }
+    });
 });

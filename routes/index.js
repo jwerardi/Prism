@@ -3,7 +3,6 @@ var passport = require('passport');
 var Account = require('../models/account');
 var router = express.Router();
 
-
 //receives the index view along with request.user, the jade file will then decide which version of the home page to display depending
 //on if the user is currently authenticated.
 router.get('/', function (req, res) {
@@ -34,6 +33,10 @@ router.post('/register', function(req, res) {
 //gets the login page and passes it the logged in user
 router.get('/login', function(req, res) {
   res.render('login', { user : req.user });
+});
+
+router.get('/update', function(req, res) {
+  res.render('update', { user : req.user, username :"memes"});
 });
 
 //send a request to login and handle any errors that may arise
@@ -67,6 +70,79 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 });
 */
 
+//IN PROGRESS: User update.
+router.post('/user/:id/update', function (req, res) {
+  console.log("hello");
+  Account.findById(req.params.id, function(err, usr) {
+    if (!usr)
+      res.render('error', {message: "Could not retrieve account"});
+    else {
+      //if the user is logged in
+      if (req.user)
+      {
+        //if the user logged in isnt the one routed to
+        if(usr.id!=req.user.id){
+          console.log("nice try");
+        //if the user id of the logged in user is the same as the one you're accessing
+        }else{
+          //if the username was changed
+          if(req.body.username != req.user.username) {
+            /*
+            Account.findByUsername(req.body.username, function (err, newUsr) {
+              if (!newUsr){
+                console.log(true);
+              }
+              if (newUsr){
+                console.log(false);
+              }
+            });
+            */
+
+            //changing the username
+            console.log("Changing " + req.user.username + " to " + req.body.username);
+            usr.username = req.body.username;
+            console.log(usr.username);
+          }
+          //full name
+          if(req.body.name != req.user.fullname)
+          {
+            console.log("Changing " + req.user.fullname +" to " +req.body.name);
+            usr.fullname = req.body.name;
+            console.log(usr.fullname);
+          }
+          //title
+          if(req.body.title != req.user.title)
+          {
+            console.log("Changing " + req.user.title +" to " +req.body.title);
+            usr.title = req.body.title;
+            console.log(usr.title);
+          }
+          //picture
+          if(req.body.propic != req.user.propic)
+          {
+            console.log("Changing " + req.user.propic +" to " +req.body.propic);
+            usr.propic = req.body.propic;
+            console.log(usr.propic);
+          }
+
+          //save the new object
+          usr.save(function(err) {
+            if (err)
+              console.log('error while attempting to update' + req.user.username);
+            else
+              console.log("updated: " + req.user.username);
+            return res.render("index", {user: usr});
+          });
+
+        }
+      }else{
+        res.render('error', {message: "Not logged in"});
+      }
+    }
+  });
+
+});
+
 //IN PROGRESS when a user wants to see another user's profile
 router.get('/user/:username', function (req, res, next) {
   Account.findByUsername(req.params.username, function(err, usr){
@@ -74,12 +150,13 @@ router.get('/user/:username', function (req, res, next) {
     {
       return res.render("user", {usr: usr, currentuser: req.user});
     }else{
-      return res.render("user", {usr: usr, currentuser: req.user});
+      return res.render("user", {usr: usr, currentuser: req.user, urlname: req.params.username});
     }
 
   });
 });
 
+//logout user and redirect to home
 router.get('/logout', function(req, res) {
   req.logout();
   res.redirect('/');
@@ -91,6 +168,8 @@ router.get('/ping', function(req, res){
   res.status(200).send("pong!");
 });
 
+
+//404 handling
 router.use(function(req,res){
   res.render('404');
 });
