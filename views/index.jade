@@ -1,5 +1,6 @@
 extends layout
 <link type="text/css" rel="stylesheet" href="public/stylesheets/style.css" />
+
 block content
   if (!user)
     //img(src="/img/background2.jpg", id="bg", alt="")
@@ -29,8 +30,14 @@ block content
             h1 #{user.fullname}
           #myUserTitle
             p <em>#{user.title}</em>
+      #myStyle
+        #photos
     #selLog
       a(href="/logout")
         button.btn.btn-primary(type="button") Logout
       a(href="/update")
         button.btn.btn-primary(type="button") Update
+      a(href="/upload")
+        button.btn.btn-primary(type="button") Upload
+        script.
+          currentUser= !{JSON.stringify(user)};

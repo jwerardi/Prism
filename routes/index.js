@@ -14,6 +14,9 @@ router.get('/about', function (req, res) {
   res.render('about');
 });
 
+router.get('/about', function (req, res) {
+  res.render('about');
+});
 
 //INPROGRESS
 router.get('/contact', function (req, res) {
@@ -49,7 +52,12 @@ router.get('/login', function(req, res) {
 
 //IN PROGRESS
 router.get('/update', function(req, res) {
-  res.render('update', { user : req.user, username :"memes"});
+  res.render('update', { user : req.user});
+});
+
+//IN PROGRESS
+router.get('/upload', function(req, res) {
+  res.render('upload', { user : req.user});
 });
 
 //send a request to login and handle any errors that may arise
@@ -82,6 +90,50 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
   }
 });
 */
+
+//IN PROGRESS: User update.
+router.post('/user/:id/upload', function (req, res) {
+  console.log("upload fucntion");
+  Account.findById(req.params.id, function(err, usr) {
+    if (!usr)
+      res.render('error', {message: "Could not retrieve account"});
+    else {
+      //if the user is logged in
+      if (req.user)
+      {
+        //if the user logged in isnt the one routed to
+        if(usr.id!=req.user.id){
+          console.log("nice try");
+          //if the user id of the logged in user is the same as the one you're accessing
+        }else{
+          usr.images.push(req.body.photo);
+          console.log("user images: ");
+          for(var i =0; i<usr.images.length;i++)
+          {
+            console.log(usr.images[i]);
+          }
+          //save the new object
+          usr.save(function(err) {
+            if (err)
+              console.log('error while attempting to update' + req.user.username);
+            else{
+              console.log("updated: " + req.user.username);
+              req.login(usr, function(err){
+                if(err){
+                  return next(err);
+                }
+                return res.redirect("/");
+              });
+            }
+          });
+        }
+      }else{
+        res.render('error', {message: "Not logged in"});
+      }
+    }
+  });
+
+});
 
 //IN PROGRESS: User update.
 router.post('/user/:id/update', function (req, res) {

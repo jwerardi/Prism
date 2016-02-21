@@ -98,4 +98,17 @@ $(document).ready(function () {
             }
         }
     });
+    $("#upload").validate({
+        rules: {
+            "propic": {
+                url: true,
+                extension: "jpg|png"
+            }
+        },
+        messages: {
+            "propic": {
+                extension: "JPG/PNG REQUIRED"
+            }
+        }
+    });
 });

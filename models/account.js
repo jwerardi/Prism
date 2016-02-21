@@ -12,7 +12,8 @@ var Account = new Schema({
     fullname: String,
     password: String,
     title: String,
-    propic: String
+    propic: String,
+    images: [String]
 });
 
 Account.plugin(passportLocalMongoose);
