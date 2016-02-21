@@ -131,7 +131,12 @@ router.post('/user/:id/update', function (req, res) {
               console.log('error while attempting to update' + req.user.username);
             else
               console.log("updated: " + req.user.username);
-            return res.render("index", {user: usr});
+            req.login(usr, function(err){
+              if(err){
+                return next(err);
+              }
+              return res.redirect("/");
+            });
           });
 
         }
