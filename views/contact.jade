@@ -1,0 +1,25 @@
+block content
+    //img(src="/img/background.jpg", id="bg", alt="")
+    .container
+        #myStyle
+            h1 Prism
+            h4 #{info}
+            br
+            form(role='form', action="/register",method="post", id='register',style='max-width: 300px;')
+                .form-group
+                    br
+                    input.form-control(type='text', name="username", placeholder='Enter Username')
+                .form-group
+                    input.form-control(type='text', name="name", placeholder='Full Name')
+                .form-group
+                    input.form-control(type='password', name="password", placeholder='Password')
+                .form-group
+                    input.form-control(type='text', name="title", placeholder='Title')
+                .form-group
+                    input.form-control(type='text', name="propic", placeholder='Profile Picture(png/jpg)')
+                    br
+                    br
+                button.btn.btn-default(type='submit') Submit
+                a(href='/')
+                    button.btn.btn-primary(type="button") Cancel
+    &nbsp;

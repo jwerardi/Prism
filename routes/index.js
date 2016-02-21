@@ -9,6 +9,17 @@ router.get('/', function (req, res) {
   res.render('index', { user : req.user });
 });
 
+//about us page
+router.get('/about', function (req, res) {
+  res.render('about');
+});
+
+
+//INPROGRESS
+router.get('/contact', function (req, res) {
+  res.render('contact');
+});
+
 //receives the register view which has a register form
 router.get('/register', function(req, res) {
   res.render('register', { });
@@ -35,6 +46,8 @@ router.get('/login', function(req, res) {
   res.render('login', { user : req.user });
 });
 
+
+//IN PROGRESS
 router.get('/update', function(req, res) {
   res.render('update', { user : req.user, username :"memes"});
 });
