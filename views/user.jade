@@ -12,11 +12,17 @@ block content
         #selLog
             a(href="/login")
                 button.btn.btn-primary(type="button") Login
-    .container
+    if(usr)
+        .container
+            #myStyle
+                img#proP.myClass(src= " " + usr.propic)
+                .myClass
+                    #fullName
+                        h1 #{usr.fullname}
+                    #myUserTitle
+                        p <em>#{usr.title}</em>
+    if(!usr)
         #myStyle
-            img#proP.myClass(src= " " + usr.propic)
-            .myClass
-                #fullName
-                    h1 #{usr.fullname}
-                #myUserTitle
-                    p <em>#{usr.title}</em>
+            h1 USER NOT FOUND
+            a(href="/")
+                button.btn.btn-primary(type="button") Home

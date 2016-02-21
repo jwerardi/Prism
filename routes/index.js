@@ -70,7 +70,13 @@ router.post('/login', passport.authenticate('local'), function(req, res) {
 //IN PROGRESS when a user wants to see another user's profile
 router.get('/user/:username', function (req, res, next) {
   Account.findByUsername(req.params.username, function(err, usr){
-    return res.render("user", {usr: usr, currentuser: req.user});
+    if(usr)
+    {
+      return res.render("user", {usr: usr, currentuser: req.user});
+    }else{
+      return res.render("user", {usr: usr, currentuser: req.user});
+    }
+
   });
 });
 
