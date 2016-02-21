@@ -91,5 +91,9 @@ router.get('/ping', function(req, res){
   res.status(200).send("pong!");
 });
 
+router.use(function(req,res){
+  res.render('404');
+});
+
 module.exports = router;
 
