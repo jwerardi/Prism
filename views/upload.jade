@@ -1,0 +1,18 @@
+extends layout
+
+block content
+    //img(src="/img/background.jpg", id="bg", alt="")
+    .container
+        #myStyle
+            h1 Update Profile
+            h4 #{message}
+            br
+            if(user)
+                form(role='form', action="/user/#{user.id}/upload" ,method="post", id='update',style='max-width: 300px;')
+                    .form-group
+                        br
+                        input.form-control(type='text', name="username", value="#{user.username}")
+                    button.btn.btn-default(type='submit') Submit
+                    a(href='/')
+                        button.btn.btn-primary(type="button") Cancel
+                &nbsp;
