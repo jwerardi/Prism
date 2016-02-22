@@ -21,8 +21,8 @@ block content
                         h1 #{usr.fullname}
                     #myUserTitle
                         p <em>#{usr.title}</em>
-            #myStyle
-                #photos
+            #wrapper
+                #list
             script.
                 currentUser = !{JSON.stringify(usr)};
     if(!usr)

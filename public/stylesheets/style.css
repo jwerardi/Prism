@@ -124,6 +124,18 @@ transition: all .2s ease-in-out;
 box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
 }
 
+#list {
+  margin: 0 auto;
+}
+.item {
+  margin: 5px;
+}
+.item img{
+  height: auto;
+  width: 300px; // width of each brick less the padding inbetween
+}
+
+
 input, textarea {
   font-size: 16px;
   width: auto;
