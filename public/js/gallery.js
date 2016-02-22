@@ -8,7 +8,7 @@ $(document).ready(function () {
     for(var i =0; i<currentUser.images.length;i++)
     {
         //img(src= " " + user.propic)
-        images += " <img src=\"" + currentUser.images[i] + "\" + style=\"width:304px;height:228px;\">";
+        images += " <img src=\"" + currentUser.images[i] + "\" + style=\"width:600px;height:400px;\">";
     }
     //adding photos to page on DOM
     $("#photos").html(images);
