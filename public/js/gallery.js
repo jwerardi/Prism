@@ -19,8 +19,8 @@ $(document).ready(function () {
         console.log(currentUser.images[i].url);
         //img(src= " " + user.propic)
         images +=
-            "<div class=\"item\" " + "id = \"" + [i] + "\">" +
-                "<img src=\"" + currentUser.images[i].url + "\"/>" +
+            "<div class=\"item\" " + "id = \"" + [i] + "\">" + "<a href=\"/images/" + currentUser._id + "/" + i +"\">" +
+            "<img src=\"" + currentUser.images[i].url + "\"/>" + "</a>" +
             "</div>";
     }
     console.log(images);
