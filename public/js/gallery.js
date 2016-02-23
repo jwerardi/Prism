@@ -16,14 +16,17 @@ $(document).ready(function () {
 
     for(var i =0; i<currentUser.images.length;i++)
     {
-        console.log(currentUser.images[i].url);
-        //img(src= " " + user.propic)
-        images +=
-            "<div class=\"item\" " + "id = \"" + [i] + "\">" + "<a href=\"/images/" + currentUser._id + "/" + i +"\">" +
-            "<img src=\"" + currentUser.images[i].url + "\"/>" + "</a>" +
-            "</div>";
+        if (typeof currentUser.images[i].url != 'undefined'){
+            //console.log(currentUser.images[i].url);
+            //img(src= " " + user.propic)
+            images +=
+                "<div class=\"item\" " + "id = \"" + [i] + "\">" + "<a href=\"/images/" + currentUser._id + "/" + i +"\">" +
+                "<img src=\"" + currentUser.images[i].url + "\"/>" + "</a>" +
+                "</div>";
+        }
+
     }
-    console.log(images);
+    //console.log(images);
     //adding photos to page on DOM
     $("#list").html(images);
 

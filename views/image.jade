@@ -17,8 +17,14 @@ block content
             #myStyle
                 img.photoStyle(src= " " + usrimage.url)
                 p #{usrimage.title}
+                p #{usrimage.updated}
+                a(href="/images/#{user.id}/#{backPicture}")
+                    button.btn.btn-primary(type="button") back
                 a(href="/user/#{user.username}")
                     button.btn.btn-primary(type="button") #{user.username}
+                a(href="/images/#{user.id}/#{nextPicture}")
+                    button.btn.btn-primary(type="button") next
+                br
     if(!usrimage)
         #myStyle
             h1 #{message}

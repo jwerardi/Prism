@@ -78,7 +78,6 @@ router.post('/login', function(req, res, next) {
     });
   })(req, res, next);
 });
-
 /*
  //attempt to authenticate the user's credentials
  router.post('/login', passport.authenticate('local'), function(req, res) {
@@ -95,8 +94,25 @@ router.get('/images/:userid/:index', function (req, res, next) {
   Account.findById(req.params.userid, function(err, usr){
     if(usr)
     {
-      var image = usr.images[req.params.index];
-      return res.render("image", {usrimage: image, user: usr, currentuser: req.user});
+      var index = parseInt(req.params.index);
+      var image = usr.images[index];
+      var nextPic;
+      var backPic;
+
+      if(index < usr.images.length){
+        nextPic = index+1;
+      }
+      if(index >= usr.images.length-1){
+        nextPic = 0;
+      }
+
+      if(index > 0){
+        backPic = index-1;
+      }
+      if(index <= 0){
+        backPic = usr.images.length-1;
+      }
+      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: nextPic, backPicture: backPic});
     }else{
       return res.render("image", {usrimage: image, currentuser: req.user, message: "photo does not exist"});
     }
