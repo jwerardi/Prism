@@ -8,6 +8,7 @@
   src: url('alegreya-sans.regular.ttf');
 }
 
+
 body {
   color: #000000;
   background-color: #282828;
@@ -16,9 +17,30 @@ body {
   font-family: 'alegreya-sans.thin';
 }
 
+#bigLogo{
+
+  text-align: center;
+  align-content: center;
+  color: #ffffff;
+  font-size: 20px;
+  font-family: Ubuntu;
+  letter-spacing: 5px;
+}
+
 a {
   color: #B4CFEC;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#fullName{
+   font-family: "alegreya-sans.thin";
+  text-align: center;
+  align-content: center;
+  margin: auto;
+  width: auto;
+  color: #ffffff;
+  font: 14px;
+  letter-spacing: 5px;
 }
 
 #myStyle{
@@ -29,7 +51,8 @@ a {
   width: auto;
   color: #ffffff;
   font: 14px;
-  font-family:'alegreya-sans.regular';
+  font-family: Ubuntu;
+  letter-spacing: 5px;
 }
 
 
@@ -42,14 +65,14 @@ a {
   font: 14px;
   font-family:'alegreya-sans.thin';
 }
-
+/*
 #myTitle{
   margin:auto;
   align-content: left;
   color: #ffffff;
   font: 14px;
   font-family: 'alegreya-sans.thin';
-}
+}*/
 
 #imageStyle{
   max-width: 1%;
@@ -59,6 +82,13 @@ a {
   left: 0px;
 }
 
+#logForm{
+  text-align: center;
+  margin:0 auto;
+  align-content: center;
+  display: inline-block;
+}
+
 .btn.sharp {
   border-radius:0;
 }
@@ -66,16 +96,70 @@ a {
 #logoText{
   top:0;
   left:0;
-  font-size: 50px;
-  position: fixed;
-  color: #B4CFEC;
-  padding-top: 20px;
+  font-size: 40px;
+  position: absolute;
+  color: #FFFFFF;
   padding-left: 40px;
   font-family: 'alegreya-sans.regular';
 }
 
+.btn {
+    
+transition: all .2s ease-in-out;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  padding: 10px 20px 10px 20px;
+  font-family: monospace;
+  border: solid #ffffff 0.5px;
+  color: #ffffff;
+  cursor:pointer;
+  overflow: hidden;
+  margin: 7px;
+}
+
+.btn:hover{
+    transition: all .1s ease-in-out;
+-webkit-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+-moz-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+}
+
+#list {
+  margin: 0 auto;
+}
+.item {
+  margin: 5px;
+}
+.item img{
+  height: auto;
+  width: 300px; // width of each brick less the padding inbetween
+}
+
+
+input, textarea {
+  font-size: 16px;
+  width: auto;
+  font-family: monospace;
+  color: #ffffff;
+  border: solid #ffffff 0.5px;
+  padding: 7px;
+  letter-spacing: 3px;
+  margin-bottom: 10px;
+  background: rgba(255,255,255, 0);
+}
+
+::-webkit-input-placeholder {
+ font-size: 14px;
+}
+:-moz-placeholder { /* older Firefox*/
+ font-size:14px;
+}
+::-moz-placeholder { /* Firefox 19+ */ 
+ font-size: 14px;
+} 
+
 #proP{
-  vertical-align: middle;
+  vertical-align:top;
   padding: 20px;
   display: inline-block;
   align-content: left;
@@ -83,10 +167,33 @@ a {
   height: 150px;
   top: -20px;
 }
+#myUserTitle{
+  margin:auto;
+  float: left;
+  color: #ffffff;
+  font: 20px;
+  font-family: 'alegreya-sans.thin';
+}
+
+#bg {
+  filter: blur(30px);
+  -webkit-filter: blur(5px);
+  -moz-filter: blur(5px);
+  -o-filter: blur(5px);
+  -ms-filter: blur(5px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1000;
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
 
 form {
-  display: inline-block;
-  text-align: center;
+  display: block;
+  width: auto;
+  margin: 0 auto;
 }
 
 #upForm{
@@ -103,6 +210,8 @@ form {
 }
 
 #btn{
+    
+  display: block;
   text-align: center;
   align-content: center;
   color: #ffffff;
@@ -111,6 +220,7 @@ form {
 
 }
 
+
 .myClass{
   display: inline-block;
 }
@@ -118,7 +228,7 @@ form {
 #selLog{
   font-family: 'alegreya-sans.regular';
   padding: 40px;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
 

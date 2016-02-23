@@ -1,28 +1,43 @@
 extends layout
 <link type="text/css" rel="stylesheet" href="public/stylesheets/style.css" />
+
 block content
   if (!user)
+    //img(src="/img/background2.jpg", id="bg", alt="")
     .container
       #myStyle
-          h1 PRISM
-        #btn
-          a(href="/login")
-            button.btn.btn-primary(type="button") Login
-          br
-          br
-          a(href="/register")
-            button.btn.btn-primary(type="button") Register
+        #bigLogo
+          h1 prism
+        p.lead A Photo Sharing Application
+      #btn
+        a(href="/login")
+          button.btn(type="button") Login
+      #btn
+        a(href="/register")
+          button.btn(type="button") Register
+      #selLog
+        a(href="/about")
+          button.btn.btn-primary(type="button") About
 
   if (user)
     #logoText
-      p PRISM
+      p prism
     .container
-        #myStyle
-          img#proP.myClass(src= " " + user.propic)
-          .myClass
+      #myStyle
+        img#proP.myClass(src= " " + user.propic)
+        .myClass
+          #fullName
             h1 #{user.fullname}
-            #myTitle
-                p <em>#{user.title}</em>
+          #myUserTitle
+            p <em>#{user.title}</em>
+    #wrapper
+      #list
     #selLog
       a(href="/logout")
         button.btn.btn-primary(type="button") Logout
+      a(href="/update")
+        button.btn.btn-primary(type="button") Update
+      a(href="/upload")
+        button.btn.btn-primary(type="button") Upload
+        script.
+          currentUser= !{JSON.stringify(user)};

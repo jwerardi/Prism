@@ -1,0 +1,20 @@
+extends layout
+
+block content
+    //img(src="/img/background.jpg", id="bg", alt="")
+    .container
+        #myStyle
+            h1 Upload Image
+            h4 #{message}
+            br
+            if(user)
+                form(role='form', action="/user/#{user.id}/upload" ,method="post", id='upload',style='max-width: 300px;')
+                    br
+                    .form-group
+                        input.form-control(type='text', name="title", placeholder="title")
+                    .form-group
+                        input.form-control(type='text', name="photo", placeholder="image url")
+                    button.btn.btn-default(type='submit') Submit
+                    a(href='/')
+                        button.btn.btn-primary(type="button") Cancel
+                &nbsp;

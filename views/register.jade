@@ -1,16 +1,19 @@
 //
-   Created by tyler on 2/10/16.
+   Created by tyler on 2/10/16. Edited by Alex C 2/19
 
 extends layout
 
 block content
+    //img(src="/img/background.jpg", id="bg", alt="")
     .container
         #myStyle
-            h1 Prism
-            p.lead Be sure to fill out each section
+            h1 Register
+            p.lead pre alpha build
+            h4 #{info}
             br
-            form(role='form', action="/register",method="post", style='max-width: 300px;')
+            form(role='form', action="/register",method="post", id='register',style='max-width: 300px;')
                 .form-group
+                    br
                     input.form-control(type='text', name="username", placeholder='Enter Username')
                 .form-group
                     input.form-control(type='text', name="name", placeholder='Full Name')
@@ -19,13 +22,10 @@ block content
                 .form-group
                     input.form-control(type='text', name="title", placeholder='Title')
                 .form-group
-                    p be sure your link ends with a .jpg or .png
-                    input.form-control(type='text', name="propic", placeholder='Profile Picture (image link)')
+                    input.form-control(type='text', name="propic", placeholder='Profile Picture(png/jpg)')
+                    br
+                    br
                 button.btn.btn-default(type='submit') Submit
-            &nbsp;
-    a(href='/')
-        br
-        #myStyle
-            button.btn.btn-primary(type="button") Cancel
-    br
-    h4= info
+                a(href='/')
+                    button.btn.btn-primary(type="button") Cancel
+        &nbsp;
