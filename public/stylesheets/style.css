@@ -134,7 +134,7 @@ a {
 }
 .item img{
   height: auto;
-  width: 300px; // width of each brick less the padding inbetween
+  width: 300px; 
 }
 
 .photoStyle{
@@ -161,6 +161,11 @@ input, textarea {
 }
 ::-moz-placeholder { /* Firefox 19+ */
   font-size: 14px;
+}
+
+.errors{
+    text-align: center ;
+    
 }
 
 #proP{
@@ -251,7 +256,7 @@ form {
 form .progress {
   line-height: 15px;
 }
-}
+
 
 .progress {
   display: inline-block;

@@ -104,6 +104,7 @@ $(document).ready(function () {
                 required: true
             },
             "photo": {
+                required: true,
                 url: true,
                 extension: "jpg|png"
             }
@@ -113,8 +114,13 @@ $(document).ready(function () {
                 required: "TITLE REQUIRED"
             },
             "photo": {
+                required: "URL REQUIRED",
+                url:"VALID URL REQUIRED",
                 extension: "JPG/PNG REQUIRED"
-            }
-        }
+            },
+        },
+        errorElement : 'div',
+        errorLabelContainer: '.errors' 
+        
     });
 });
