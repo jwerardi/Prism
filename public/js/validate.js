@@ -5,7 +5,7 @@
 $(document).ready(function () {
     //validation rules
     $("#login").validate({
-        errorLabelContainer: '#errors',
+       
         rules: {
             "username": {
                 required: true
@@ -21,10 +21,11 @@ $(document).ready(function () {
             "password": {
                 required: "PASSWORD REQUIRED"
             }
-        }
+        },
+         errorElement : 'div',
+        errorLabelContainer: '.errors'
     });
     $("#register").validate({
-        errorLabelContainer: '#errors',
         rules: {
             "username": {
                 required: true
@@ -51,15 +52,19 @@ $(document).ready(function () {
                 required: "PASSWORD REQUIRED"
             },
             "title" : {
+                url:"VALID URL REQUIRED",
                 required: "TITLE REQUIRED"
             },
             "propic": {
+                url:"VALID URL REQUIRED",
                 extension: "JPG/PNG REQUIRED"
             },
             "name": {
                 required: "NAME REQUIRED"
             }
-        }
+        },
+        errorElement : 'div',
+        errorLabelContainer: '.errors'
     });
     $("#update").validate({
         rules: {
@@ -91,24 +96,39 @@ $(document).ready(function () {
                 required: "TITLE REQUIRED"
             },
             "propic": {
+                url:"VALID URL REQUIRED",
                 extension: "JPG/PNG REQUIRED"
             },
             "name": {
                 required: "NAME REQUIRED"
             }
-        }
+        },
+        errorElement : 'div',
+        errorLabelContainer: '.errors'
     });
     $("#upload").validate({
         rules: {
-            "propic": {
+             "title" : {
+                required: true
+            },
+            "photo": {
+                required: true,
                 url: true,
                 extension: "jpg|png"
             }
         },
         messages: {
-            "propic": {
+            "title": {
+                required: "TITLE REQUIRED"
+            },
+            "photo": {
+                required: "URL REQUIRED",
+                url:"VALID URL REQUIRED",
                 extension: "JPG/PNG REQUIRED"
-            }
-        }
+            },
+        },
+        errorElement : 'div',
+        errorLabelContainer: '.errors' 
+        
     });
 });
