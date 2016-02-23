@@ -166,6 +166,7 @@ input, textarea {
   width: 150px;
   height: 150px;
   top: -20px;
+  object-fit:cover;
 }
 #myUserTitle{
   margin:auto;
