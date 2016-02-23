@@ -33,7 +33,7 @@ a {
 }
 
 #fullName{
-   font-family: "alegreya-sans.thin";
+  font-family: "alegreya-sans.thin";
   text-align: center;
   align-content: center;
   margin: auto;
@@ -104,8 +104,8 @@ a {
 }
 
 .btn {
-    
-transition: all .2s ease-in-out;
+
+  transition: all .2s ease-in-out;
   background-color: Transparent;
   background-repeat:no-repeat;
   padding: 10px 20px 10px 20px;
@@ -118,12 +118,14 @@ transition: all .2s ease-in-out;
 }
 
 .btn:hover{
-    transition: all .1s ease-in-out;
--webkit-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
--moz-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+  transition: all .1s ease-in-out;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+  box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
 }
-
+#wrapper {
+  padding-top: 15px;
+}
 #list {
   margin: 0 auto;
 }
@@ -135,7 +137,10 @@ box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
   width: 300px; // width of each brick less the padding inbetween
 }
 
-
+.photoStyle{
+  height: 500px;
+  width: auto;
+}
 input, textarea {
   font-size: 16px;
   width: auto;
@@ -149,14 +154,14 @@ input, textarea {
 }
 
 ::-webkit-input-placeholder {
- font-size: 14px;
+  font-size: 14px;
 }
 :-moz-placeholder { /* older Firefox*/
- font-size:14px;
+  font-size:14px;
 }
-::-moz-placeholder { /* Firefox 19+ */ 
- font-size: 14px;
-} 
+::-moz-placeholder { /* Firefox 19+ */
+  font-size: 14px;
+}
 
 #proP{
   vertical-align:top;
@@ -211,7 +216,7 @@ form {
 }
 
 #btn{
-    
+
   display: block;
   text-align: center;
   align-content: center;

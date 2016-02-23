@@ -1,0 +1,26 @@
+extends layout
+block content
+    #logoText
+        p prism
+    if(currentuser)
+        #selLog
+            a(href="/")
+                button.btn.btn-primary(type="button") My Profile
+            a(href="/logout")
+                button.btn.btn-primary(type="button") Logout
+    if(!currentuser)
+        #selLog
+            a(href="/login")
+                button.btn.btn-primary(type="button") Login
+    if(usrimage)
+        .container
+            #myStyle
+                img.photoStyle(src= " " + usrimage.url)
+                p #{usrimage.title}
+                a(href="/user/#{user.username}")
+                    button.btn.btn-primary(type="button") #{user.username}
+    if(!usrimage)
+        #myStyle
+            h1 #{message}
+            a(href="/")
+                button.btn.btn-primary(type="button") Home

@@ -80,17 +80,29 @@ router.post('/login', function(req, res, next) {
 });
 
 /*
-//attempt to authenticate the user's credentials
-router.post('/login', passport.authenticate('local'), function(req, res) {
-  if (err) {
-    //if the authentication is not successfull
-    return res.render("login", {info: "Invalid Credentials"});
-  }else{
-    res.redirect('/');
-  }
-});
-*/
+ //attempt to authenticate the user's credentials
+ router.post('/login', passport.authenticate('local'), function(req, res) {
+ if (err) {
+ //if the authentication is not successfull
+ return res.render("login", {info: "Invalid Credentials"});
+ }else{
+ res.redirect('/');
+ }
+ });
+ */
+//IN PROGRESS when a user wants to see another user's profile
+router.get('/images/:userid/:index', function (req, res, next) {
+  Account.findById(req.params.userid, function(err, usr){
+    if(usr)
+    {
+      var image = usr.images[req.params.index];
+      return res.render("image", {usrimage: image, user: usr, currentuser: req.user});
+    }else{
+      return res.render("image", {usrimage: image, currentuser: req.user, message: "photo does not exist"});
+    }
 
+  });
+});
 //IN PROGRESS: User update.
 router.post('/user/:id/upload', function (req, res) {
   console.log("upload fucntion");
@@ -148,20 +160,20 @@ router.post('/user/:id/update', function (req, res) {
         if(usr.id!=req.user.id){
           console.log("nice try");
 
-        //if the user id of the logged in user is the same as the one you're accessing
+          //if the user id of the logged in user is the same as the one you're accessing
         }else{
           //if the username was changed
           if(req.body.username != req.user.username) {
             /*
-            Account.findByUsername(req.body.username, function (err, newUsr) {
-              if (!newUsr){
-                console.log(true);
-              }
-              if (newUsr){
-                console.log(false);
-              }
-            });
-            */
+             Account.findByUsername(req.body.username, function (err, newUsr) {
+             if (!newUsr){
+             console.log(true);
+             }
+             if (newUsr){
+             console.log(false);
+             }
+             });
+             */
 
             //changing the username
             console.log("Changing " + req.user.username + " to " + req.body.username);
@@ -228,6 +240,7 @@ router.get('/user/:username', function (req, res, next) {
 
   });
 });
+
 
 //logout user and redirect to home
 router.get('/logout', function(req, res) {
