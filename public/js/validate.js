@@ -100,13 +100,19 @@ $(document).ready(function () {
     });
     $("#upload").validate({
         rules: {
-            "propic": {
+             "title" : {
+                required: true
+            },
+            "photo": {
                 url: true,
                 extension: "jpg|png"
             }
         },
         messages: {
-            "propic": {
+            "title": {
+                required: "TITLE REQUIRED"
+            },
+            "photo": {
                 extension: "JPG/PNG REQUIRED"
             }
         }
