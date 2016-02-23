@@ -1,0 +1,265 @@
+@font-face{
+    font-family: "alegreya-sans.thin";
+    src: url('alegreya-sans.thin.ttf');
+}
+/*uploaded font for all text but title*/
+@font-face{
+    font-family: "alegreya-sans.regular";
+    src: url('alegreya-sans.regular.ttf');
+}
+
+
+body {
+    color: #000000;
+    background-color: #282828;
+    padding: 50px;
+    font: 14px;
+    font-family: 'alegreya-sans.thin';
+}
+
+#bigLogo{
+
+    text-align: center;
+    align-content: center;
+    color: #ffffff;
+    font-size: 20px;
+    font-family: Ubuntu;
+    letter-spacing: 5px;
+}
+
+a {
+    color: #B4CFEC;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#fullName{
+    font-family: "alegreya-sans.thin";
+    text-align: center;
+    align-content: center;
+    margin: auto;
+    width: auto;
+    color: #ffffff;
+    font: 14px;
+    letter-spacing: 5px;
+}
+
+#myStyle{
+    text-align: center;
+    align-content: center;
+    padding-top: 60px;
+    margin: auto;
+    width: auto;
+    color: #ffffff;
+    font: 14px;
+    font-family: Ubuntu;
+    letter-spacing: 5px;
+}
+
+
+#myTitle{
+    text-align: center;
+    align-content: center;
+    margin: auto;
+    width: auto;
+    color: #ffffff;
+    font: 14px;
+    font-family:'alegreya-sans.thin';
+}
+/*
+#myTitle{
+  margin:auto;
+  align-content: left;
+  color: #ffffff;
+  font: 14px;
+  font-family: 'alegreya-sans.thin';
+}*/
+
+#imageStyle{
+    max-width: 1%;
+    max-height: 1%;
+    position: inherit;
+    top: 0px;
+    left: 0px;
+}
+
+#logForm{
+    text-align: center;
+    margin:0 auto;
+    align-content: center;
+    display: inline-block;
+}
+
+.btn.sharp {
+    border-radius:0;
+}
+
+#logoText{
+    top:0;
+    left:0;
+    font-size: 40px;
+    position: absolute;
+    color: #FFFFFF;
+    padding-left: 40px;
+    font-family: 'alegreya-sans.regular';
+}
+
+.btn {
+
+    transition: all .2s ease-in-out;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    padding: 10px 20px 10px 20px;
+    font-family: monospace;
+    border: solid #ffffff 0.5px;
+    color: #ffffff;
+    cursor:pointer;
+    overflow: hidden;
+    margin: 7px;
+}
+
+.btn:hover{
+    transition: all .1s ease-in-out;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+    box-shadow: 0px 0px 5px 0px rgba(255,255,255,1);
+}
+#wrapper {
+    padding-top: 15px;
+}
+#list {
+    margin: 0 auto;
+}
+.item {
+    margin: 5px;
+}
+.item img{
+    height: auto;
+    width: 300px; // width of each brick less the padding inbetween
+}
+
+.photoStyle{
+    height: 500px;
+    width: auto;
+}
+input, textarea {
+    font-size: 16px;
+    width: auto;
+    font-family: monospace;
+    color: #ffffff;
+    border: solid #ffffff 0.5px;
+    padding: 7px;
+    letter-spacing: 3px;
+    margin-bottom: 10px;
+    background: rgba(255,255,255, 0);
+}
+
+::-webkit-input-placeholder {
+    font-size: 14px;
+}
+:-moz-placeholder { /* older Firefox*/
+    font-size:14px;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    font-size: 14px;
+}
+
+#proP{
+    vertical-align:top;
+    padding: 20px;
+    display: inline-block;
+    align-content: left;
+    width: 150px;
+    height: 150px;
+    top: -20px;
+}
+#myUserTitle{
+    margin:auto;
+    float: left;
+    color: #ffffff;
+    font: 20px;
+    font-family: 'alegreya-sans.thin';
+}
+
+#bg {
+    filter: blur(30px);
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1000;
+    /* Preserve aspet ratio */
+    min-width: 100%;
+    min-height: 100%;
+}
+
+form {
+    display: block;
+    width: auto;
+    margin: 0 auto;
+}
+
+#upForm{
+    color: #ffffff;
+    font: 14px;
+    font-family: 'alegreya-sans.regular';
+
+}
+
+#proPicInputTxt{
+    color: #000000;
+    font: 14px;
+    font-family: 'alegreya-sans.regular';
+}
+
+#btn{
+
+    display: block;
+    text-align: center;
+    align-content: center;
+    color: #ffffff;
+    font: 14px;
+    font-family: 'alegreya-sans.regular';
+
+}
+
+
+.myClass{
+    display: inline-block;
+}
+
+#selLog{
+    font-family: 'alegreya-sans.regular';
+    padding: 40px;
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.thumb {
+    width: 24px;
+    height: 24px;
+    float: none;
+    position: relative;
+    top: 7px;
+}
+
+form .progress {
+    line-height: 15px;
+}
+}
+
+.progress {
+    display: inline-block;
+    width: 100px;
+    border: 3px groove #CCC;
+}
+
+.progress div {
+    font-size: smaller;
+    background: orange;
+    width: 0;
+}
