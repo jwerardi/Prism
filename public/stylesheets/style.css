@@ -134,7 +134,7 @@ a {
 }
 .item img{
     height: auto;
-    width: 300px; // width of each brick less the padding inbetween
+    width: 300px; 
 }
 
 .photoStyle{
@@ -251,7 +251,7 @@ form {
 form .progress {
     line-height: 15px;
 }
-}
+
 
 .progress {
     display: inline-block;
