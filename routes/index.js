@@ -89,6 +89,22 @@ router.post('/login', function(req, res, next) {
  }
  });
  */
+
+//DELETE PHOTO
+router.get('/delete/:imageid',function (req, res, next) {
+    Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
+      if (usr) {
+        Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
+          if(err){
+            return res.render('error', {message: "Could not retrieve account"});
+          }else{
+            return res.redirect("/");
+          }
+        });
+      }
+    });
+});
+
 //IN PROGRESS when a user wants to see another user's profile
 router.get('/images/:userid/:index', function (req, res, next) {
   Account.findById(req.params.userid, function(err, usr){

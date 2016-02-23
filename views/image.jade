@@ -25,6 +25,8 @@ block content
                 a(href="/images/#{user.id}/#{nextPicture}")
                     button.btn.btn-primary(type="button") next
                 br
+                a(href="/delete/#{usrimage.id}")
+                    button.btn.btn-primary(type="button") delete
     if(!usrimage)
         #myStyle
             h1 #{message}
