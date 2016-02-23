@@ -7,13 +7,22 @@ var passportLocalMongoose = require('passport-local-mongoose');
 
 //TYLER: the SCHEMA for storage in the database.
 //TYLER: the password is really stored as a salt and hash
+
+
+var Image = new Schema({
+    title: String,
+    updated: { type: Date, default: Date.now },
+    url: String,
+    tags: [String]
+});
+
 var Account = new Schema({
     username: String,
     fullname: String,
     password: String,
     title: String,
     propic: String,
-    images: [String]
+    images: [Image]
 });
 
 Account.plugin(passportLocalMongoose);

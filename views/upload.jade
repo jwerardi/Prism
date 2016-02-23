@@ -9,8 +9,10 @@ block content
             br
             if(user)
                 form(role='form', action="/user/#{user.id}/upload" ,method="post", id='upload',style='max-width: 300px;')
+                    br
                     .form-group
-                        br
+                        input.form-control(type='text', name="title", placeholder="title")
+                    .form-group
                         input.form-control(type='text', name="photo", placeholder="image url")
                     button.btn.btn-default(type='submit') Submit
                     a(href='/')

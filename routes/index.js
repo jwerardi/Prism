@@ -106,13 +106,12 @@ router.post('/user/:id/upload', function (req, res) {
           console.log("nice try");
           //if the user id of the logged in user is the same as the one you're accessing
         }else{
-          usr.images.push(req.body.photo);
-          console.log("user images: ");
-          for(var i =0; i<usr.images.length;i++)
-          {
-            console.log(usr.images[i]);
-          }
-          //save the new object
+          //create a new image object
+          var img ={title: req.body.title, url: req.body.photo};
+          //push the new image onto the user's image array
+          usr.images.push(img);
+
+          //save user to have the new image object
           usr.save(function(err) {
             if (err)
               console.log('error while attempting to update' + req.user.username);

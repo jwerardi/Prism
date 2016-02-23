@@ -16,10 +16,11 @@ $(document).ready(function () {
 
     for(var i =0; i<currentUser.images.length;i++)
     {
+        console.log(currentUser.images[i].url);
         //img(src= " " + user.propic)
         images +=
-            "<div class=\"item\">" +
-                "<img src=\"" + currentUser.images[i] + "\"/>" +
+            "<div class=\"item\" " + "id = \"" + [i] + "\">" +
+                "<img src=\"" + currentUser.images[i].url + "\"/>" +
             "</div>";
     }
     console.log(images);
