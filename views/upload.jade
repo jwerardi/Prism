@@ -1,4 +1,9 @@
 extends layout
+<script src="public/js/jquery.tagsinput.js"></script>
+<script src="public/js/tags.js"></script>
+<link rel="stylesheet" type="text/css" href="public/stylesheets/jquery.tagsinput.css" />
+
+
 
 block content
     //img(src="/img/background.jpg", id="bg", alt="")
@@ -14,6 +19,8 @@ block content
                         input.form-control(type='text', name="title", placeholder="title")
                     .form-group
                         input.form-control(type='text', name="photo", placeholder="image url")
+                    .form-group
+                        input.form-control(type='text', name="tags", id="tags", class='tags', value="foo,bar,baz")
                     .errors
                     button.btn.btn-default(type='submit') Submit
                     a(href='/')

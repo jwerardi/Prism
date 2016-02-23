@@ -18,6 +18,7 @@ block content
                 img.photoStyle(src= " " + usrimage.url)
                 p #{usrimage.title}
                 p #{usrimage.updated}
+                p #{usrimage.tags}
                 a(href="/images/#{user.id}/#{backPicture}")
                     button.btn.btn-primary(type="button") back
                 a(href="/user/#{user.username}")

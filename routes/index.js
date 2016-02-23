@@ -135,7 +135,8 @@ router.post('/user/:id/upload', function (req, res) {
           //if the user id of the logged in user is the same as the one you're accessing
         }else{
           //create a new image object
-          var img ={title: req.body.title, url: req.body.photo};
+         // $('#tags').tagsInput();
+          var img ={title: req.body.title, url: req.body.photo, tags: req.body.tags};
           //push the new image onto the user's image array
           usr.images.push(img);
 
