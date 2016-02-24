@@ -3,6 +3,11 @@
  */
 
 $(document).ready(function () {
+    $(function() {
+        $('.confirm').click(function() {
+            return window.confirm("Are you sure?");
+        });
+    });
     //validation rules
     $("#login").validate({
        

@@ -1,7 +1,8 @@
 extends layout
 block content
-    #logoText
-        p prism
+    a(href="/")
+        #logoText
+            p prism
     if(currentuser)
         #selLog
             a(href="/")
@@ -27,7 +28,7 @@ block content
                 br
                 if(currentuser)
                     if(currentuser.username === user.username)
-                        a(href="/delete/#{usrimage.id}")
+                        a(href="/delete/#{usrimage.id}" class="confirm")
                             button.btn.btn-primary(type="button") delete
                         //a(href="/updatephoto/#{usrimage.id}")
                            //button.btn.btn-primary(type="button") update

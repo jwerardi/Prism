@@ -134,7 +134,7 @@ a {
 }
 .item img{
     height: auto;
-    width: 300px; // width of each brick less the padding inbetween
+    width: 400px; // width of each brick less the padding inbetween
 }
 
 .photoStyle{
