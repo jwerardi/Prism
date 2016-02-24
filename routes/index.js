@@ -98,34 +98,36 @@ router.post('/login', function(req, res, next) {
 router.get('/delete/:imageid',function (req, res, next) {
     Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
       if (usr) {
-        Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
-          if(err){
-            return res.render('error', {message: "Could not retrieve account"});
-          }else{
-            return res.redirect("/");
-          }
-        });
+          Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
+            if(err){
+              return res.render('error', {message: "Could not retrieve account"});
+            }else{
+              return res.redirect("/");
+            }
+          });
       }
     });
 });
 
 //IMAGE UPDATE
 router.post('/image/:imageid/update',function (req, res, next) {
-  Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
+  Account.findOne({'images._id': req.params.imageid}, function (err, usr) {
     if (usr) {
-      console.log(usr.images[0].title);
-      if (usr.images[0].title != req.body.title){
-        usr.images[0].title = req.body.title;
-        console.log(usr.images[0].title);
-      }
-      usr.save(function(err) {
-        if (err)
-          res.render('error', {message: "Could not save changes."});
-        else{
-          res.redirect('/');
-          console.log("updated");
-        }
-      });
+      console.log(usr._id);
+        Account.findByIdAndUpdate({ _id: usr._id, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$.title": req.body.title
+              }
+            }, {new: true},
+            function(err,doc) {
+                if(err){
+                  console.log("error");
+                }else{
+                  return res.redirect("/");
+                }
+            }
+        )
     }
   });
 });
