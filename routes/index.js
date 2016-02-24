@@ -18,6 +18,10 @@ router.get('/about', function (req, res) {
   res.render('about');
 });
 
+router.get('/updatephoto/:imageid', function (req, res){
+  res.render('update-photo', {imgid: req.params.imageid});
+});
+
 //INPROGRESS
 router.get('/contact', function (req, res) {
   res.render('contact');
@@ -103,6 +107,27 @@ router.get('/delete/:imageid',function (req, res, next) {
         });
       }
     });
+});
+
+//IMAGE UPDATE
+router.post('/image/:imageid/update',function (req, res, next) {
+  Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
+    if (usr) {
+      console.log(usr.images[0].title);
+      if (usr.images[0].title != req.body.title){
+        usr.images[0].title = req.body.title;
+        console.log(usr.images[0].title);
+      }
+      usr.save(function(err) {
+        if (err)
+          res.render('error', {message: "Could not save changes."});
+        else{
+          res.redirect('/');
+          console.log("updated");
+        }
+      });
+    }
+  });
 });
 
 //IN PROGRESS when a user wants to see another user's profile

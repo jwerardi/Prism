@@ -17,7 +17,7 @@ block content
             #myStyle
                 img.photoStyle(src= " " + usrimage.url)
                 p #{usrimage.title}
-                p #{usrimage.updated}
+                p #{usrimage.updated.toDateString()}
                 a(href="/images/#{user.id}/#{backPicture}")
                     button.btn.btn-primary(type="button") back
                 a(href="/user/#{user.username}")
@@ -25,8 +25,12 @@ block content
                 a(href="/images/#{user.id}/#{nextPicture}")
                     button.btn.btn-primary(type="button") next
                 br
-                a(href="/delete/#{usrimage.id}")
-                    button.btn.btn-primary(type="button") delete
+                if(currentuser)
+                    if(currentuser.username === user.username)
+                        a(href="/delete/#{usrimage.id}")
+                            button.btn.btn-primary(type="button") delete
+                //a(href="/updatephoto/#{usrimage.id}")
+                   // button.btn.btn-primary(type="button") update
     if(!usrimage)
         #myStyle
             h1 #{message}
