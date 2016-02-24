@@ -21,11 +21,14 @@ $(document).ready(function () {
             //console.log(currentUser.images[i].url);
             //img(src= " " + user.propic)
             images +=
-                "<div class=" +item1 + "id = \"" + [i] + "\">" + "<a href=\"/images/" + currentUser._id + "/" + i +"\">" +
-                "<img src=\"" + currentUser.images[i].url + "\"/>" + "</a>" +
+                "<div class=" +item1 + "id = \"" + [i] + "\">" +
+                    "<a href=\"/images/" + currentUser._id + "/" + i +"\">" +
+                        "<img src=\"" + currentUser.images[i].url + "\"/>" +
+                        "<span class=\"text-content\"><span>" + currentUser.images[i].title + "<\/span><\/span>" +
+                    "</a>" +
                 "</div>";
         }
-
+        console.log(images);
     }
     //console.log(images);
     //adding photos to page on DOM

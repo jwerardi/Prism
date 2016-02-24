@@ -136,6 +136,37 @@ a {
     height: auto;
     width: 400px; // width of each brick less the padding inbetween
 }
+.item {
+    position: relative;
+}
+
+.text-content {
+    position: absolute;
+    font-family: Ubuntu;
+    font-size: 25px;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #FFFFFF;
+    line-height: 300px;
+    text-align: center;
+    transition: all 0.2s ease-out;
+    visibility: hidden;
+    opacity: 0;
+
+    /*remove comment if you want a gradual transition between states
+    -webkit-transition: visibility opacity 0.2s;
+    */
+}
+
+
+.item:hover .text-content {
+    transition: all 0.2s ease-in;
+    visibility: visible;
+    opacity: 1;
+}
 
 .photoStyle{
     height: 500px;
