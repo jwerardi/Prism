@@ -34,11 +34,11 @@ block content
     #wrapper
       #list
     #selLog
-      a(href="/logout")
-        button.btn.btn-primary(type="button") Logout
       a(href="/update")
-        button.btn.btn-primary(type="button") Update
+        button.btn.btn-primary(type="button") Edit
       a(href="/upload")
         button.btn.btn-primary(type="button") Upload
+      a(href="/logout")
+        button.btn.btn-primary(type="button") Logout
         script.
           currentUser= !{JSON.stringify(user)};
