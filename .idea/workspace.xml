@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9fd33ffd-a8bf-4740-9bc6-f41b292dd6fd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/gallery.js" afterPath="$PROJECT_DIR$/public/js/gallery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/validate.js" afterPath="$PROJECT_DIR$/public/js/validate.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/stylesheets/style.css" afterPath="$PROJECT_DIR$/public/stylesheets/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/about.jade" afterPath="$PROJECT_DIR$/views/about.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/image.jade" afterPath="$PROJECT_DIR$/views/image.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/index.jade" afterPath="$PROJECT_DIR$/views/index.jade" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/user.jade" afterPath="$PROJECT_DIR$/views/user.jade" />
     </list>
     <ignored path="passport-local-express4.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -53,8 +47,8 @@
       <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49126413">
-              <caret line="136" column="13" selection-start-line="136" selection-start-column="13" selection-end-line="136" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.7040082">
+              <caret line="142" column="4" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -837,8 +831,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/stylesheets/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49126413">
-          <caret line="136" column="13" selection-start-line="136" selection-start-column="13" selection-end-line="136" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.7040082">
+          <caret line="142" column="4" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="4" />
           <folding />
         </state>
       </provider>
