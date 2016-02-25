@@ -20,9 +20,10 @@ block content
                 script.
                     thisimage = !{JSON.stringify(usrimage)};
                     currentUser = " ";
-                img.photoStyle(src= " " + usrimage.url)
+                img.photoStyle#forMobile(src= " " + usrimage.url)
                 p #{usrimage.title}
                 p #{usrimage.updated.toDateString()}
+                #howmanycomments
                 a(href="/images/#{user.id}/#{backPicture}")
                     button.btn.btn-primary(type="button" id="back") back
                 a(href="/user/#{user.username}")

@@ -10,7 +10,7 @@ $(document).ready(function () {
     var comments ="";
     if(thisimage != " "){
         console.log(thisimage.url);
-        console.log(thisimage.comments.length);
+        $("#howmanycomments").html(thisimage.comments.length + " Comments" + "<br>"+ "<br>");
         for(var j =0; j<thisimage.comments.length; j++){
             comments +=
                 "<span class=\"comment\"><span>" + thisimage.comments[j].username + ": " + thisimage.comments[j].content + "<\/span><\/span>"+"<br>"+"<br>";

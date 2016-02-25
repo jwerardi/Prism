@@ -17,6 +17,7 @@ body {
     font-family: 'alegreya-sans.thin';
 }
 
+
 #bigLogo{
 
     text-align: center;
@@ -65,14 +66,6 @@ a {
     font: 14px;
     font-family:'alegreya-sans.thin';
 }
-/*
-#myTitle{
-  margin:auto;
-  align-content: left;
-  color: #ffffff;
-  font: 14px;
-  font-family: 'alegreya-sans.thin';
-}*/
 
 #imageStyle{
     max-width: 1%;
@@ -125,6 +118,7 @@ a {
 }
 #wrapper {
     padding-top: 15px;
+    margin: 0 auto;
 }
 #list {
     margin: 0 auto;
@@ -134,7 +128,7 @@ a {
 }
 .item img{
     height: auto;
-    width: 400px; // width of each brick less the padding inbetween
+    width: 400px;
 }
 .item {
     position: relative;
@@ -295,4 +289,129 @@ form .progress {
     font-size: smaller;
     background: orange;
     width: 0;
+}
+
+
+@media only screen and (max-width: 760px) {
+    .btn {
+
+        transition: all .2s ease-in-out;
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        padding: 5px 10px 5px 10px;
+        font-family: monospace;
+        color: #ffffff;
+        cursor:pointer;
+        overflow: hidden;
+        margin: 7px;
+        font-size: 10px;
+    }
+
+    #logoText{
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+        transform: rotate(90deg);
+        top:0;
+        left:0;
+        padding-top: 60px;
+        padding-right: 30px;
+        float: left;
+        font-size: 30px;
+        position: absolute;
+        color: #FFFFFF;
+        font-family: 'alegreya-sans.regular';
+    }
+
+    #myStyle{
+        text-align: center;
+        align-content: center;
+        padding-top: 60px;
+        margin: 0 auto;
+        width: auto;
+        color: #ffffff;
+        font: 14px;
+        font-family: Ubuntu;
+        letter-spacing: 3px;
+    }
+
+    #proP{
+
+        width: 100px;
+        height: 100px;
+        object-fit:cover;
+    }
+
+    #fullName{
+        font-family: "alegreya-sans.thin";
+        text-align: center;
+        color: #ffffff;
+        font: 14px;
+        letter-spacing: 3px;
+    }
+
+    .myClass{
+        display: inline-block;
+    }
+
+
+
+    #myUserTitle{
+        text-align: center;
+        float: inherit;
+        color: #ffffff;
+        font: 20px;
+        font-family: 'alegreya-sans.thin';
+        display: block;
+    }
+
+
+    #wrapper {
+        padding-top: 55px;
+        margin: auto 0px auto auto;
+        width: 100%;
+        text-align: center;
+    }
+
+
+    .item:hover .text-content {
+        line-height: 200px;
+        display: inline-block;
+        vertical-align: middle;
+        transition: all 0.2s ease-in;
+        visibility: visible;
+        opacity: 1;
+        text-align: center;
+        font-size: 16px;
+
+    }
+
+    .item img{
+
+        width: 270px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .item {
+
+        margin: 5px auto;
+        position:absolute;
+    }
+
+    .photoStyle{
+        max-width: 95%;
+        height: 300px;
+        width: auto;
+        object-fit: contain;
+        border: none;
+    }
+
+    #list {
+        display: inline-block;
+        margin: 0 auto;
+    }
+
+
+
 }
