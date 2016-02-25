@@ -406,7 +406,16 @@ form .progress {
         object-fit: contain;
         border: none;
     }
-
+    #commentPic img{
+        vertical-align:top;
+        padding: 20px;
+        display: inline-block;
+        align-content: left;
+        width: 30px;
+        height: 30px;
+        top: -20px;
+        object-fit:cover;
+    }
     #list {
         display: inline-block;
         margin: 0 auto;

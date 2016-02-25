@@ -8,6 +8,7 @@ var Schema = mongoose.Schema;
 var Comment = new Schema({
     content: String,
     username: String,
+    userid: String,
     image: String,
     propic: String,
     updated: { type: Date, default: Date.now }

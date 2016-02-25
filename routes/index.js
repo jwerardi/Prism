@@ -30,7 +30,7 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){
       if(req.user){
-        var comment = new Comment({content: req.body.comment, image: req.params.imageid, username: req.user.username, propic: req.user.propic});
+        var comment = new Comment({userid: req.user.id, content: req.body.comment, image: req.params.imageid, username: req.user.username, propic: req.user.propic});
         comment.save(function(err){
           if(err){
             console.log("error commenting");
@@ -256,9 +256,9 @@ router.post('/user/:id/upload', function (req, res) {
           //if the user id of the logged in user is the same as the one you're accessing
         }else{
           if(!req.body.title){
-            newImage = new Image({title: "Untitled.", url: req.body.photo});
+            newImage = new Image({username: req.user.username, userid: req.user.id, title: "Untitled.", url: req.body.photo});
           }else{
-            newImage = new Image({title: req.body.title, url: req.body.photo});
+            newImage = new Image({username: req.user.username, userid: req.user.id, title: req.body.title, url: req.body.photo});
           }
           newImage.save(function(err) {
             if (err) throw err;

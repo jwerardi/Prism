@@ -13,7 +13,8 @@ $(document).ready(function () {
         $("#howmanycomments").html(thisimage.comments.length + " Comments" + "<br>"+ "<br>");
         for(var j =0; j<thisimage.comments.length; j++){
             comments +=
-                "<span class=\"comment\"><span>" + thisimage.comments[j].username + ": " + thisimage.comments[j].content + "<\/span><\/span>"+"<br>"+"<br>";
+                "<img src=\"" + thisimage.comments[j].propic + "\" width=\"50\" height=\"50\"/>"+
+                "<span class=\"comment\"><span> " + thisimage.comments[j].username + ": " + thisimage.comments[j].content + "<\/span><\/span>"+"<br>"+"<br>";
         }
         console.log(comments);
         $("#comments").html(comments);
