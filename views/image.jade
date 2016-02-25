@@ -16,7 +16,7 @@ block content
     if(usrimage)
         .container
             #myStyle
-                img.photoStyle(src= " " + usrimage.url)
+                img.photoStyle#forMobile(src= " " + usrimage.url)
                 p #{usrimage.title}
                 p #{usrimage.updated.toDateString()}
                 a(href="/images/#{user.id}/#{backPicture}")
