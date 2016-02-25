@@ -14,24 +14,28 @@ $(document).ready(function () {
     var item1 = "\"item\"";
     var item2 = "\"item grid-item--width2\"";
     var images ="";
-
-    for(var i = currentUser.images.length-1; i>=0;i--)
+    if(currentUser != " ")
     {
-        if (typeof currentUser.images[i].url != 'undefined'){
-            //console.log(currentUser.images[i].url);
-            //img(src= " " + user.propic)
-            images +=
-                "<div class=" +item1 + "id = \"" + [i] + "\">" +
+        for(var i = currentUser.images.length-1; i>=0;i--)
+        {
+            if (typeof currentUser.images[i].url != 'undefined'){
+                //console.log(currentUser.images[i].url);
+                //img(src= " " + user.propic)
+                images +=
+                    "<div class=" +item1 + "id = \"" + [i] + "\">" +
                     "<a href=\"/images/" + currentUser._id + "/" + i +"\">" +
-                        "<img src=\"" + currentUser.images[i].url + "\"/>" +
-                        "<span class=\"text-content\"><span>" + currentUser.images[i].title + "<\/span><\/span>" +
+                    "<img src=\"" + currentUser.images[i].url + "\"/>" +
+                    "<span class=\"text-content\"><span>" + currentUser.images[i].title + "<\/span><\/span>" +
                     "</a>" +
-                "</div>";
+                    "</div>";
+            }
+            console.log(images);
         }
-        console.log(images);
+        //console.log(images);
+        //adding photos to page on DOM
+        $("#list").html(images);
     }
-    //console.log(images);
-    //adding photos to page on DOM
-    $("#list").html(images);
+
+
 
 });

@@ -17,6 +17,7 @@ body {
     font-family: 'alegreya-sans.thin';
 }
 
+
 #bigLogo{
 
     text-align: center;
@@ -295,4 +296,118 @@ form .progress {
     font-size: smaller;
     background: orange;
     width: 0;
+}
+
+
+@media only screen and (max-width: 760px) {
+    .btn {
+
+        transition: all .2s ease-in-out;
+        background-color: Transparent;
+        background-repeat:no-repeat;
+        padding: 5px 10px 5px 10px;
+        font-family: monospace;
+        color: #ffffff;
+        cursor:pointer;
+        overflow: hidden;
+        margin: 7px;
+        font-size: 10px;
+    }
+
+    #logoText{
+        top:0;
+        left:0;
+        font-size: 30px;
+        position: absolute;
+        color: #FFFFFF;
+        padding-left: 44px;
+        padding-top: 10px;
+        font-family: 'alegreya-sans.regular';
+    }
+
+    #myStyle{
+        text-align: center;
+        align-content: center;
+        padding-top: 60px;
+        margin: 0 auto;
+        width: auto;
+        color: #ffffff;
+        font: 14px;
+        font-family: Ubuntu;
+        letter-spacing: 3px;
+    }
+
+    #proP{
+        position:absolute;
+        float: right;
+        right: 0;
+        padding-top: 20px;
+        vertical-align:top;
+        padding-top: 150px;
+        padding-right: 45px;
+        padding-bottom: 20px;
+        width: 100px;
+        height: 100px;
+        object-fit:cover;
+    }
+
+    #fullName{
+        font-family: "alegreya-sans.thin";
+        text-align: left;
+        color: #ffffff;
+        font: 14px;
+        letter-spacing: 3px;
+    }
+
+    .myClass{
+        display: block;
+    }
+
+
+
+    #myUserTitle{
+        text-align: left;
+        float: inherit;
+        color: #ffffff;
+        font: 20px;
+        font-family: 'alegreya-sans.thin';
+        display: block;
+    }
+
+
+    #wrapper {
+        padding-top: 55px;
+        margin: 0 auto;
+    }
+
+
+    .item:hover .text-content {
+        transition: all 0.2s ease-in;
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .item {
+        margin: 5px;
+    }
+    .item img{
+        height: auto;
+        width: 320px;
+        display: block;
+        margin: 0 auto;
+    }
+    .item {
+        position: absolute;
+    }
+
+    .photoStyle{
+        max-width: 95%;
+        height: 300px;
+        width: auto;
+        object-fit: contain;
+        border: none;
+    }
+
+
+
 }

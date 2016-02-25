@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
 var Image = require('../models/image-model.js');
+var Comment = require('../models/comment.js');
 var router = express.Router();
 
 //receives the index view along with request.user, the jade file will then decide which version of the home page to display depending
@@ -22,6 +23,52 @@ router.get('/about', function (req, res) {
 router.get('/updatephoto/:imageid', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     res.render('update-photo', {imgid: req.params.imageid, imgtitle: img.title});
+  });
+});
+
+router.post('/comment/:imageid/:userid/:index', function (req, res){
+  Image.findById(req.params.imageid,function(err, img){
+    if(img){
+      if(req.user){
+        var comment = new Comment({content: req.body.comment, image: req.params.imageid, username: req.user.username, propic: req.user.propic});
+        comment.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        img.comments.push(comment);
+        img.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        Account.findOneAndUpdate(
+          { "_id": req.params.userid, "images._id": req.params.imageid},
+          {
+            "$set": {
+              "images.$": img
+            }
+          },
+          function(err,doc) {
+            if(err){
+              res.render('error', {message: "ERROR"});
+            }
+          }
+        );
+        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+        console.log("congrats");
+      }else{
+        console.log("must be logged in to comment");
+      }
+
+    }else{
+      console.log("cannot find image");
+    }
+
   });
 });
 
