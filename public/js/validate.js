@@ -3,10 +3,22 @@
  */
 
 $(document).ready(function () {
-    $(function() {
-        $('.confirm').click(function() {
-            return window.confirm("Are you sure?");
-        });
+    /**
+     * Created by tyler on 2/24/16.
+     */
+    $(document).keydown(function(e) {
+        switch(e.which) {
+            case 37: console.log("left");
+                $('#back').trigger('click');
+                break;
+
+            case 39: console.log("right");
+                $('#next').trigger('click');
+                break;
+
+            default: return; // exit this handler for other keys
+        }
+        e.preventDefault(); // prevent the default action (scroll / move caret)
     });
     //validation rules
     $("#login").validate({

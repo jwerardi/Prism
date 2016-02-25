@@ -15,7 +15,7 @@ $(document).ready(function () {
     var item2 = "\"item grid-item--width2\"";
     var images ="";
 
-    for(var i = currentUser.images.length-1; i>0;i--)
+    for(var i = currentUser.images.length-1; i>=0;i--)
     {
         if (typeof currentUser.images[i].url != 'undefined'){
             //console.log(currentUser.images[i].url);
