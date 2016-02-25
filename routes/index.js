@@ -30,7 +30,9 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){
       if(req.user){
+        //create a new comment
         var comment = new Comment({userid: req.user.id, content: req.body.comment, image: req.params.imageid, username: req.user.username, propic: req.user.propic});
+        //save it in the database
         comment.save(function(err){
           if(err){
             console.log("error commenting");
@@ -38,7 +40,9 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
             console.log("successful comment");
           }
         });
+        //add it to the image
         img.comments.push(comment);
+        //save the changes
         img.save(function(err){
           if(err){
             console.log("error commenting");
@@ -46,6 +50,7 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
             console.log("successful comment");
           }
         });
+        //finally, update the account with the updated image
         Account.findOneAndUpdate(
           { "_id": req.params.userid, "images._id": req.params.imageid},
           {
