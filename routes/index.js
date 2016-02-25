@@ -305,16 +305,18 @@ router.post('/user/:id/upload', function (req, res) {
           console.log("nice try");
           //if the user id of the logged in user is the same as the one you're accessing
         }else{
+
           if(!req.body.title){
-            newImage = new Image({username: req.user.username, userid: req.user.id, title: "Untitled.", url: req.body.photo});
+            newImage = new Image({username: req.user.username, userid: req.user.id, title: "Untitled.", url: req.body.photo, tags: req.body.tags});
           }else{
-            newImage = new Image({username: req.user.username, userid: req.user.id, title: req.body.title, url: req.body.photo});
+            newImage = new Image({username: req.user.username, userid: req.user.id, title: req.body.title, url: req.body.photo, tags: req.body.tags});
           }
           newImage.save(function(err) {
             if (err) throw err;
 
             console.log('Image created!');
           });
+
           //push the new image onto the user's image array
           usr.images.push(newImage);
 

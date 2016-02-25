@@ -24,7 +24,9 @@ block content
                 img.photoStyle#forMobile(src= " " + usrimage.url)
                 p #{usrimage.title}
                 p #{usrimage.updated.toDateString()}
+                p #{usrimage.tags}
                 #howmanycomments
+
                 a(href="/images/#{user.id}/#{backPicture}")
                     button.btn.btn-primary(type="button" id="back") back
                 a(href="/user/#{user.username}")
