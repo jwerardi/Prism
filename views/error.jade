@@ -3,5 +3,8 @@ extends layout
 block content
   #myStyle
     h1 #{message}
+    if(picture)
+      a(href="#{picture}")
+        button.btn.btn-primary(type="button") Back
     a(href="/")
       button.btn.btn-primary(type="button") Home
