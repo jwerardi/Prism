@@ -186,7 +186,7 @@ router.get('/images/:userid/:index', function (req, res, next) {
       if(index <= 0){
         backPic = usr.images.length-1;
       }
-      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: nextPic, backPicture: backPic});
+      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic});
     }else{
       return res.render("image", {usrimage: image, currentuser: req.user, message: "photo does not exist"});
     }
