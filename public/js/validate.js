@@ -114,7 +114,7 @@ $(document).ready(function () {
     $("#upload").validate({
         rules: {
              "title" : {
-                required: true
+                required: false
             },
             "photo": {
                 required: true,

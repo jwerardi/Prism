@@ -1,20 +1,12 @@
 //TYLER: including mongoose for creating the schema
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-
+var Image = require('./image-model.js').schema;
 //TYLER: passport library for easily creating a salt and hash
 var passportLocalMongoose = require('passport-local-mongoose');
 
 //TYLER: the SCHEMA for storage in the database.
 //TYLER: the password is really stored as a salt and hash
-
-
-var Image = new Schema({
-    title: String,
-    updated: { type: Date, default: Date.now },
-    url: String,
-    tags: [String]
-});
 
 var Account = new Schema({
     username: String,
