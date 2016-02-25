@@ -315,17 +315,13 @@ form .progress {
     }
 
     #logoText{
-        -ms-transform: rotate(90deg); /* IE 9 */
-        -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-        transform: rotate(90deg);
         top:0;
         left:0;
-        padding-top: 60px;
-        padding-right: 30px;
-        float: left;
         font-size: 30px;
         position: absolute;
         color: #FFFFFF;
+        padding-left: 44px;
+        padding-top: 10px;
         font-family: 'alegreya-sans.regular';
     }
 
@@ -342,7 +338,14 @@ form .progress {
     }
 
     #proP{
-
+        position:absolute;
+        float: right;
+        right: 0;
+        padding-top: 20px;
+        vertical-align:top;
+        padding-top: 150px;
+        padding-right: 45px;
+        padding-bottom: 20px;
         width: 100px;
         height: 100px;
         object-fit:cover;
@@ -357,13 +360,13 @@ form .progress {
     }
 
     .myClass{
-        display: inline-block;
+        display: block;
     }
 
 
 
     #myUserTitle{
-        text-align: center;
+        text-align: left;
         float: inherit;
         color: #ffffff;
         font: 20px;
@@ -385,18 +388,15 @@ form .progress {
     }
 
     .item {
-        margin: 5px auto;
-        display: inline-block;
+        margin: 5px;
     }
     .item img{
-        /*max-height: 95%;*/
-        width: 300px;
         height: auto;
+        width: 320px;
         display: block;
         margin: 0 auto;
     }
     .item {
-        margin: 5px auto;
         position: absolute;
     }
 
@@ -407,13 +407,6 @@ form .progress {
         object-fit: contain;
         border: none;
     }
-
-    #list {
-        align-content: center;
-        align-items: center;
-        margin: auto;
-    }
-
 
 
 
