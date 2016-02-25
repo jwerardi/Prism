@@ -1,5 +1,6 @@
 extends layout
-
+block extraHeader
+    title #{usrimage.title}
 block content
     a(href="/")
         #logoText
@@ -32,21 +33,21 @@ block content
                     button.btn.btn-primary(type="button" ) #{user.username}
                 a(href="/images/#{user.id}/#{nextPicture}")
                     button.btn.btn-primary(type="button" id="next") next
-                form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{nextPicture}" ,method="post", id='comment-photo',style='max-width: 300px;')
-                br
                 #comments
+                if(currentuser)
+                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{nextPicture}" ,method="post", id='comment-photo',style='max-width: 300px;')
+                        br
+                        br
+                        .form-group
+                            input.form-control(type='text', name="comment", placeholder="comment")
+                        .errors
+                        button.btn.btn-default(type='submit') Comment
                 if(currentuser)
                     if(currentuser.username === user.username)
                         a(href="/delete/#{usrimage.id}" class="confirm")
                             button.btn.btn-primary(type="button") delete
                         a(href="/updatephoto/#{usrimage.id}")
-                           button.btn.btn-primary(type="button") update
-                if(currentuser)
-                    br
-                    .form-group
-                        input.form-control(type='text', name="comment", placeholder="comment")
-                    .errors
-                    button.btn.btn-default(type='submit') Comment
+                            button.btn.btn-primary(type="button") update
                 if(!currentuser)
                     p Must be logged in to comment.
                     a(href="/login")

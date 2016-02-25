@@ -1,10 +1,11 @@
 extends layout
-
+block extraHeader
+    title Login
 block content
     //img(src="/img/background.jpg", id="bg", alt="")
     .container
         #myStyle
-            h1 Upload Image
+            h1 Update Image
             h4 #{message}
             br
             form(role='form', action="/image/#{imgid}/update" ,method="post", id='update-photo',style='max-width: 300px;')
