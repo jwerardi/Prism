@@ -1,6 +1,8 @@
 var express = require('express');
 var passport = require('passport');
 var Account = require('../models/account');
+var Image = require('../models/image-model.js');
+var Comment = require('../models/comment.js');
 var router = express.Router();
 
 //receives the index view along with request.user, the jade file will then decide which version of the home page to display depending
@@ -16,6 +18,58 @@ router.get('/about', function (req, res) {
 
 router.get('/about', function (req, res) {
   res.render('about');
+});
+
+router.get('/updatephoto/:imageid', function (req, res){
+  Image.findById(req.params.imageid,function(err, img){
+    res.render('update-photo', {imgid: req.params.imageid, imgtitle: img.title});
+  });
+});
+
+router.post('/comment/:imageid/:userid/:index', function (req, res){
+  Image.findById(req.params.imageid,function(err, img){
+    if(img){
+      if(req.user){
+        var comment = new Comment({userid: req.user.id, content: req.body.comment, image: req.params.imageid, username: req.user.username, propic: req.user.propic});
+        comment.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        img.comments.push(comment);
+        img.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        Account.findOneAndUpdate(
+          { "_id": req.params.userid, "images._id": req.params.imageid},
+          {
+            "$set": {
+              "images.$": img
+            }
+          },
+          function(err,doc) {
+            if(err){
+              res.render('error', {message: "ERROR"});
+            }
+          }
+        );
+        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+        console.log("congrats");
+      }else{
+        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
+      }
+
+    }else{
+      console.log("cannot find image");
+    }
+
+  });
 });
 
 //INPROGRESS
@@ -89,6 +143,73 @@ router.post('/login', function(req, res, next) {
  }
  });
  */
+
+//DELETE PHOTO
+router.get('/delete/:imageid',function (req, res, next) {
+    Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
+      if (usr) {
+          Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
+            if(err){
+              return res.render('error', {message: "Could not retrieve account"});
+            }else{
+              Image.findById(req.params.imageid, function(err, img) {
+                if (img) {
+                    img.remove();
+                }
+              });
+              return res.redirect("/");
+            }
+          });
+      }
+    });
+});
+
+//IMAGE UPDATE
+router.post('/image/:imageid/update',function (req, res, next) {
+  Image.findById(req.params.imageid, function(err, img){
+  if(img){
+    //if the user is logged in
+    if (req.user)
+    {
+        //if the title was changed
+        if(req.body.title != img.title) {
+          img.title = req.body.title;
+        }else if(!req.body.title){
+          img.title = "Untitled.";
+        }
+        //save the new object
+        img.save(function(err) {
+          if (err)
+            console.log('error while attempting to update' + img._id);
+          else{
+            res.redirect('/');
+            console.log("updated: " + img._id);
+          }
+        });
+        //after updating the image, find it on the user and replace that image with the new one
+        Account.findOneAndUpdate(
+          { "_id": req.user.id, "images._id": req.params.imageid},
+          {
+            "$set": {
+              "images.$": img
+            }
+          },
+          function(err,doc) {
+            if(err){
+              res.render('error', {message: "ERROR"});
+            }
+          }
+      );
+
+    }else{
+      res.render('error', {message: "Not logged in"});
+    }
+  }else{
+    res.render('error', {message: "Cannot Find Image"});
+  }
+  });
+});
+
 //IN PROGRESS when a user wants to see another user's profile
 router.get('/images/:userid/:index', function (req, res, next) {
   Account.findById(req.params.userid, function(err, usr){
@@ -112,7 +233,7 @@ router.get('/images/:userid/:index', function (req, res, next) {
       if(index <= 0){
         backPic = usr.images.length-1;
       }
-      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: nextPic, backPicture: backPic});
+      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic});
     }else{
       return res.render("image", {usrimage: image, currentuser: req.user, message: "photo does not exist"});
     }
@@ -134,11 +255,24 @@ router.post('/user/:id/upload', function (req, res) {
           console.log("nice try");
           //if the user id of the logged in user is the same as the one you're accessing
         }else{
+<<<<<<< HEAD
           //create a new image object
          // $('#tags').tagsInput();
           var img ={title: req.body.title, url: req.body.photo, tags: req.body.tags};
+=======
+          if(!req.body.title){
+            newImage = new Image({username: req.user.username, userid: req.user.id, title: "Untitled.", url: req.body.photo});
+          }else{
+            newImage = new Image({username: req.user.username, userid: req.user.id, title: req.body.title, url: req.body.photo});
+          }
+          newImage.save(function(err) {
+            if (err) throw err;
+
+            console.log('Image created!');
+          });
+>>>>>>> refs/remotes/tylerjbainbridge/master
           //push the new image onto the user's image array
-          usr.images.push(img);
+          usr.images.push(newImage);
 
           //save user to have the new image object
           usr.save(function(err) {
@@ -180,8 +314,9 @@ router.post('/user/:id/update', function (req, res) {
           //if the user id of the logged in user is the same as the one you're accessing
         }else{
           //if the username was changed
+          /*
           if(req.body.username != req.user.username) {
-            /*
+
              Account.findByUsername(req.body.username, function (err, newUsr) {
              if (!newUsr){
              console.log(true);
@@ -190,13 +325,14 @@ router.post('/user/:id/update', function (req, res) {
              console.log(false);
              }
              });
-             */
+
 
             //changing the username
             console.log("Changing " + req.user.username + " to " + req.body.username);
             usr.username = req.body.username;
             console.log(usr.username);
           }
+          */
 
           //full name
           if(req.body.name != req.user.fullname)

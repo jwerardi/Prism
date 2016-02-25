@@ -1,7 +1,9 @@
 extends layout
+
 block content
-    #logoText
-        p prism
+    a(href="/")
+        #logoText
+            p prism
     if(currentuser)
         #selLog
             a(href="/")
@@ -15,17 +17,41 @@ block content
     if(usrimage)
         .container
             #myStyle
-                img.photoStyle(src= " " + usrimage.url)
+                script.
+                    thisimage = !{JSON.stringify(usrimage)};
+                    currentUser = " ";
+                img.photoStyle#forMobile(src= " " + usrimage.url)
                 p #{usrimage.title}
-                p #{usrimage.updated}
+                p #{usrimage.updated.toDateString()}
                 p #{usrimage.tags}
+                #howmanycomments
+
                 a(href="/images/#{user.id}/#{backPicture}")
-                    button.btn.btn-primary(type="button") back
+                    button.btn.btn-primary(type="button" id="back") back
                 a(href="/user/#{user.username}")
-                    button.btn.btn-primary(type="button") #{user.username}
+                    button.btn.btn-primary(type="button" ) #{user.username}
                 a(href="/images/#{user.id}/#{nextPicture}")
-                    button.btn.btn-primary(type="button") next
+                    button.btn.btn-primary(type="button" id="next") next
+                form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{nextPicture}" ,method="post", id='comment-photo',style='max-width: 300px;')
                 br
+                #comments
+                if(currentuser)
+                    if(currentuser.username === user.username)
+                        a(href="/delete/#{usrimage.id}" class="confirm")
+                            button.btn.btn-primary(type="button") delete
+                        a(href="/updatephoto/#{usrimage.id}")
+                           button.btn.btn-primary(type="button") update
+                if(currentuser)
+                    br
+                    .form-group
+                        input.form-control(type='text', name="comment", placeholder="comment")
+                    .errors
+                    button.btn.btn-default(type='submit') Comment
+                if(!currentuser)
+                    p Must be logged in to comment.
+                    a(href="/login")
+                        button.btn.btn-primary(type="button") Login
+
     if(!usrimage)
         #myStyle
             h1 #{message}

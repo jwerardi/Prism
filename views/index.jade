@@ -20,8 +20,9 @@ block content
           button.btn.btn-primary(type="button") About
 
   if (user)
-    #logoText
-      p prism
+    a(href="/")
+      #logoText
+        p prism
     .container
       #myStyle
         img#proP.myClass(src= " " + user.propic)
@@ -31,13 +32,14 @@ block content
           #myUserTitle
             p <em>#{user.title}</em>
     #wrapper
-      #list
+        #list
     #selLog
-      a(href="/logout")
-        button.btn.btn-primary(type="button") Logout
       a(href="/update")
-        button.btn.btn-primary(type="button") Update
+        button.btn.btn-primary(type="button") Edit
       a(href="/upload")
         button.btn.btn-primary(type="button") Upload
+      a(href="/logout")
+        button.btn.btn-primary(type="button") Logout
         script.
           currentUser= !{JSON.stringify(user)};
+          thisimage = " ";
