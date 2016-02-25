@@ -11,10 +11,11 @@ $(document).ready(function () {
     if(thisimage != " "){
         console.log(thisimage.url);
         $("#howmanycomments").html(thisimage.comments.length + " Comments" + "<br>"+ "<br>");
+        comments += "<br>";
         for(var j =0; j<thisimage.comments.length; j++){
             comments +=
                 "<a href=\"/user/" + thisimage.comments[j].username + "\">" +
-                "<img src=\"" + thisimage.comments[j].propic + "\" width=\"50\" height=\"50\"/>"+
+                "<img src=\"" + thisimage.comments[j].propic + "\" width=\"25\" height=\"25\"/>"+
                 "</a>" +
                 "<span class=\"comment\"><span> " + thisimage.comments[j].username + ": " + thisimage.comments[j].content + "<\/span><\/span>"+"<br>"+"<br>";
         }
