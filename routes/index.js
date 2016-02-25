@@ -62,7 +62,7 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
         res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
         console.log("congrats");
       }else{
-        console.log("must be logged in to comment");
+        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
       }
 
     }else{
