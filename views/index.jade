@@ -1,6 +1,10 @@
 extends layout
 <link type="text/css" rel="stylesheet" href="public/stylesheets/style.css" />
-
+block extraHeader
+  if(user)
+    title #{user.username}
+  if(!user)
+    title Prism
 block content
   if (!user)
     //img(src="/img/background2.jpg", id="bg", alt="")
