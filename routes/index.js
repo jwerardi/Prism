@@ -261,8 +261,9 @@ router.post('/user/:id/update', function (req, res) {
           //if the user id of the logged in user is the same as the one you're accessing
         }else{
           //if the username was changed
+          /*
           if(req.body.username != req.user.username) {
-            /*
+
              Account.findByUsername(req.body.username, function (err, newUsr) {
              if (!newUsr){
              console.log(true);
@@ -271,13 +272,14 @@ router.post('/user/:id/update', function (req, res) {
              console.log(false);
              }
              });
-             */
+
 
             //changing the username
             console.log("Changing " + req.user.username + " to " + req.body.username);
             usr.username = req.body.username;
             console.log(usr.username);
           }
+          */
 
           //full name
           if(req.body.name != req.user.fullname)

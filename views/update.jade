@@ -12,9 +12,9 @@ block content
             br
             if(user)
                 form(role='form', action="/user/#{user.id}/update" ,method="post", id='update',style='max-width: 300px;')
-                    .form-group
-                        br
-                        input.form-control(type='text', name="username", value="#{user.username}")
+                    //.form-group
+                        //br
+                        //input.form-control(type='text', name="username", value="#{user.username}")
                     .form-group
                         input.form-control(type='text', name="name", value="#{user.fullname}")
                     .form-group
