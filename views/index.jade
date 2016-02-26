@@ -1,7 +1,7 @@
 extends layout
 <link type="text/css" rel="stylesheet" href="public/stylesheets/style.css" />
-
 block content
+  #top
   if (!user)
     //img(src="/img/background2.jpg", id="bg", alt="")
     .container
@@ -43,3 +43,6 @@ block content
         script.
           currentUser= !{JSON.stringify(user)};
           thisimage = " ";
+    .back-to-top 
+      a(href="#")  
+        .back-to-top ^
