@@ -1,11 +1,15 @@
 extends layout
 <link type="text/css" rel="stylesheet" href="public/stylesheets/style.css" />
+<<<<<<< HEAD
 block extraHeader
   if(user)
     title #{user.username}
   if(!user)
     title Prism
+=======
+>>>>>>> 826f804f72af0519e56fa382b7497161001ded08
 block content
+  #top
   if (!user)
     //img(src="/img/background2.jpg", id="bg", alt="")
     .container
@@ -47,3 +51,6 @@ block content
         script.
           currentUser= !{JSON.stringify(user)};
           thisimage = " ";
+    .back-to-top 
+      a(href="#")  
+        .back-to-top ^
