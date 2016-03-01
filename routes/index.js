@@ -26,6 +26,51 @@ router.get('/updatephoto/:imageid', function (req, res){
   });
 });
 
+/*
+router.post('/delete/:commentid/:imageid/:userid/:index', function (req, res){
+  Image.findById(req.params.imageid,function(err, img){
+    if(img){
+      if(req.user){
+
+        Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,model){
+          if(err){
+            return res.render('error', {message: "Could not retrieve account"});
+          }else{
+            Comment.findById(req.params.imageid, function(err, comt) {
+              if (comt) {
+                comt.remove();
+              }
+            });
+          }
+        });
+
+        //finally, update the account with the updated image
+        Account.findOneAndUpdate(
+            { "_id": req.params.userid, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$": img
+              }
+            },
+            function(err,doc) {
+              if(err){
+                res.render('error', {message: "ERROR"});
+              }
+            }
+        );
+        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+        console.log("congrats");
+      }else{
+        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
+      }
+
+    }else{
+      console.log("cannot find image");
+    }
+
+  });
+});
+*/
 router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){
