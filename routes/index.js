@@ -109,10 +109,10 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
             }
           }
         );
-        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)));
         console.log("congrats");
       }else{
-        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
+        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index))});
       }
 
     }else{
@@ -283,7 +283,7 @@ router.get('/images/:userid/:index', function (req, res, next) {
       if(index <= 0){
         backPic = usr.images.length-1;
       }
-      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic});
+      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic, index: index});
     }else{
       return res.render("image", {usrimage: image, currentuser: req.user, message: "photo does not exist"});
     }

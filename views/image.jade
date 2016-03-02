@@ -35,7 +35,7 @@ block content
                     button.btn.btn-primary(type="button" id="next") next
                 #comments
                 if(currentuser)
-                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{nextPicture}" ,method="post", id='comment-photo',style='max-width: 300px;')
+                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
                         br
                         br
                         .form-group
