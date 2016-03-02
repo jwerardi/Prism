@@ -15,6 +15,9 @@ body {
     font: 14px;
     font-family: 'alegreya-sans.thin';
 }
+#accounts {
+    width: 500px;
+}
 #headerImg{
     background-image: url("img/background2.jpg");
     width: 100%;

@@ -132,12 +132,32 @@ router.get('/register', function(req, res) {
   res.render('register', { });
 });
 
+//receives the register view which has a register form
+router.get('/explore', function(req, res) {
+  // Find "limit" random documents (defaults to array of 1)
+  var filter = { images: { $exists: true, $not: {$size: 0} }, propic: { $exists: true } };
+  Account.findRandom(filter, {}, {limit: 3}, function(err, results) {
+    if (!err) {
+      console.log(results[1].username); // 5 elements
+      return res.render('explore', {users: results, currentuser: req.user});
+    }else{
+      console.log("error");
+      return res.render('error', {message: "Could not retrieve account"});
+    }
+  });
+
+
+});
+
 //all of the register form information is then passed to a new Account model, and redirected to the index view, but this time will be prompted with
 //a view of their profile
 router.post('/register', function(req, res) {
-  var profilepic
+
+  //handling the case of user not having a pro pic
+  var profilepic;
   if(req.body.propic == "")
   {
+    //temporary fix
     profilepic = "/img/templogo.png";
   }else{
     profilepic = req.body.propic;
