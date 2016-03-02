@@ -58,7 +58,6 @@ $(document).ready(function () {
             },
             "title" : {
                 required: true,
-                lettersonly : true,
                 maxlength: 20
             },
             "propic": {
@@ -67,7 +66,6 @@ $(document).ready(function () {
             },
             "name": {
                 required: true,
-                lettersonly: true,
                 maxlength: 20
             }
         },
@@ -82,7 +80,6 @@ $(document).ready(function () {
             },
             "title" : {
                 required: "TITLE REQUIRED",
-                lettersonly : "TITLE CAN ONLY CONTAIN LETTERS OR NUMBERS",
                 maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "propic": {
@@ -91,7 +88,6 @@ $(document).ready(function () {
             },
             "name": {
                 required: "NAME REQUIRED",
-                lettersonly : "NAME CAN ONLY CONTAIN LETTERS OR NUMBERS",
                 maxlength: "NAME CANNOT BE LONGER THAN 20 CHARACTERS"
             }
         },
@@ -111,7 +107,6 @@ $(document).ready(function () {
             },
             "title" : {
                 required: "TITLE REQUIRED",
-                lettersonly : true,
                 maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "propic": {
@@ -120,7 +115,6 @@ $(document).ready(function () {
             },
             "name": {
                 required: true,
-                lettersonly: true,
                 maxlength: 20
             }
         },
@@ -135,7 +129,6 @@ $(document).ready(function () {
             },
             "title" : {
                 required: "TITLE REQUIRED",
-                lettersonly : "TITLE CAN ONLY CONTAIN LETTERS OR NUMBERS",
                 maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "propic": {
@@ -144,7 +137,6 @@ $(document).ready(function () {
             },
             "name": {
                 required: "NAME REQUIRED",
-                lettersonly : "NAME CAN ONLY CONTAIN LETTERS OR NUMBERS",
                 maxlength: "NAME CANNOT BE LONGER THAN 20 CHARACTERS"
             }
         },
@@ -154,8 +146,7 @@ $(document).ready(function () {
     $("#upload").validate({
         rules: {
              "title" : {
-                required: false,
-                 lettersonly: true
+                required: false
             },
             "photo": {
                 required: true,
@@ -165,8 +156,7 @@ $(document).ready(function () {
         },
         messages: {
             "title": {
-                required: "TITLE REQUIRED",
-                lettersonly : "TITLE CAN ONLY CONTAIN LETTERS OR NUMBERS"
+                required: "TITLE REQUIRED"
             },
             "photo": {
                 required: "URL REQUIRED",

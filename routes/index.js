@@ -135,8 +135,16 @@ router.get('/register', function(req, res) {
 //all of the register form information is then passed to a new Account model, and redirected to the index view, but this time will be prompted with
 //a view of their profile
 router.post('/register', function(req, res) {
+  var profilepic
+  if(req.body.propic == "")
+  {
+    profilepic = "/img/templogo.png";
+  }else{
+    profilepic = req.body.propic;
+  }
+
   //registers a new account with the following information complete from the form
-  Account.register(new Account({ username : req.body.username, fullname: req.body.name, title : req.body.title, propic: req.body.propic}), req.body.password, function(err, account) {
+  Account.register(new Account({ username : req.body.username, fullname: req.body.name, title : req.body.title, propic: profilepic}), req.body.password, function(err, account) {
     if (err) {
       //if the username is not unique, let them know in "info"
       return res.render("register", {info: "Sorry. That username already exists. Try again."});
