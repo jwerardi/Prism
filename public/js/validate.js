@@ -58,6 +58,7 @@ $(document).ready(function () {
             },
             "title" : {
                 required: true,
+                lettersonly : true,
                 maxlength: 20
             },
             "propic": {
@@ -66,6 +67,7 @@ $(document).ready(function () {
             },
             "name": {
                 required: true,
+                lettersonly: true,
                 maxlength: 20
             }
         },
@@ -79,8 +81,8 @@ $(document).ready(function () {
                 required: "PASSWORD REQUIRED"
             },
             "title" : {
-                url:"VALID URL REQUIRED",
                 required: "TITLE REQUIRED",
+                lettersonly : "TITLE CAN ONLY CONTAIN LETTERS OR NUMBERS",
                 maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "propic": {
@@ -89,6 +91,7 @@ $(document).ready(function () {
             },
             "name": {
                 required: "NAME REQUIRED",
+                lettersonly : "NAME CAN ONLY CONTAIN LETTERS OR NUMBERS",
                 maxlength: "NAME CANNOT BE LONGER THAN 20 CHARACTERS"
             }
         },
@@ -98,38 +101,51 @@ $(document).ready(function () {
     $("#update").validate({
         rules: {
             "username": {
-                required: true
+                required: true,
+                lettersonly : true,
+                maxlength: 20
+
             },
             "password": {
                 required: true
             },
             "title" : {
-                required: true
+                required: "TITLE REQUIRED",
+                lettersonly : true,
+                maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "propic": {
                 url: true,
                 extension: "jpg|png|gif"
             },
             "name": {
-                required: true
+                required: true,
+                lettersonly: true,
+                maxlength: 20
             }
         },
         messages: {
             "username": {
-                required: "USERNAME REQUIRED"
+                required: "USERNAME REQUIRED",
+                lettersonly : "USERNAME CAN ONLY CONTAIN LETTERS OR NUMBERS",
+                maxlength: "USERNAME CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "password": {
                 required: "PASSWORD REQUIRED"
             },
             "title" : {
-                required: "TITLE REQUIRED"
+                required: "TITLE REQUIRED",
+                lettersonly : "TITLE CAN ONLY CONTAIN LETTERS OR NUMBERS",
+                maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "propic": {
                 url:"VALID URL REQUIRED",
                 extension: "JPG/PNG/GIF REQUIRED"
             },
             "name": {
-                required: "NAME REQUIRED"
+                required: "NAME REQUIRED",
+                lettersonly : "NAME CAN ONLY CONTAIN LETTERS OR NUMBERS",
+                maxlength: "NAME CANNOT BE LONGER THAN 20 CHARACTERS"
             }
         },
         errorElement : 'div',
@@ -138,7 +154,8 @@ $(document).ready(function () {
     $("#upload").validate({
         rules: {
              "title" : {
-                required: false
+                required: false,
+                 lettersonly: true
             },
             "photo": {
                 required: true,
@@ -148,13 +165,14 @@ $(document).ready(function () {
         },
         messages: {
             "title": {
-                required: "TITLE REQUIRED"
+                required: "TITLE REQUIRED",
+                lettersonly : "TITLE CAN ONLY CONTAIN LETTERS OR NUMBERS"
             },
             "photo": {
                 required: "URL REQUIRED",
                 url:"VALID URL REQUIRED",
                 extension: "JPG/PNG/GIF REQUIRED"
-            },
+            }
         },
         errorElement : 'div',
         errorLabelContainer: '.errors' 
