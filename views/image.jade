@@ -38,6 +38,7 @@ block content
                 if(currentuser)
                     form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
                         br
+                        br
                         .form-group
                             input.form-control(type='text', name="comment", placeholder="comment")
                         .errors
