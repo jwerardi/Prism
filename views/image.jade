@@ -26,7 +26,6 @@ block content
                 p #{usrimage.updated.toDateString()}
                 p #{usrimage.tags}
                 #howmanycomments
-<<<<<<< HEAD
 
                 a(href="/images/#{user.id}/#{backPicture}")
                     button.btn.btn-primary(type="button" id="back") back
@@ -35,28 +34,14 @@ block content
                 a(href="/images/#{user.id}/#{nextPicture}")
                     button.btn.btn-primary(type="button" id="next") next
                 #comments
-=======
-                #myStyle
-                    .comArea
-                        a(href="/images/#{user.id}/#{backPicture}")
-                            button.btn.btn-primary(type="button" id="back") back
-                        a(href="/user/#{user.username}")
-                            button.btn.btn-primary(type="button" ) #{user.username}
-                        a(href="/images/#{user.id}/#{nextPicture}")
-                            button.btn.btn-primary(type="button" id="next") next
-                        #pad
-                        p 
-                            #comments
->>>>>>> 826f804f72af0519e56fa382b7497161001ded08
                 if(currentuser)
-                    //#comment-photo
-                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{nextPicture}" ,method="post"/*, id='comment-photo',style='max-width: 300px;'*/)
-                    br
-                    br
-                    .form-group
-                        input.form-control(type='text', name="comment", placeholder="comment", id='commentText')
-                    .errors
-                    button.btn.btn-default(type='submit') Comment
+                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
+                        br
+                        br
+                        .form-group
+                            input.form-control(type='text', name="comment", placeholder="comment")
+                        .errors
+                        button.btn.btn-default(type='submit') Comment
                 if(currentuser)
                     if(currentuser.username === user.username)
                         a(href="/delete/#{usrimage.id}" class="confirm")

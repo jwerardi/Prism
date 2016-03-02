@@ -27,50 +27,50 @@ router.get('/updatephoto/:imageid', function (req, res){
 });
 
 /*
-router.post('/delete/:commentid/:imageid/:userid/:index', function (req, res){
-  Image.findById(req.params.imageid,function(err, img){
-    if(img){
-      if(req.user){
+ router.post('/delete/:commentid/:imageid/:userid/:index', function (req, res){
+ Image.findById(req.params.imageid,function(err, img){
+ if(img){
+ if(req.user){
 
-        Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,model){
-          if(err){
-            return res.render('error', {message: "Could not retrieve account"});
-          }else{
-            Comment.findById(req.params.imageid, function(err, comt) {
-              if (comt) {
-                comt.remove();
-              }
-            });
-          }
-        });
+ Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,model){
+ if(err){
+ return res.render('error', {message: "Could not retrieve account"});
+ }else{
+ Comment.findById(req.params.imageid, function(err, comt) {
+ if (comt) {
+ comt.remove();
+ }
+ });
+ }
+ });
 
-        //finally, update the account with the updated image
-        Account.findOneAndUpdate(
-            { "_id": req.params.userid, "images._id": req.params.imageid},
-            {
-              "$set": {
-                "images.$": img
-              }
-            },
-            function(err,doc) {
-              if(err){
-                res.render('error', {message: "ERROR"});
-              }
-            }
-        );
-        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
-        console.log("congrats");
-      }else{
-        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
-      }
+ //finally, update the account with the updated image
+ Account.findOneAndUpdate(
+ { "_id": req.params.userid, "images._id": req.params.imageid},
+ {
+ "$set": {
+ "images.$": img
+ }
+ },
+ function(err,doc) {
+ if(err){
+ res.render('error', {message: "ERROR"});
+ }
+ }
+ );
+ res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+ console.log("congrats");
+ }else{
+ return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
+ }
 
-    }else{
-      console.log("cannot find image");
-    }
+ }else{
+ console.log("cannot find image");
+ }
 
-  });
-});
-*/
+ });
+ });
+ */
 router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){
@@ -97,22 +97,22 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
         });
         //finally, update the account with the updated image
         Account.findOneAndUpdate(
-          { "_id": req.params.userid, "images._id": req.params.imageid},
-          {
-            "$set": {
-              "images.$": img
+            { "_id": req.params.userid, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$": img
+              }
+            },
+            function(err,doc) {
+              if(err){
+                res.render('error', {message: "ERROR"});
+              }
             }
-          },
-          function(err,doc) {
-            if(err){
-              res.render('error', {message: "ERROR"});
-            }
-          }
         );
-        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)));
         console.log("congrats");
       }else{
-        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
+        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index))});
       }
 
     }else{
@@ -196,31 +196,31 @@ router.post('/login', function(req, res, next) {
 
 //DELETE PHOTO
 router.get('/delete/:imageid',function (req, res, next) {
-    Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
-      if (usr) {
-          Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
-            if(err){
-              return res.render('error', {message: "Could not retrieve account"});
-            }else{
-              Image.findById(req.params.imageid, function(err, img) {
-                if (img) {
-                    img.remove();
-                }
-              });
-              return res.redirect("/");
+  Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
+    if (usr) {
+      Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
+        if(err){
+          return res.render('error', {message: "Could not retrieve account"});
+        }else{
+          Image.findById(req.params.imageid, function(err, img) {
+            if (img) {
+              img.remove();
             }
           });
-      }
-    });
+          return res.redirect("/");
+        }
+      });
+    }
+  });
 });
 
 //IMAGE UPDATE
 router.post('/image/:imageid/update',function (req, res, next) {
   Image.findById(req.params.imageid, function(err, img){
-  if(img){
-    //if the user is logged in
-    if (req.user)
-    {
+    if(img){
+      //if the user is logged in
+      if (req.user)
+      {
         //if the title was changed
         if(req.body.title != img.title) {
           img.title = req.body.title;
@@ -238,25 +238,25 @@ router.post('/image/:imageid/update',function (req, res, next) {
         });
         //after updating the image, find it on the user and replace that image with the new one
         Account.findOneAndUpdate(
-          { "_id": req.user.id, "images._id": req.params.imageid},
-          {
-            "$set": {
-              "images.$": img
+            { "_id": req.user.id, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$": img
+              }
+            },
+            function(err,doc) {
+              if(err){
+                res.render('error', {message: "ERROR"});
+              }
             }
-          },
-          function(err,doc) {
-            if(err){
-              res.render('error', {message: "ERROR"});
-            }
-          }
-      );
+        );
 
+      }else{
+        res.render('error', {message: "Not logged in"});
+      }
     }else{
-      res.render('error', {message: "Not logged in"});
+      res.render('error', {message: "Cannot Find Image"});
     }
-  }else{
-    res.render('error', {message: "Cannot Find Image"});
-  }
   });
 });
 
@@ -283,7 +283,7 @@ router.get('/images/:userid/:index', function (req, res, next) {
       if(index <= 0){
         backPic = usr.images.length-1;
       }
-      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic});
+      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic, index: index});
     }else{
       return res.render("image", {usrimage: image, currentuser: req.user, message: "photo does not exist"});
     }
@@ -361,24 +361,24 @@ router.post('/user/:id/update', function (req, res) {
         }else{
           //if the username was changed
           /*
-          if(req.body.username != req.user.username) {
+           if(req.body.username != req.user.username) {
 
-             Account.findByUsername(req.body.username, function (err, newUsr) {
-             if (!newUsr){
-             console.log(true);
-             }
-             if (newUsr){
-             console.log(false);
-             }
-             });
+           Account.findByUsername(req.body.username, function (err, newUsr) {
+           if (!newUsr){
+           console.log(true);
+           }
+           if (newUsr){
+           console.log(false);
+           }
+           });
 
 
-            //changing the username
-            console.log("Changing " + req.user.username + " to " + req.body.username);
-            usr.username = req.body.username;
-            console.log(usr.username);
-          }
-          */
+           //changing the username
+           console.log("Changing " + req.user.username + " to " + req.body.username);
+           usr.username = req.body.username;
+           console.log(usr.username);
+           }
+           */
 
           //full name
           if(req.body.name != req.user.fullname)
