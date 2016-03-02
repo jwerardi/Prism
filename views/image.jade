@@ -34,6 +34,7 @@ block content
                 a(href="/images/#{user.id}/#{nextPicture}")
                     button.btn.btn-primary(type="button" id="next") next
                 #comments
+<<<<<<< HEAD
                 #myStyle
                     .comArea
                         a(href="/images/#{user.id}/#{backPicture}")
@@ -45,15 +46,16 @@ block content
                         #pad
                         p 
                             #comments
+=======
+>>>>>>> ea8b9fbeca673c2e79c01bc2585ba0524c94d681
                 if(currentuser)
-                    //#comment-photo
-                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{nextPicture}" ,method="post"/*, id='comment-photo',style='max-width: 300px;'*/)
-                    br
-                    br
-                    .form-group
-                        input.form-control(type='text', name="comment", placeholder="comment", id='commentText')
-                    .errors
-                    button.btn.btn-default(type='submit') Comment
+                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
+                        br
+                        br
+                        .form-group
+                            input.form-control(type='text', name="comment", placeholder="comment")
+                        .errors
+                        button.btn.btn-default(type='submit') Comment
                 if(currentuser)
                     if(currentuser.username === user.username)
                         a(href="/delete/#{usrimage.id}" class="confirm")
