@@ -1,6 +1,10 @@
 /**
  * Created by tyler on 2/18/16.
+ * Edited by James on 3/2/16
  */
+$.validator.addMethod( "lettersonly", function( value, element ) {
+    return this.optional( element ) || /^[a-z0-9]+$/i.test( value );
+}, "Letters and/or numbers only please" );
 
 $(document).ready(function () {
     /**
@@ -45,39 +49,47 @@ $(document).ready(function () {
     $("#register").validate({
         rules: {
             "username": {
-                required: true
+                required: true,
+                lettersonly : true,
+                maxlength: 20
             },
             "password": {
                 required: true
             },
             "title" : {
-                required: true
+                required: true,
+                maxlength: 20
             },
             "propic": {
                 url: true,
-                extension: "jpg|png"
+                extension: "jpg|png|gif"
             },
             "name": {
-                required: true
+                required: true,
+                maxlength: 20
             }
         },
         messages: {
             "username": {
-                required: "USERNAME REQUIRED"
+                required: "USERNAME REQUIRED",
+                lettersonly : "USERNAME CAN ONLY CONTAIN LETTERS OR NUMBERS",
+                maxlength: "USERNAME CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "password": {
                 required: "PASSWORD REQUIRED"
             },
             "title" : {
                 url:"VALID URL REQUIRED",
-                required: "TITLE REQUIRED"
+                required: "TITLE REQUIRED",
+                maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
             },
             "propic": {
                 url:"VALID URL REQUIRED",
-                extension: "JPG/PNG REQUIRED"
+                extension: "JPG/PNG/GIF REQUIRED"
             },
             "name": {
-                required: "NAME REQUIRED"
+                required: "NAME REQUIRED",
+                maxlength: "NAME CANNOT BE LONGER THAN 20 CHARACTERS"
             }
         },
         errorElement : 'div',
@@ -96,7 +108,7 @@ $(document).ready(function () {
             },
             "propic": {
                 url: true,
-                extension: "jpg|png"
+                extension: "jpg|png|gif"
             },
             "name": {
                 required: true
@@ -114,7 +126,7 @@ $(document).ready(function () {
             },
             "propic": {
                 url:"VALID URL REQUIRED",
-                extension: "JPG/PNG REQUIRED"
+                extension: "JPG/PNG/GIF REQUIRED"
             },
             "name": {
                 required: "NAME REQUIRED"
@@ -131,7 +143,7 @@ $(document).ready(function () {
             "photo": {
                 required: true,
                 url: true,
-                extension: "jpg|png"
+                extension: "jpg|png|gif"
             }
         },
         messages: {
@@ -141,7 +153,7 @@ $(document).ready(function () {
             "photo": {
                 required: "URL REQUIRED",
                 url:"VALID URL REQUIRED",
-                extension: "JPG/PNG REQUIRED"
+                extension: "JPG/PNG/GIF REQUIRED"
             },
         },
         errorElement : 'div',
