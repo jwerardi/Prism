@@ -152,7 +152,7 @@ router.get('/explore', function(req, res) {
   // Find "limit" random documents (defaults to array of 1)
 
   var filter = { images: { $exists: true, $not: {$size: 0}}, propic: {$exists: true, $ne: ''} };
-  Account.findRandom(filter, {}, {skip: 0, limit: 8}, function(err, results) {
+  Account.findRandom(filter, {}, {skip: 0, limit: 30}, function(err, results) {
     if (!err) {
       console.log(results[1].username); // 5 elements
       return res.render('explore', {users: results, currentuser: req.user});
