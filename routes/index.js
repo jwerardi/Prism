@@ -24,15 +24,16 @@ router.get('/search', function (req, res) {
   res.render('search');
 });
 
-router.get('/search/username', function (req, res) {
+router.post('/searchby/username', function (req, res) {
   Account.findByUsername(req.body.username, function(err, usr){
     if(!err){
       if(usr){
-        res.render('/user/' + usr.username);
+        console.log("HELLLLLLLLLLLLLLL)");
+        console.log(usr.username);
+        return res.render('search', {users: usr});
       }
     }
   });
-  res.render('search');
 });
 
 router.get('/updatephoto/:imageid', function (req, res){

@@ -19,8 +19,14 @@ block content
             h1 Search
             br
             br
-            form(role='form', action="/search/username" ,method="get", id='search',style='max-width: 300px;')
+            form(role='form', action="/searchby/username" ,method="post", id='search',style='max-width: 300px;')
                 .form-group
                     input.form-control(type='text', name="username", placeholder="username")
                 .errors
                 button.btn.btn-default(type='submit') Search
+
+                if(users)
+                    #myStyle
+                        a(href="/user/#{users.username}")
+                            img#proP(src="#{users.propic}")
+                        h2 #{users.username}
