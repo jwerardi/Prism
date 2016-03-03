@@ -20,6 +20,21 @@ router.get('/about', function (req, res) {
   res.render('about');
 });
 
+router.get('/search', function (req, res) {
+  res.render('search');
+});
+
+router.get('/search/username', function (req, res) {
+  Account.findByUsername(req.body.username, function(err, usr){
+    if(!err){
+      if(usr){
+        res.render('/user/' + usr.username);
+      }
+    }
+  });
+  res.render('search');
+});
+
 router.get('/updatephoto/:imageid', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     res.render('update-photo', {imgid: req.params.imageid, imgtitle: img.title});
@@ -135,18 +150,26 @@ router.get('/register', function(req, res) {
 //receives the register view which has a register form
 router.get('/explore', function(req, res) {
   // Find "limit" random documents (defaults to array of 1)
-  var filter = { images: { $exists: true, $not: {$size: 0} }, propic: { $exists: true } };
-  Account.findRandom(filter, {}, {limit: 3}, function(err, results) {
+
+  var filter = { images: { $exists: true, $not: {$size: 0}}, propic: {$exists: true, $ne: ''} };
+  Account.findRandom(filter, {}, {skip: 0, limit: 8}, function(err, results) {
     if (!err) {
       console.log(results[1].username); // 5 elements
       return res.render('explore', {users: results, currentuser: req.user});
     }else{
       console.log("error");
-      return res.render('error', {message: "Could not retrieve account"});
+      return res.render('error', {message: "Explore Failed"});
     }
   });
+  /*
+  Image.findRandom({}, {}, {limit: 20}, function(err, results) {
+    if (!err) {
+      console.log(results); // 5 elements
+      return res.render('explore', {images: results, currentuser: req.user});
+    }
 
-
+  });
+*/
 });
 
 //all of the register form information is then passed to a new Account model, and redirected to the index view, but this time will be prompted with

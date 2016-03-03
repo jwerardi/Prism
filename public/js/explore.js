@@ -2,18 +2,46 @@
  * Created by tyler on 3/2/16.
  */
 
+$( window ).load( function()
+{
+    $( '#accounts' ).masonry( {
+        itemSelector: '.item',
+        isFitWidth: true} );
+});
+
+
 (function(){
 
-    var accounts = "";
+    var images = "";
+    var item1 = "\"item\"";
     for(var i =0; i<randusers.length; i++){
-        accounts+=
-            "<div class = \"randaccount\">" +
-            "<a href=\"/user/" + randusers[i].username + "\">" +
-            "<img src = \""+randusers[i].propic+ "\" width=\"150\" height=\"150\"/>"+"\">" +
+        /*
+        images +=
+            "<div class=" +item1 + "id = \"" + [i] + "\">" +
+            "<a href=\"/user/" + randimages[i].username + "\">" +
+            "<img src = \""+randimages[i].url+ "\" width=\"150\" height=\"150\"/>" +
+            "<span class=\"text-content\"><span>" + randimages[i].title  +"<\/span><\/span>" +
             "</a>" +
-            "<span class = \"randname\">"+randusers[i].username+"<\/span>" +
-            "<\/div>"
+            "</div>";
+        console.log(images);
+        */
+        accounts+=
+            "<div class=" +item1 + "id = \"" + [i] + "\">" +
+            "<a href=\"/user/" + randusers[i].username + "\">" +
+            "<img src = \""+randusers[i].propic+ "\" width=\"150\" height=\"150\"/>"+
+            "<span class=\"text-content\"><span>" + randusers[i].username  +"<\/span><\/span>" +
+            "</a>"+
+            "<\/div><br>";
+        /*
+            for(var j=0; j < randusers[i].images.length; j ++){
+
+                accounts +=
+
+                "<img src = \""+randusers[i].images[j].url+ "\" width=\"150\" height=\"150\"/>" +
+
+            }
+            */
     }
     $("#accounts").html(accounts);
-    console.log(randusers[1].username);
+    console.log(accounts);
 })();

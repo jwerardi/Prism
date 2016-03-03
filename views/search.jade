@@ -1,9 +1,7 @@
 extends layout
 block extraHeader
-    title Explore
+    title Search
 block content
-    script.
-        var randusers = !{JSON.stringify(users)};
     a(href="/")
         #logoText
             p prism
@@ -18,8 +16,11 @@ block content
             a(href="/login")
                 button.btn.btn-primary(type="button") Login
         #myStyle
-            h1 Explore
-        #wrapper
-            #accounts
-        //#wrapper
-            //#list
+            h1 Search
+            br
+            br
+            form(role='form', action="/search/username" ,method="get", id='search',style='max-width: 300px;')
+                .form-group
+                    input.form-control(type='text', name="username", placeholder="username")
+                .errors
+                button.btn.btn-default(type='submit') Search
