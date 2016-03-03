@@ -4,7 +4,7 @@
 
 $( window ).load( function()
 {
-    $( '#accounts' ).masonry( {
+    $('#accounts').masonry( {
         itemSelector: '.item',
         isFitWidth: true} );
 });
@@ -12,7 +12,7 @@ $( window ).load( function()
 
 (function(){
 
-    var images = "";
+    var accounts = "";
     var item1 = "\"item\"";
     for(var i =0; i<randusers.length; i++){
         /*
@@ -26,10 +26,10 @@ $( window ).load( function()
         console.log(images);
         */
         accounts+=
-            "<div class=" +item1 + "id = \"" + [i] + "\">" +
+            "<div class=" +item1 + "id = \"" + i + "\">" +
             "<a href=\"/user/" + randusers[i].username + "\">" +
             "<img src = \""+randusers[i].propic+ "\" width=\"150\" height=\"150\"/>"+
-            "<span class=\"text-content\"><span>" + randusers[i].username  +"<\/span><\/span>" +
+            "<span class=\"text-content\">" + randusers[i].username  +"<\/span>" +
             "</a>"+
             "<\/div><br>";
         /*
@@ -42,6 +42,6 @@ $( window ).load( function()
             }
             */
     }
-    $("#accounts").html(accounts);
+    $("#accounts").html(accounts.toString());
     console.log(accounts);
 })();
