@@ -2,6 +2,8 @@ extends layout
 block extraHeader
     title Search
 block content
+    script.
+        var searchusers = !{JSON.stringify(users)};
     a(href="/")
         #logoText
             p prism
@@ -25,8 +27,8 @@ block content
                 .errors
                 button.btn.btn-default(type='submit') Search
 
-                if(users)
-                    #myStyle
-                        a(href="/user/#{users.username}")
-                            img#proP(src="#{users.propic}")
-                        h2 #{users.username}
+        if(users)
+            #wrapper
+                #search
+        if(!users)
+            h4 #{message}

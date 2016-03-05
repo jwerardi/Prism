@@ -98,14 +98,28 @@ router.post('/unfollow/:targetid', function (req, res){
 });
 
 router.post('/searchby/username', function (req, res) {
+  var search = req.body.username;
+  console.log(search);
+  Account.find({username: new RegExp(search)}, function(err, usrs){
+    if(usrs){
+      console.log(usrs.length);
+      return res.render('search', {users: usrs});
+    }else{
+      console.log("find by partial failed");
+    }
+  });
+  /*
   Account.findByUsername(req.body.username, function(err, usr){
     if(!err){
       if(usr){
         console.log(usr.username);
         return res.render('search', {users: usr});
+      }else{
+        return res.render('search', {message: "could not find user: " + req.body.username});
       }
     }
   });
+  */
 });
 
 router.get('/updatephoto/:imageid', function (req, res){
@@ -556,22 +570,27 @@ router.get('/user/:username', function (req, res, next) {
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr)
     {
+      /*
       var followingbool = false;
       console.log("should be here");
-      if(req.user.following.length > 0){
-        for(var i = 0; i <req.user.following.length; i++){
-          if(req.user.following[i] == usr.id){
-            followingbool = true;
-            console.log("YES");
-          }else{
-            console.log("no");
-            console.log(req.user.following[i]);
-            console.log(usr.id);
-          }
+      if(req.user.following != "undefined"){
+        if(req.user.following.length > 0){
+          for(var i = 0; i <req.user.following.length; i++){
+            if(req.user.following[i] == usr.id){
+              followingbool = true;
+              console.log("YES");
+            }else{
+              console.log("no");
+              console.log(req.user.following[i]);
+              console.log(usr.id);
+            }
 
+          }
         }
       }
-      return res.render("user", {usr: usr, currentuser: req.user, following: followingbool});
+      */
+      //following: followingbool
+      return res.render("user", {usr: usr, currentuser: req.user});
     }else{
       return res.render("error", {message: req.params.username + " is not a registered user"});
     }

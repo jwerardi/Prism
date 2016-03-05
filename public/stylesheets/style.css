@@ -175,6 +175,15 @@ a {
     height: 300px;
     object-fit: cover;
 }
+#search img{
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+}
+#search {
+    margin: 0 auto;
+}
+
 #accounts {
     margin: 0 auto;
 }
