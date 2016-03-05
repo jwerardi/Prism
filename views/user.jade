@@ -24,6 +24,12 @@ block content
                         h1 #{usr.fullname}
                     #myUserTitle
                         p <em>#{usr.title}</em>
+                        if(following == false)
+                            form(action='/follow/#{usr._id}', method='post')
+                                button.btn.btn-primary(name='followBTN', value='follow') Follow
+                        if(following == true)
+                            form(action='/unfollow/#{usr._id}', method='post')
+                                button.btn.btn-primary(name='followBTN', value='follow') Unfollow
             #wrapper
                 #list
             script.

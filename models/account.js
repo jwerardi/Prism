@@ -13,6 +13,8 @@ var Account = new Schema({
     username: String,
     fullname: String,
     password: String,
+    following: [String],
+    followers: [String],
     title: String,
     propic: String,
     images: [Image]

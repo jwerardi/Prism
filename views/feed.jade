@@ -1,0 +1,30 @@
+extends layout
+block extraHeader
+    title Explore
+block content
+    script.
+        var randusers = !{JSON.stringify(users)};
+    a(href="/")
+        #logoText
+            p prism
+    if(currentuser)
+        #selLog
+            a(href="/")
+                button.btn.btn-primary(type="button") My Profile
+            a(href="/logout")
+                button.btn.btn-primary(type="button") Logout
+        #myStyle
+            h1 Explore
+
+        #wrapper
+            #feed
+    if(!currentuser)
+        #selLog
+            a(href="/login")
+                button.btn.btn-primary(type="button") Login
+        #myStyle
+            h1 Explore
+
+        #wrapper
+            #feed
+
