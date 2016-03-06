@@ -141,6 +141,7 @@ a {
     border-radius: 0;
 }
 #logoText {
+    visibility: visible;
     top: 0;
     left: 0;
     font-size: 40px;
@@ -172,6 +173,9 @@ a {
     padding-top: 15px;
     margin: 0 auto;
 }
+#hide{
+        visibility: hidden;
+    }
 
 #searchwrapper {
     width: 75%;
@@ -235,6 +239,15 @@ a {
 #containfooter{
     position:relative;
 }
+#logoimg img{
+    visibility: hidden;
+    padding: 20px;
+    width: 70px;
+    height: auto;
+}
+logoimg{
+        visibility: hidden;
+    }
 #footer{
     
     bottom:0;
@@ -448,13 +461,7 @@ form .progress {
         font-size: 15px;
     }
     #logoText {
-        -ms-transform: rotate(90deg);
-        /* IE 9 */
-        
-        -webkit-transform: rotate(90deg);
-        /* Chrome, Safari, Opera */
-        
-        transform: rotate(90deg);
+        visibility: hidden;
         top: 0;
         left: 0;
         padding-top: 60px;
@@ -546,6 +553,17 @@ form .progress {
         margin: 0 auto;
     }
     
+    #logoimg img{
+    visibility: visible;
+    padding-top: 20px;
+    padding-left: 5px;
+    width: 70px;
+    height: auto;
+}
+    logoimg{
+        visibility: visible;
+    }
+    
     .back-to-top{
     visibility: hidden;
     transition: all .05s ease-in-out;
@@ -581,5 +599,12 @@ form .progress {
     #emptyareaabout{
         visibility: visible;
     padding-bottom: 150px;
+}
+    #hide{
+        visibility: visible;
+    }
+    
+    #emptyareaindex{
+    padding-bottom: 10px;
 }
 }
