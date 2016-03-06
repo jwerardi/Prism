@@ -5,36 +5,48 @@ block content
     a(href="/")
         #logoText
             p prism
+    a#hide(href="/")
+          #logoimg
+            img(src= "/img/templogo.png")
     if(currentuser)
         #selLog
             a(href="/")
                 button.btn.btn-primary(type="button") My Profile
             a(href="/logout")
                 button.btn.btn-primary(type="button") Logout
-        #emptyarea
     if(!currentuser)
         #selLog
             a(href="/login")
                 button.btn.btn-primary(type="button") Login
-        #emptyarea
     if(usrimage)
         .container
             #myStyle
-                script.
-                    thisimage = !{JSON.stringify(usrimage)};
-                    currentUser = " ";
-                img.photoStyle#forMobile(src= " " + usrimage.url)
-                p #{usrimage.title}
-                p #{usrimage.updated.toDateString()}
-                p #{usrimage.tags}
-                #howmanycomments
-                a(href="/images/#{user.id}/#{backPicture}")
-                    button.btn.btn-primary(type="button" id="back") back
-                a(href="/user/#{user.username}")
+                .imagewithbuttons
+                    a#hideonmob(href="/images/#{user.id}/#{backPicture}")
+                            img(src= "/img/left.png", id="back")
+                    script.
+                        thisimage = !{JSON.stringify(usrimage)};
+                        currentUser = " ";
+                    img.photoStyle#forMobile(src= " " + usrimage.url)
+                    a#hideonmob(href="/images/#{user.id}/#{nextPicture}")
+                        img(src= "/img/right.png", id="next")
+                a#hide(href="/images/#{user.id}/#{backPicture}" class="backmobile")
+                    button.btn.btn-primary#backmobile(type="button") back
+                a#hide(href="/user/#{user.username}")
                     button.btn.btn-primary(type="button" ) #{user.username}
-                a(href="/images/#{user.id}/#{nextPicture}")
-                    button.btn.btn-primary(type="button" id="next") next
-                #comments
+                a#hide(href="/images/#{user.id}/#{nextPicture}" class="nextmobile")
+                    button.btn.btn-primary#nextmobile(type="button") next
+                #commentsection
+                    p #{usrimage.title}
+                    p #{usrimage.updated.toDateString()}
+                    p #{usrimage.tags}
+                    #howmanycomments
+                a#hideonmob(href="/user/#{user.username}")
+                    button.btn.btn-primary(type="button" ) #{user.username}
+                #com
+                form()
+                    #comments
+                #com2
                 if(currentuser)
                     form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
                         br
@@ -43,7 +55,6 @@ block content
                             input.form-control(type='text', name="comment", placeholder="comment")
                         .errors
                         button.btn.btn-default(type='submit') Comment
-                if(currentuser)
                     if(currentuser.username === user.username)
                         a(href="/delete/#{usrimage.id}" class="confirm")
                             button.btn.btn-primary(type="button") delete
@@ -60,15 +71,3 @@ block content
             a(href="/")
                 button.btn.btn-primary(type="button") Home
     br
-    br
-    br
-    br
-    br
-    br
-    #containfooter
-        #footer
-            #myStyle
-                a(href="/about")
-                    button#footbtn(type="button") About
-                a(href="/explore")
-                    button#footbtn(type="button") Explore

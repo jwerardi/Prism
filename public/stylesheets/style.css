@@ -8,32 +8,40 @@
     font-family: "alegreya-sans.regular";
     src: url('alegreya-sans.regular.ttf');
 }
-
-html, body {
-    
+html,
+body {
     height: 100%;
     color: #000000;
     background-color: #282828;
     font: 14px;
     font-family: 'alegreya-sans.thin';
 }
-#aboutparagraph{
+#aboutparagraph {
     margin: 0 auto;
     align-content: center;
     width: 65%
 }
-.cont{
+.cont {
     height: auto !important;
-    min-height: 90%; 
+    min-height: 90%;
     margin: 0 auto -180px;
 }
-#headerImg{
+#headerImg {
     background-image: url("img/background2.jpg");
     width: 100%;
-    height:auto;
+    height: auto;
     object-fit: contain;
 }
-.back-to-top{
+#next {
+    width: auto;
+    height: 285px;
+}
+#back {
+    position: inherit;
+    width: auto;
+    height: 285px;
+}
+.back-to-top {
     transition: all .05s ease-out;
     bottom: 0;
     right: 0;
@@ -43,7 +51,7 @@ html, body {
     padding-right: 30px;
     z-index: 100;
 }
-.back-to-top:hover{
+.back-to-top:hover {
     transition: all .05s ease-in;
     bottom: 0;
     right: 0;
@@ -150,6 +158,34 @@ a {
     padding-left: 40px;
     font-family: 'alegreya-sans.regular';
 }
+#commentsection {
+    vertical-align: top;
+    position: relative;
+}
+#com{
+    display: inline;
+    left:0;
+    width 30%;
+}
+#comments{
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+
+}
+#com2{
+    display: inline;
+    right:0;
+    width 30%;
+}
+#backmobile {
+    visibility: hidden;
+}
+#nextmobile {
+    
+    visibility: hidden;
+}
 .btn {
     transition: all .2s ease-in-out;
     background-color: Transparent;
@@ -173,10 +209,9 @@ a {
     padding-top: 15px;
     margin: 0 auto;
 }
-#hide{
-        visibility: hidden;
-    }
-
+#hide {
+    visibility: hidden;
+}
 #searchwrapper {
     width: 75%;
     min-height: 100%;
@@ -194,23 +229,21 @@ a {
     height: auto;
     width: 400px;
 }
-#accounts img{
+#accounts img {
     width: 300px;
     height: 300px;
     object-fit: cover;
 }
-#search img{
+#search img {
     width: 300px;
     height: 300px;
     object-fit: cover;
-    
 }
 #search {
     align-content: center;
     display: inline-block;
     margin: 0 auto;
 }
-
 #accounts {
     margin: 0 auto;
 }
@@ -218,6 +251,7 @@ a {
     position: relative;
 }
 .text-content {
+    
     position: absolute;
     font-family: Ubuntu;
     font-size: 25px;
@@ -236,32 +270,53 @@ a {
     -webkit-transition: visibility opacity 0.2s;
     */
 }
-#containfooter{
-    position:relative;
+#containfooter {
+    position: relative;
 }
-#logoimg img{
+#logoimg img {
+    
+        width: 0px;
+        height: 0px;
     visibility: hidden;
     padding: 20px;
     width: 70px;
     height: auto;
 }
-logoimg{
-        visibility: hidden;
-    }
-#footer{
+logoimg {
     
-    bottom:0;
+        width: 0px;
+        height: 0px;
+    visibility: hidden;
+}
+#footer {
+    bottom: 0;
     position: relative;
-    margin-top: -180px; /* negative value of footer height */
+    margin-top: -180px;
+    /* negative value of footer height */
+    
     height: 180px;
-    clear:both;
+    clear: both;
 }
-#footermain{
+
+#footerexplore {
+    bottom: 0;
+    position: relative;
+    margin-top: -180px;
+    /* negative value of footer height */
+    visibility: visible;
+    height: 180px;
+    clear: both;
+}
+#hideonmob {
+    visibility: visible;
+}
+#footermain {
     /*background: #282828; 
     background: -webkit-linear-gradient(#282828, #141414); 
     background: -o-linear-gradient(#282828, #141414); 
     background: -moz-linear-gradient(#282828, #141414);
     background: linear-gradient(#282828, #141414);*/
+    
     position: absolute;
     bottom: 0;
     right: 0;
@@ -269,12 +324,13 @@ logoimg{
     height: auto;
     min-width: 100%;
 }
-#footerindex{
+#footerindex {
     /*background: #282828; 
     background: -webkit-linear-gradient(#282828, #141414); 
     background: -o-linear-gradient(#282828, #141414); 
     background: -moz-linear-gradient(#282828, #141414);
     background: linear-gradient(#282828, #141414);*/
+    
     position: absolute;
     bottom: 0;
     right: 0;
@@ -282,51 +338,56 @@ logoimg{
     height: auto;
     min-width: 100%;
 }
-#footbtn{
+#footbtn {
     color: grey;
     transition: all 0.2s ease-out;
-    display:inline-table;
+    display: inline-table;
     cursor: pointer;
     font-size: 16px;
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
     padding: 50px;
-    
-    
 }
-#footbtn:hover{
+#footbtn:hover {
     transition: all 0.2s ease-in;
     cursor: pointer;
     color: white;
-    background:none;
-    border:none;
-    margin:0;
-    padding:0;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
     padding: 50px;
-    
 }
 .item:hover .text-content {
     transition: all 0.2s ease-in;
     visibility: visible;
     opacity: 1;
-
 }
-#emptyarea{
+#emptyarea {
     padding-bottom: 100px;
 }
-#emptyareaabout{
+#emptyareaabout {
     visibility: hidden;
     padding-bottom: 150px;
 }
-#emptyareaindex{
+#emptyareaindex {
     padding-bottom: 50px;
 }
 .photoStyle {
-    height: 500px;
+    align-content: center;
+    vertical-align: top;
+    margin: 0 auto;
+    max-height: 500px;
+    max-width: 650px;
+    height: auto;
     width: auto;
     border: solid #ffffff 10px;
+}
+.imagewithbuttons {
+    position: relative;
+    max-width: 100%;
 }
 input,
 textarea {
@@ -431,13 +492,9 @@ form {
 form .progress {
     line-height: 15px;
 }
-<<<<<<< HEAD
-
-
-=======
+<<<<<<< HEAD======
 }
->>>>>>> 826f804f72af0519e56fa382b7497161001ded08
-.progress {
+>>>>>>> 826f804f72af0519e56fa382b7497161001ded08 .progress {
     display: inline-block;
     width: 100px;
     border: 3px groove #CCC;
@@ -462,6 +519,8 @@ form .progress {
     }
     #logoText {
         visibility: hidden;
+        width: 0px;
+        height: 0px;
         top: 0;
         left: 0;
         padding-top: 60px;
@@ -522,7 +581,7 @@ form .progress {
         font-size: 16px;
     }
     .item img {
-        width: 270px;
+        width: 350px;
         height: auto;
         display: block;
         margin: 0 auto;
@@ -530,6 +589,11 @@ form .progress {
     .item {
         margin: 5px auto;
         position: absolute;
+    }
+    .imagewithbuttons {
+        position: inherit;
+        max-width: 100%;
+        padding-bottom: 10px;
     }
     .photoStyle {
         max-width: 95%;
@@ -552,59 +616,101 @@ form .progress {
         display: inline-block;
         margin: 0 auto;
     }
+    /*
+    #list img{
+        width: 95%;
+            height: auto;;
+        max-width:100%;
+        max-height: 100%;
+        margin: 0 auto;
+    }*/
     
-    #logoimg img{
-    visibility: visible;
-    padding-top: 20px;
-    padding-left: 5px;
-    width: 70px;
-    height: auto;
-}
-    logoimg{
+    #logoimg img {
+        visibility: visible;
+        padding-top: 20px;
+        padding-left: 5px;
+        width: 70px;
+        height: auto;
+    }
+    logoimg {
         visibility: visible;
     }
-    
-    .back-to-top{
-    visibility: hidden;
-    transition: all .05s ease-in-out;
+    .back-to-top {
+        visibility: hidden;
+        
+        width: 0px;
+        height: 0px;
+        transition: all .05s ease-in-out;
+        bottom: 0;
+        right: 0;
+        font-size: 35px;
+        color: white;
+        position: fixed;
+        padding-right: 30px;
+        z-index: 100;
+    }
+    .back-to-top:hover {
+        visibility: none;
+        transition: all .05s ease-in-out;
+        cursor: pointer;
+        bottom: 0;
+        right: 0;
+        font-size: 40px;
+        color: white;
+        position: fixed;
+        padding-right: 28px;
+        z-index: 100;
+    }
+    #footermain {
+        bottom: 0;
+        position: relative;
+        margin-top: -180px;
+        /* negative value of footer height */
+        
+        height: 180px;
+        clear: both;
+    }
+    #emptyareaabout {
+        visibility: visible;
+        padding-bottom: 150px;
+    }
+    #hide {
+        visibility: visible;
+    }
+    #emptyareaindex {
+        padding-bottom: 10px;
+    }
+    #backmobile {
+        visibility: visible;
+    }
+    #nextmobile {
+        visibility: visible;
+    }
+    #hideonmob {
+        visibility: hidden;
+        width: 0px;
+        height: 0px;
+        
+    }
+    #next {
+        visibility: hidden;
+        position: inherit;
+        width: 0px;
+        height: 0px;
+    }
+    #back {
+        visibility: hidden;
+        position: inherit;
+        width: 0px;
+        height: 0px;
+    }
+    #footerexplore {
     bottom: 0;
-    right: 0;
-    font-size: 35px;
-    color: white;
-    position: fixed;
-    padding-right: 30px;
-    z-index: 100;
-}
-.back-to-top:hover{
-    visibility: none;
-    transition: all .05s ease-in-out;
-    cursor: pointer;
-    bottom: 0;
-    right: 0;
-    font-size: 40px;
-    color: white;
-    position: fixed;
-    padding-right: 28px;
-    z-index: 100;
-}
-    
-    #footermain{
-    
-    bottom:0;
     position: relative;
-    margin-top: -180px; /* negative value of footer height */
+    margin-top: -180px;
+    /* negative value of footer height */
+    visibility: hidden;
     height: 180px;
-    clear:both;
-}
-    #emptyareaabout{
-        visibility: visible;
-    padding-bottom: 150px;
-}
-    #hide{
-        visibility: visible;
-    }
-    
-    #emptyareaindex{
-    padding-bottom: 10px;
-}
+    clear: both;
+
 }
