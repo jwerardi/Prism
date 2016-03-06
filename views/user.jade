@@ -15,8 +15,10 @@ block content
         #selLog
             a(href="/login")
                 button.btn.btn-primary(type="button") Login
+                
     if(usr)
-        .container
+        .cont
+            #emptyareaindex
             #myStyle
                 img#proP.myClass(src= " " + usr.propic)
                 .myClass
@@ -24,6 +26,7 @@ block content
                         h1 #{usr.fullname}
                     #myUserTitle
                         p <em>#{usr.title}</em>
+            #emptyareaindex
 
                         //if(following == false)
                             form(action='/follow/#{usr._id}', method='post')
@@ -38,8 +41,21 @@ block content
         .back-to-top 
             a(href="#")  
                 .back-to-top ^
+        #footer
+            #myStyle
+                a(href="/about")
+                    button#footbtn(type="button") About
+                a(href="/explore")
+                    button#footbtn(type="button") Explore
     if(!usr)
         #myStyle
             h1 The username, "#{urlname}", hasn't been registered yet.
             a(href="/")
                 button.btn.btn-primary(type="button") Home
+        #containfooter
+            #footer
+                #myStyle
+                    a(href="/about")
+                        button#footbtn(type="button") About
+                    a(href="/explore")
+                        button#footbtn(type="button") Explore

@@ -11,10 +11,12 @@ block content
                 button.btn.btn-primary(type="button") My Profile
             a(href="/logout")
                 button.btn.btn-primary(type="button") Logout
+        #emptyarea
     if(!currentuser)
         #selLog
             a(href="/login")
                 button.btn.btn-primary(type="button") Login
+        #emptyarea
     if(usrimage)
         .container
             #myStyle
@@ -26,7 +28,6 @@ block content
                 p #{usrimage.updated.toDateString()}
                 p #{usrimage.tags}
                 #howmanycomments
-
                 a(href="/images/#{user.id}/#{backPicture}")
                     button.btn.btn-primary(type="button" id="back") back
                 a(href="/user/#{user.username}")
@@ -34,7 +35,6 @@ block content
                 a(href="/images/#{user.id}/#{nextPicture}")
                     button.btn.btn-primary(type="button" id="next") next
                 #comments
-                #myStyle
                 if(currentuser)
                     form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
                         br
@@ -59,3 +59,16 @@ block content
             h1 #{message}
             a(href="/")
                 button.btn.btn-primary(type="button") Home
+    br
+    br
+    br
+    br
+    br
+    br
+    #containfooter
+        #footer
+            #myStyle
+                a(href="/about")
+                    button#footbtn(type="button") About
+                a(href="/explore")
+                    button#footbtn(type="button") Explore

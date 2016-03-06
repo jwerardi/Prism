@@ -19,41 +19,46 @@ block content
       #btn
         a(href="/register")
           button.btn(type="button") Register
-      #selLog
-        a(href="/about")
-          button.btn.btn-primary(type="button") About
-        a(href="/explore")
-          button.btn.btn-primary(type="button") Explore
+          
+      #footermain
+          #myStyle
+              a(href="/about")
+                  button#footbtn(type="button") About
+              a(href="/explore")
+                  button#footbtn(type="button") Explore
 
   if (user)
-    a(href="/")
-      #logoText
-        p prism
-    .container
-      #myStyle
-        img#proP.myClass(src= " " + user.propic)
-        .myClass
-          #fullName
-            h1 #{user.fullname}
-          #myUserTitle
-            p <em>#{user.title}</em>
-    #wrapper
-        #list
-    #selLog
-      a(href="/update")
-        button.btn.btn-primary(type="button") Edit
-      a(href="/upload")
-        button.btn.btn-primary(type="button") Upload
-      a(href="/logout")
-        button.btn.btn-primary(type="button") Logout
-        script.
-          currentUser= !{JSON.stringify(user)};
-          thisimage = " ";
-    .back-to-top 
-      a(href="#")  
-        .back-to-top ^
-    br
-    br
+    .cont
+        a(href="/")
+          #logoText
+            p prism
+        .container
+          #myStyle
+            #emptyareaindex
+            img#proP.myClass(src= " " + user.propic)
+            .myClass
+              #fullName
+                h1 #{user.fullname}
+              #myUserTitle
+                p <em>#{user.title}</em>
+            #emptyareaindex
+        #wrapper
+            #list
+        #selLog
+          a(href="/update")
+            button.btn.btn-primary(type="button") Edit
+          a(href="/upload")
+            button.btn.btn-primary(type="button") Upload
+          a(href="/logout")
+            button.btn.btn-primary(type="button") Logout
+            script.
+              currentUser= !{JSON.stringify(user)};
+              thisimage = " ";
+        .back-to-top 
+          a(href="#")  
+            .back-to-top ^
+        br
+        br
     #footer
         #myStyle
             a(href="/about")

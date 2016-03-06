@@ -4,31 +4,21 @@ block extraHeader
 block content
     script.
         var searchusers = !{JSON.stringify(users)};
-    a(href="/")
-        #logoText
-            p prism
-    if(currentuser)
-        #selLog
-            a(href="/")
-                button.btn.btn-primary(type="button") My Profile
-            a(href="/logout")
-                button.btn.btn-primary(type="button") Logout
-    if(!currentuser)
-        #selLog
-            a(href="/login")
-                button.btn.btn-primary(type="button") Login
-        #myStyle
-            h1 Search
-            br
-            br
-            form(role='form', action="/searchby/username" ,method="post", id='search',style='max-width: 300px;')
-                .form-group
-                    input.form-control(type='text', name="username", placeholder="username")
-                .errors
-                button.btn.btn-default(type='submit') Search
-
-        if(users)
-            #wrapper
-                #search
+    
+    #logoText
+        p prism
+    #emptyareaindex
+    #emptyareaindex
+    #myStyle
+        h1 Search
+        br
+        br
+        form(role='form', action="/searchby/username" ,method="post")
+            .form-group
+                input.form-control(type='text', name="username", placeholder="username")
+            .errors
+            button.btn.btn-default(type='submit') Search  
+        #searchwrapper
+            #search
         if(!users)
             h4 #{message}
