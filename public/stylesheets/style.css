@@ -256,6 +256,19 @@ a {
     height: auto;
     min-width: 100%;
 }
+#footerindex{
+    /*background: #282828; 
+    background: -webkit-linear-gradient(#282828, #141414); 
+    background: -o-linear-gradient(#282828, #141414); 
+    background: -moz-linear-gradient(#282828, #141414);
+    background: linear-gradient(#282828, #141414);*/
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: auto;
+    min-width: 100%;
+}
 #footbtn{
     color: grey;
     transition: all 0.2s ease-out;
