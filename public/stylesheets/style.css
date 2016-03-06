@@ -338,6 +338,22 @@ logoimg {
     height: auto;
     min-width: 100%;
 }
+.name{
+    color: white;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    font-size: 18px;
+    background: none;
+    border: none;
+}
+.name:hover{
+    color: grey;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    font-size: 18px;
+    background: none;
+    border: none;
+}
 #footbtn {
     color: grey;
     transition: all 0.2s ease-out;
