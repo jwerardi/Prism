@@ -13,26 +13,38 @@ block content
                 button.btn.btn-primary(type="button") My Profile
             a(href="/logout")
                 button.btn.btn-primary(type="button") Logout
+        br
+        br
+        br
         #myStyle
             h1 Explore
 
         #wrapper
             #accounts
-
-        #myStyle
-            a(href="/explore")
-                button.btn.btn-primary(type="button") More
+            br
+            #myStyle
+                a(href="/explore")
+                    button.btn.btn-primary(type="button") More
     if(!currentuser)
         #selLog
             a(href="/login")
                 button.btn.btn-primary(type="button") Login
+        br
+        br
+        br
         #myStyle
             h1 Explore
 
         #wrapper
             #accounts
-
+            br
+            #myStyle
+                a(href="/explore")
+                    button.btn.btn-primary(type="button") More
+    #footer
         #myStyle
+            a(href="/about")
+                button#footbtn(type="button") About
             a(href="/explore")
-                button.btn.btn-primary(type="button") More
+                button#footbtn(type="button") Explore
 
