@@ -593,7 +593,6 @@ form .progress {
     .imagewithbuttons {
         position: inherit;
         max-width: 100%;
-        padding-bottom: 10px;
     }
     .photoStyle {
         max-width: 95%;
