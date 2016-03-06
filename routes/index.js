@@ -572,7 +572,7 @@ router.get('/user/:username', function (req, res, next) {
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr)
     {
-
+      /*
       var followingbool = false;
       console.log("should be here");
       if(req.user.following != "undefined"){
@@ -590,8 +590,9 @@ router.get('/user/:username', function (req, res, next) {
           }
         }
       }
-
-      return res.render("user", {usr: usr, currentuser: req.user, following: followingbool});
+      */
+      //, following: followingbool
+      return res.render("user", {usr: usr, currentuser: req.user});
     }else{
       return res.render("error", {message: req.params.username + " is not a registered user"});
     }
