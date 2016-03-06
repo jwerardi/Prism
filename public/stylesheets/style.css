@@ -338,6 +338,22 @@ logoimg {
     height: auto;
     min-width: 100%;
 }
+.name{
+    color: white;
+    transition: all 0.2s ease-out;
+    cursor: pointer;
+    font-size: 18px;
+    background: none;
+    border: none;
+}
+.name:hover{
+    color: grey;
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    font-size: 18px;
+    background: none;
+    border: none;
+}
 #footbtn {
     color: grey;
     transition: all 0.2s ease-out;
@@ -581,7 +597,7 @@ form .progress {
         font-size: 16px;
     }
     .item img {
-        width: 350px;
+        width: 320px;
         height: auto;
         display: block;
         margin: 0 auto;
@@ -628,7 +644,8 @@ form .progress {
         visibility: visible;
         padding-top: 20px;
         padding-left: 5px;
-        width: 70px;
+        padding-right: 5px;
+        width: 65px;
         height: auto;
     }
     logoimg {
