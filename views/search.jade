@@ -5,8 +5,9 @@ block content
     script.
         var searchusers = !{JSON.stringify(users)};
     
-    #logoText
-        p prism
+    a(href="/")
+        #logoText
+            p prism
     #emptyareaindex
     #emptyareaindex
     #myStyle
@@ -17,7 +18,7 @@ block content
             .form-group
                 input.form-control(type='text', name="username", placeholder="username")
             .errors
-            button.btn.btn-default(type='submit') Search  
+            button.btn.btn-default(type='submit') Search
         #searchwrapper
             #search
         if(!users)

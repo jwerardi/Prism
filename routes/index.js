@@ -24,6 +24,7 @@ router.get('/search', function (req, res) {
   res.render('search');
 });
 
+/*
 router.get("/feed", function (req,res){
   var newsfeedcontent =[];
   for(var i=0; i< req.user.following.length; i++){
@@ -38,7 +39,7 @@ router.get("/feed", function (req,res){
   }
 
 });
-
+*/
 
 //follow a user
 router.post('/follow/:targetid', function (req, res){
@@ -63,10 +64,11 @@ router.post('/follow/:targetid', function (req, res){
               console.log("successful follow");
             }
           });
-          return res.redirect('/user/' +usr.username);
           console.log("followed: " + usr.username);
+          return res.redirect('/user/' +usr.username);
         }else{
           console.log("didnt fint req user");
+          return res.render('error', {message: "couldnt find user"});
         }
       });
     }else{
@@ -570,7 +572,7 @@ router.get('/user/:username', function (req, res, next) {
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr)
     {
-      /*
+
       var followingbool = false;
       console.log("should be here");
       if(req.user.following != "undefined"){
@@ -588,9 +590,8 @@ router.get('/user/:username', function (req, res, next) {
           }
         }
       }
-      */
-      //following: followingbool
-      return res.render("user", {usr: usr, currentuser: req.user});
+
+      return res.render("user", {usr: usr, currentuser: req.user, following: followingbool});
     }else{
       return res.render("error", {message: req.params.username + " is not a registered user"});
     }
