@@ -2,9 +2,21 @@ extends layout
 block extraHeader
     title About
 block content
+    a(href="/")
+        #logoText
+            p prism
     #myStyle
-        h1 About Prism
-        h3 GUI II Semester Project
+        br
+        br
+        h1 About prism
+        h4 GUI II Semester Project
+        br
+        br
+        #aboutparagraph "Prism" is a photography based web application with an emphasis on a minimalistic aesthetic, tag based search functionality, and a portfolio style user profile. The goal is to provide photographers with a professional and interactive environment to share their work and connect with others. 
+        br
+        br
+        #aboutparagraph Developers:
+        br
         a(href="/user/tyler")
             button.btn.btn-primary(type="button") Tyler Bainbridge
         a(href="/user/alex")
@@ -13,11 +25,13 @@ block content
             button.btn.btn-primary(type="button") James Erardi
         a(href="/user/anevers")
             button.btn.btn-primary(type="button") Alex Nevers
-        p For more information, feel free to check out our Github Repository.
+        br
+        br
+        br
+        br
         a(href="https://github.com/tylerjbainbridge/Prism")
             button.btn.btn-primary(type="button") Github
         a(href="/")
-            button.btn.btn-primary(type="button") Home
         //a(href="/contact")
             //button.btn.btn-primary(type="button") Contact
         #footermain

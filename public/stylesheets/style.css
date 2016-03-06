@@ -17,6 +17,11 @@ html, body {
     font: 14px;
     font-family: 'alegreya-sans.thin';
 }
+#aboutparagraph{
+    margin: 0 auto;
+    align-content: center;
+    width: 65%
+}
 .cont{
     height: auto !important;
     min-height: 90%; 
