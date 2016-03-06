@@ -17,9 +17,13 @@ $( window ).load( function()
     for(var i =0; i<searchusers.length; i++) {
         accounts +=
             "<div class=" + item1 + "id = \"" + i + "\">" +
-            "<a href=\"/user/" + searchusers[i].username + "\">" +
-            "<img src = \"" + searchusers[i].propic + "\"/>" +
-            "<span class=\"text-content\">" + searchusers[i].username + "<\/span>" +
+            "<a href=\"/user/" + searchusers[i].username + "\">";
+            if(searchusers[i].propic == ""){
+                accounts += "<img src = \"/img/templogo.png\"/>";
+            }else{
+                accounts +="<img src = \"" + searchusers[i].propic + "\"/>";
+            }
+            accounts +="<span class=\"text-content\">" + searchusers[i].username + "<\/span>" +
             "</a>" +
             "<\/div><br>";
     }
