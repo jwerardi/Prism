@@ -1,0 +1,53 @@
+extends layout
+block extraHeader
+    title Explore
+block content
+    script.
+        var randusers = !{JSON.stringify(users)};
+    a(href="/")
+        #logoText
+            p prism
+    a#hide(href="/")
+          #logoimg
+            img(src= "/img/templogo.png")
+    if(currentuser)
+        #selLog
+            a(href="/")
+                button.btn.btn-primary(type="button") My Profile
+            a(href="/logout")
+                button.btn.btn-primary(type="button") Logout
+        br
+        br
+        br
+        #myStyle
+            h1 Explore
+
+        #wrapper
+            #accounts
+            br
+            #myStyle
+                a(href="/explore")
+                    button.btn.btn-primary(type="button") More
+    if(!currentuser)
+        #selLog
+            a(href="/login")
+                button.btn.btn-primary(type="button") Login
+        br
+        br
+        br
+        #myStyle
+            h1 Explore
+
+        #wrapper
+            #accounts
+            br
+            #myStyle
+                a(href="/explore")
+                    button.btn.btn-primary(type="button") More
+    #footerexplore
+        #myStyle
+            a(href="/about")
+                button#footbtn(type="button") About
+            a(href="/")
+                button#footbtn(type="button") Home
+

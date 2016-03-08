@@ -20,6 +20,110 @@ router.get('/about', function (req, res) {
   res.render('about');
 });
 
+router.get('/search', function (req, res) {
+  res.render('search');
+});
+
+/*
+router.get("/feed", function (req,res){
+  var newsfeedcontent =[];
+  for(var i=0; i< req.user.following.length; i++){
+    Account.findById(req.user.following[i], function (err, usr){
+      if(usr){
+        newsfeedcontent.push(usr);
+        console.log(usr.username);
+      }else{
+        console.log("some sort of error");
+      }
+    });
+  }
+
+});
+*/
+
+//follow a user
+router.post('/follow/:targetid', function (req, res){
+  //Account.findById(req.params.id, function(err, usr) {
+  Account.findById(req.params.targetid, function (err, usr){
+    if(usr){
+      Account.findById(req.user.id, function (err, requser){
+        if(requser){
+          requser.following.push(usr.id);
+          usr.followers.push(requser.id);
+          usr.save(function(err){
+            if(err){
+              console.log("error following");
+            }else{
+              console.log("successful follow");
+            }
+          });
+          requser.save(function(err){
+            if(err){
+              console.log("error following");
+            }else{
+              console.log("successful follow");
+            }
+          });
+          console.log("followed: " + usr.username);
+          return res.redirect('/user/' +usr.username);
+        }else{
+          console.log("didnt fint req user");
+          return res.render('error', {message: "couldnt find user"});
+        }
+      });
+    }else{
+      console.log("error");
+    }
+  });
+});
+//unfollow a user
+router.post('/unfollow/:targetid', function (req, res){
+  Account.findByIdAndUpdate(req.user.id, { $pull: { 'following': req.params.targetid  }}, function(err, unfollowed){
+    if(err){
+      return res.render('error', {message: "Could not retrieve account"});
+    }else{
+      console.log("pulled: " + req.params.targetid + " from " + req.user.id);
+    }
+  });
+  Account.findByIdAndUpdate(req.params.targetid, { $pull: { 'followers': req.user.id }}, function(err, removefollower){
+    if(err){
+      return res.render('error', {message: "Could not retrieve account"});
+    }else{
+      console.log("pulled: " + req.user.id + " from " +  req.params.targetid);
+    }
+  });
+
+  Account.findById(req.params.targetid, function(err, usr){
+    return res.redirect('/user/' +usr.username);
+  });
+
+});
+
+router.post('/searchby/username', function (req, res) {
+  var search = req.body.username;
+  console.log(search);
+  Account.find({username: new RegExp(search)}, function(err, usrs){
+    if(usrs){
+      console.log(usrs.length);
+      return res.render('search', {users: usrs});
+    }else{
+      console.log("find by partial failed");
+    }
+  });
+  /*
+  Account.findByUsername(req.body.username, function(err, usr){
+    if(!err){
+      if(usr){
+        console.log(usr.username);
+        return res.render('search', {users: usr});
+      }else{
+        return res.render('search', {message: "could not find user: " + req.body.username});
+      }
+    }
+  });
+  */
+});
+
 router.get('/updatephoto/:imageid', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     res.render('update-photo', {imgid: req.params.imageid, imgtitle: img.title});
@@ -27,50 +131,50 @@ router.get('/updatephoto/:imageid', function (req, res){
 });
 
 /*
-router.post('/delete/:commentid/:imageid/:userid/:index', function (req, res){
-  Image.findById(req.params.imageid,function(err, img){
-    if(img){
-      if(req.user){
+ router.post('/delete/:commentid/:imageid/:userid/:index', function (req, res){
+ Image.findById(req.params.imageid,function(err, img){
+ if(img){
+ if(req.user){
 
-        Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,model){
-          if(err){
-            return res.render('error', {message: "Could not retrieve account"});
-          }else{
-            Comment.findById(req.params.imageid, function(err, comt) {
-              if (comt) {
-                comt.remove();
-              }
-            });
-          }
-        });
+ Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,model){
+ if(err){
+ return res.render('error', {message: "Could not retrieve account"});
+ }else{
+ Comment.findById(req.params.imageid, function(err, comt) {
+ if (comt) {
+ comt.remove();
+ }
+ });
+ }
+ });
 
-        //finally, update the account with the updated image
-        Account.findOneAndUpdate(
-            { "_id": req.params.userid, "images._id": req.params.imageid},
-            {
-              "$set": {
-                "images.$": img
-              }
-            },
-            function(err,doc) {
-              if(err){
-                res.render('error', {message: "ERROR"});
-              }
-            }
-        );
-        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
-        console.log("congrats");
-      }else{
-        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
-      }
+ //finally, update the account with the updated image
+ Account.findOneAndUpdate(
+ { "_id": req.params.userid, "images._id": req.params.imageid},
+ {
+ "$set": {
+ "images.$": img
+ }
+ },
+ function(err,doc) {
+ if(err){
+ res.render('error', {message: "ERROR"});
+ }
+ }
+ );
+ res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+ console.log("congrats");
+ }else{
+ return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
+ }
 
-    }else{
-      console.log("cannot find image");
-    }
+ }else{
+ console.log("cannot find image");
+ }
 
-  });
-});
-*/
+ });
+ });
+ */
 router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){
@@ -97,22 +201,22 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
         });
         //finally, update the account with the updated image
         Account.findOneAndUpdate(
-          { "_id": req.params.userid, "images._id": req.params.imageid},
-          {
-            "$set": {
-              "images.$": img
+            { "_id": req.params.userid, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$": img
+              }
+            },
+            function(err,doc) {
+              if(err){
+                res.render('error', {message: "ERROR"});
+              }
             }
-          },
-          function(err,doc) {
-            if(err){
-              res.render('error', {message: "ERROR"});
-            }
-          }
         );
-        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
+        res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)));
         console.log("congrats");
       }else{
-        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
+        return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index))});
       }
 
     }else{
@@ -132,11 +236,47 @@ router.get('/register', function(req, res) {
   res.render('register', { });
 });
 
+//receives the register view which has a register form
+router.get('/explore', function(req, res) {
+  // Find "limit" random documents (defaults to array of 1)
+
+  var filter = { images: { $exists: true, $not: {$size: 0}}, propic: {$exists: true, $ne: ''} };
+  Account.findRandom(filter, {}, {skip: 0, limit: 4}, function(err, results) {
+    if (!err) {
+      console.log(results[1].username); // 5 elements
+      return res.render('explore', {users: results, currentuser: req.user});
+    }else{
+      console.log("error");
+      return res.render('error', {message: "Explore Failed"});
+    }
+  });
+  /*
+  Image.findRandom({}, {}, {limit: 20}, function(err, results) {
+    if (!err) {
+      console.log(results); // 5 elements
+      return res.render('explore', {images: results, currentuser: req.user});
+    }
+
+  });
+*/
+});
+
 //all of the register form information is then passed to a new Account model, and redirected to the index view, but this time will be prompted with
 //a view of their profile
 router.post('/register', function(req, res) {
+
+  //handling the case of user not having a pro pic
+  var profilepic;
+  if(req.body.propic == "")
+  {
+    //temporary fix
+    profilepic = "/img/templogo.png";
+  }else{
+    profilepic = req.body.propic;
+  }
+
   //registers a new account with the following information complete from the form
-  Account.register(new Account({ username : req.body.username, fullname: req.body.name, title : req.body.title, propic: req.body.propic}), req.body.password, function(err, account) {
+  Account.register(new Account({ username : req.body.username, fullname: req.body.name, title : req.body.title, propic: profilepic}), req.body.password, function(err, account) {
     if (err) {
       //if the username is not unique, let them know in "info"
       return res.render("register", {info: "Sorry. That username already exists. Try again."});
@@ -196,31 +336,31 @@ router.post('/login', function(req, res, next) {
 
 //DELETE PHOTO
 router.get('/delete/:imageid',function (req, res, next) {
-    Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
-      if (usr) {
-          Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
-            if(err){
-              return res.render('error', {message: "Could not retrieve account"});
-            }else{
-              Image.findById(req.params.imageid, function(err, img) {
-                if (img) {
-                    img.remove();
-                }
-              });
-              return res.redirect("/");
+  Account.findOne({'images._id': req.params.imageid}, {'images.$': 1}, function (err, usr) {
+    if (usr) {
+      Account.findByIdAndUpdate(usr._id, { $pull: { 'images': { _id: req.params.imageid } }}, function(err,model){
+        if(err){
+          return res.render('error', {message: "Could not retrieve account"});
+        }else{
+          Image.findById(req.params.imageid, function(err, img) {
+            if (img) {
+              img.remove();
             }
           });
-      }
-    });
+          return res.redirect("/");
+        }
+      });
+    }
+  });
 });
 
 //IMAGE UPDATE
 router.post('/image/:imageid/update',function (req, res, next) {
   Image.findById(req.params.imageid, function(err, img){
-  if(img){
-    //if the user is logged in
-    if (req.user)
-    {
+    if(img){
+      //if the user is logged in
+      if (req.user)
+      {
         //if the title was changed
         if(req.body.title != img.title) {
           img.title = req.body.title;
@@ -238,25 +378,25 @@ router.post('/image/:imageid/update',function (req, res, next) {
         });
         //after updating the image, find it on the user and replace that image with the new one
         Account.findOneAndUpdate(
-          { "_id": req.user.id, "images._id": req.params.imageid},
-          {
-            "$set": {
-              "images.$": img
+            { "_id": req.user.id, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$": img
+              }
+            },
+            function(err,doc) {
+              if(err){
+                res.render('error', {message: "ERROR"});
+              }
             }
-          },
-          function(err,doc) {
-            if(err){
-              res.render('error', {message: "ERROR"});
-            }
-          }
-      );
+        );
 
+      }else{
+        res.render('error', {message: "Not logged in"});
+      }
     }else{
-      res.render('error', {message: "Not logged in"});
+      res.render('error', {message: "Cannot Find Image"});
     }
-  }else{
-    res.render('error', {message: "Cannot Find Image"});
-  }
   });
 });
 
@@ -283,7 +423,7 @@ router.get('/images/:userid/:index', function (req, res, next) {
       if(index <= 0){
         backPic = usr.images.length-1;
       }
-      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic});
+      return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic, index: index});
     }else{
       return res.render("image", {usrimage: image, currentuser: req.user, message: "photo does not exist"});
     }
@@ -361,24 +501,24 @@ router.post('/user/:id/update', function (req, res) {
         }else{
           //if the username was changed
           /*
-          if(req.body.username != req.user.username) {
+           if(req.body.username != req.user.username) {
 
-             Account.findByUsername(req.body.username, function (err, newUsr) {
-             if (!newUsr){
-             console.log(true);
-             }
-             if (newUsr){
-             console.log(false);
-             }
-             });
+           Account.findByUsername(req.body.username, function (err, newUsr) {
+           if (!newUsr){
+           console.log(true);
+           }
+           if (newUsr){
+           console.log(false);
+           }
+           });
 
 
-            //changing the username
-            console.log("Changing " + req.user.username + " to " + req.body.username);
-            usr.username = req.body.username;
-            console.log(usr.username);
-          }
-          */
+           //changing the username
+           console.log("Changing " + req.user.username + " to " + req.body.username);
+           usr.username = req.body.username;
+           console.log(usr.username);
+           }
+           */
 
           //full name
           if(req.body.name != req.user.fullname)
@@ -432,9 +572,29 @@ router.get('/user/:username', function (req, res, next) {
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr)
     {
+      /*
+      var followingbool = false;
+      console.log("should be here");
+      if(req.user.following != "undefined"){
+        if(req.user.following.length > 0){
+          for(var i = 0; i <req.user.following.length; i++){
+            if(req.user.following[i] == usr.id){
+              followingbool = true;
+              console.log("YES");
+            }else{
+              console.log("no");
+              console.log(req.user.following[i]);
+              console.log(usr.id);
+            }
+
+          }
+        }
+      }
+      */
+      //, following: followingbool
       return res.render("user", {usr: usr, currentuser: req.user});
     }else{
-      return res.render("user", {usr: usr, currentuser: req.user, urlname: req.params.username});
+      return res.render("error", {message: req.params.username + " is not a registered user"});
     }
 
   });

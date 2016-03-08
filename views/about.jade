@@ -2,21 +2,37 @@ extends layout
 block extraHeader
     title About
 block content
-    #myStyle
-        h1 About Prism
-        h3 GUI II Semester Project
-        a(href="/user/tyler")
-            button.btn.btn-primary(type="button") Tyler Bainbridge
-        a(href="/user/alex")
-            button.btn.btn-primary(type="button") Alex Cushing
-        a(href="/user/james")
-            button.btn.btn-primary(type="button") James Erardi
-        a(href="/user/anevers")
-            button.btn.btn-primary(type="button") Alex Nevers
-        p For more information, feel free to check out our Github Repository.
-        a(href="https://github.com/tylerjbainbridge/Prism")
-            button.btn.btn-primary(type="button") Github
+    .cont
         a(href="/")
-            button.btn.btn-primary(type="button") Home
-        //a(href="/contact")
-            //button.btn.btn-primary(type="button") Contact
+            #logoText
+                p prism
+        a#hide(href="/")
+          #logoimg
+            img(src= "/img/templogo.png")
+        #myStyle
+            h1 About prism
+            h4 GUI II Semester Project
+            br
+            br
+            #aboutparagraph "Prism" is a photography based web application with an emphasis on a minimalistic aesthetic, tag based search functionality, and a portfolio style user profile. The goal is to provide photographers with a professional and interactive environment to share their work and connect with others. 
+            br
+            br
+            #aboutparagraph Developers:
+            br
+            a(href="/user/tyler")
+                button.btn.btn-primary(type="button") Tyler Bainbridge
+            a(href="/user/alex")
+                button.btn.btn-primary(type="button") Alex Cushing
+            a(href="/user/james")
+                button.btn.btn-primary(type="button") James Erardi
+            a(href="/user/anevers")
+                button.btn.btn-primary(type="button") Alex Nevers
+        #emptyareaabout
+        #footermain
+            #myStyle
+                a(href="/")
+                    button#footbtn(type="button") Home
+                a(href="/explore")
+                    button#footbtn(type="button") Explore
+                a(href="https://github.com/tylerjbainbridge/Prism")
+                    button#footbtn(type="button") Github
