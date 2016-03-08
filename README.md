@@ -4,3 +4,5 @@
 
 Profile Mock-up
 ![mockup](http://i.imgur.com/TnfgiFU.jpg)
+
+##[Alpha Report](https://docs.google.com/document/d/1vcXeMEs_hqqlxByJhzctMlrp-YNuRkbhEA0rM7DAP3M/edit?usp=sharing)
