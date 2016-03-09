@@ -16,6 +16,9 @@ body {
     font: 14px;
     font-family: 'alegreya-sans.thin';
 }
+:focus {
+    outline: 0;
+}
 #aboutparagraph {
     margin: 0 auto;
     align-content: center;
