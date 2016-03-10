@@ -28,6 +28,7 @@ body {
     height: auto !important;
     min-height: 90%;
     margin: 0 auto -180px;
+    padding: 0;
 }
 
 img:after {
@@ -417,7 +418,7 @@ logoimg {
     padding-bottom: 150px;
 }
 #emptyareaindex {
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 }
 .photoStyle {
     align-content: center;
@@ -459,7 +460,7 @@ textarea {
     font-size: 14px;
 }
 #proP {
-    padding-top: 60px;
+    padding-top: 20px;
     vertical-align: top;
     padding-left: 20px;
     padding-right: 20px;
