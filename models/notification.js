@@ -12,7 +12,7 @@ var Notification = new Schema({
     to: String,
     seen: Boolean,
     link: String,
-    preview: String,
+    preview: String
 });
 
 module.exports = mongoose.model('Notification', Notification);

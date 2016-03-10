@@ -275,6 +275,7 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
           }
         });
         var link = ('/images/'+req.params.userid + '/' + (parseInt(req.params.index))).toString();
+        //make content more dynamic in the future
         var newNotification = new Notification
         ({content: req.user.username + " commented \"" + req.body.comment + "\" on your photo.",
         from: req.user.username,
