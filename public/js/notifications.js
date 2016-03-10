@@ -19,7 +19,7 @@ $(document).ready(function () {
 
         }
     }
-    $('#notifications').click(function(){
+    $('#notifbut').click(function(){
         var notifications = "";
         var numNotif =0;
         for(var i=0; i < currentUser.notifications.length; i++) {

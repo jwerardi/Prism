@@ -4,7 +4,8 @@ block extraHeader
 block extraScript
     script(src="/js/notification-page.js")
 block content
-
+    script.
+        var notifuser = !{JSON.stringify(user)};
     a(href="/")
         #logoText
             p prism
@@ -16,6 +17,3 @@ block content
             button.btn.btn-primary(type="button") Back
     #myStyle
         #feed
-
-            script.
-                var notifications = !{JSON.stringify(user)};

@@ -85,7 +85,7 @@ router.get("/user/:username/notifications", function (req, res){
 });
 //seen a comment
 router.post("/notification/:userid/:notificationid/seen", function(req, res){
-  Notification.findById("56e0ccf00e4b0c970af285fe", function(err, notif){
+  Notification.findById(req.params.notificationid, function(err, notif){
     if(notif){
       console.log("found notif");
       notif.seen = true;
