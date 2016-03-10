@@ -58,7 +58,7 @@ $(document).ready(function () {
             },
             "title" : {
                 required: true,
-                maxlength: 20
+                maxlength: 30
             },
             "propic": {
                 url: true,

@@ -17,7 +17,12 @@ $( window ).load( function(){
                 "<span class=\"comment\"><span> " + notifuser.notifications[i].content + "<\/span><br>";
             console.log(notifications);
         }
-        $('#feed').html(notifications);
+        if(notifications == ""){
+            $('#feed').html("No notifications to show.");
+        }else{
+            $('#feed').html(notifications);
+        }
+
     }
 
 });
