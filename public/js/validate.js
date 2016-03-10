@@ -107,7 +107,7 @@ $(document).ready(function () {
             },
             "title" : {
                 required: "TITLE REQUIRED",
-                maxlength: "TITLE CANNOT BE LONGER THAN 20 CHARACTERS"
+                maxlength: 40
             },
             "propic": {
                 url: true,
@@ -115,7 +115,7 @@ $(document).ready(function () {
             },
             "name": {
                 required: true,
-                maxlength: 20
+                maxlength: 40
             }
         },
         messages: {
