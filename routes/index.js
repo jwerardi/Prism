@@ -279,7 +279,8 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
         ({content: req.user.username + " commented \"" + req.body.comment + "\" on your photo.",
         from: req.user.username,
         seen: false,
-        link: link});
+        link: link,
+        preview: img.url});
         newNotification.save(function(err){
           if(err){
             console.log("error notifying");
@@ -288,14 +289,17 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
           }
         });
         Account.findById(req.params.userid, function(err, usr){
-          usr.notifications.push(newNotification);
-          usr.save(function(err){
-            if(err){
-              console.log("error commenting");
-            }else{
-              console.log("successful comment");
-            }
-          });
+          if(req.user.username != usr.username){
+            usr.notifications.push(newNotification);
+            usr.save(function(err){
+              if(err){
+                console.log("error commenting");
+              }else{
+                console.log("successful comment");
+              }
+            });
+          }
+
         });
         //finally, update the account with the updated image
         Account.findOneAndUpdate(

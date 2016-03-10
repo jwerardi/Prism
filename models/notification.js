@@ -11,7 +11,8 @@ var Notification = new Schema({
     updated: { type: Date, default: Date.now },
     to: String,
     seen: Boolean,
-    link: String
+    link: String,
+    preview: String,
 });
 
 module.exports = mongoose.model('Notification', Notification);
