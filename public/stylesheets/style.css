@@ -134,10 +134,11 @@ a {
   text-decoration: none;
 }
 #feed img{
+  object-fit: contain;
   vertical-align: middle;
   width: 50px;
   height: auto;
-  padding-bottom: 5px;
+  padding-bottom: 25px;
 }
 #myFeedStyle{
   text-decoration: none;
