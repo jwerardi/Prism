@@ -83,7 +83,7 @@ img:after {
     transition: all .3s ease-in-out;
     display: table-cell;
     /*border-radius: 50%;*/
-    
+
     vertical-align: middle;
     padding: 10px;
     object-fit: cover;
@@ -129,6 +129,26 @@ a {
     font: 14px;
     font-family: Ubuntu;
     letter-spacing: 5px;
+}
+#feed{
+  text-decoration: none;
+}
+#feed img{
+  vertical-align: middle;
+  width: 50px;
+  height: auto;
+  padding-bottom: 5px;
+}
+#myFeedStyle{
+  text-decoration: none;
+  display: inline-block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  padding-top: 60px;
+  width: auto;
+  font: 14px;
+  font-family: Ubuntu;
 }
 #myTitle {
     text-align: center;
@@ -190,7 +210,7 @@ a {
     visibility: hidden;
 }
 #nextmobile {
-    
+
     visibility: hidden;
 }
 .btn {
@@ -258,7 +278,7 @@ a {
     position: relative;
 }
 .text-content {
-    
+
     position: absolute;
     font-family: Ubuntu;
     font-size: 25px;
@@ -281,7 +301,7 @@ a {
     position: relative;
 }
 #logoimg img {
-    
+
         width: 0px;
         height: 0px;
     visibility: hidden;
@@ -290,7 +310,7 @@ a {
     height: auto;
 }
 logoimg {
-    
+
         width: 0px;
         height: 0px;
     visibility: hidden;
@@ -300,7 +320,7 @@ logoimg {
     position: relative;
     margin-top: -180px;
     /* negative value of footer height */
-    
+
     height: 180px;
     clear: both;
 }
@@ -318,12 +338,12 @@ logoimg {
     visibility: visible;
 }
 #footermain {
-    /*background: #282828; 
-    background: -webkit-linear-gradient(#282828, #141414); 
-    background: -o-linear-gradient(#282828, #141414); 
+    /*background: #282828;
+    background: -webkit-linear-gradient(#282828, #141414);
+    background: -o-linear-gradient(#282828, #141414);
     background: -moz-linear-gradient(#282828, #141414);
     background: linear-gradient(#282828, #141414);*/
-    
+
     position: absolute;
     bottom: 0;
     right: 0;
@@ -332,12 +352,12 @@ logoimg {
     min-width: 100%;
 }
 #footerindex {
-    /*background: #282828; 
-    background: -webkit-linear-gradient(#282828, #141414); 
-    background: -o-linear-gradient(#282828, #141414); 
+    /*background: #282828;
+    background: -webkit-linear-gradient(#282828, #141414);
+    background: -o-linear-gradient(#282828, #141414);
     background: -moz-linear-gradient(#282828, #141414);
     background: linear-gradient(#282828, #141414);*/
-    
+
     position: absolute;
     bottom: 0;
     right: 0;
@@ -429,12 +449,12 @@ textarea {
 }
 :-moz-placeholder {
     /* older Firefox*/
-    
+
     font-size: 14px;
 }
 ::-moz-placeholder {
     /* Firefox 19+ */
-    
+
     font-size: 14px;
 }
 #proP {
@@ -468,7 +488,7 @@ textarea {
     left: 0;
     z-index: -1000;
     /* Preserve aspet ratio */
-    
+
     min-width: 100%;
     min-height: 100%;
 }
@@ -646,7 +666,7 @@ form .progress {
         max-height: 100%;
         margin: 0 auto;
     }*/
-    
+
     #logoimg img {
         visibility: visible;
         padding-top: 20px;
@@ -660,7 +680,7 @@ form .progress {
     }
     .back-to-top {
         visibility: hidden;
-        
+
         width: 0px;
         height: 0px;
         transition: all .05s ease-in-out;
@@ -689,7 +709,7 @@ form .progress {
         position: relative;
         margin-top: -180px;
         /* negative value of footer height */
-        
+
         height: 180px;
         clear: both;
     }
@@ -713,7 +733,7 @@ form .progress {
         visibility: hidden;
         width: 0px;
         height: 0px;
-        
+
     }
     #next {
         visibility: hidden;
