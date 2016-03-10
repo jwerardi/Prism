@@ -417,6 +417,9 @@ logoimg {
     visibility: hidden;
     padding-bottom: 150px;
 }
+#emptyareasearch {
+    padding-bottom: 15px;
+}
 #emptyareaindex {
     padding-bottom: 30px;
 }
