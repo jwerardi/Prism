@@ -3,6 +3,7 @@ var passport = require('passport');
 var Account = require('../models/account');
 var Image = require('../models/image-model.js');
 var Comment = require('../models/comment.js');
+var Notification = require('../models/notification.js');
 var async = require('async');
 var router = express.Router();
 
@@ -66,6 +67,37 @@ router.get('/user/:username/following', function(req, res){
 
 });
 */
+//seen a comment
+router.post("/notification/:userid/:notificationid/seen", function(req, res){
+  Notification.findById(req.params.notificationid, function(err, notif){
+    if(notif){
+      console.log("found notif");
+      notif.seen = true;
+      notif.save(function(err){
+        if(err){
+          console.log("error seeing notif");
+        }else{
+          console.log("successful notif thing");
+        }
+      });
+      Account.findOneAndUpdate(
+          { "_id": req.params.userid, "notification._id": req.params.notificationid},
+          {
+            "$set": {
+              "notification.$": notif
+            }
+          },
+          function(err,doc) {
+            if(err){
+              res.render('error', {message: "ERROR"});
+            }
+          }
+      );
+      res.sendStatus(200)
+    }
+  });
+
+});
 //follow a user
 router.post('/follow/:targetid', function (req, res){
   //Account.findById(req.params.id, function(err, usr) {
@@ -223,6 +255,29 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
           }else{
             console.log("successful comment");
           }
+        });
+        var link = ('/images/'+req.params.userid + '/' + (parseInt(req.params.index))).toString();
+        var newNotification = new Notification
+        ({content: req.user.username + " commented \"" + req.body.comment + "\" on your photo.",
+        from: req.user.username,
+        seen: false,
+        link: link});
+        newNotification.save(function(err){
+          if(err){
+            console.log("error notifying");
+          }else{
+            console.log("successful notifying");
+          }
+        });
+        Account.findById(req.params.userid, function(err, usr){
+          usr.notifications.push(newNotification);
+          usr.save(function(err){
+            if(err){
+              console.log("error commenting");
+            }else{
+              console.log("successful comment");
+            }
+          });
         });
         //finally, update the account with the updated image
         Account.findOneAndUpdate(

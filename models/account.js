@@ -2,6 +2,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Image = require('./image-model.js').schema;
+var Notification = require('./notification.js').schema;
 //TYLER: passport library for easily creating a salt and hash
 var random = require('mongoose-simple-random');
 var passportLocalMongoose = require('passport-local-mongoose');
@@ -17,7 +18,8 @@ var Account = new Schema({
     followers: [String],
     title: String,
     propic: String,
-    images: [Image]
+    images: [Image],
+    notifications: [Notification]
 });
 
 Account.plugin(passportLocalMongoose);

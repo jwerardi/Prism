@@ -14,16 +14,14 @@ $(document).ready(function () {
     var item1 = "\"item\"";
     var item2 = "\"item grid-item--width2\"";
     var images ="";
-    if(currentUser != " ")
-    {
-        for(var i = currentUser.images.length-1; i>=0;i--)
-        {
-            if (typeof currentUser.images[i].url != 'undefined'){
+    if(currentUser != " ") {
+        for (var i = currentUser.images.length - 1; i >= 0; i--) {
+            if (typeof currentUser.images[i].url != 'undefined') {
                 //console.log(currentUser.images[i].url);
                 //img(src= " " + user.propic)
                 images +=
-                    "<div class=" +item1 + "id = \"" + [i] + "\">" +
-                    "<a href=\"/images/" + currentUser._id + "/" + i +"\">" +
+                    "<div class=" + item1 + "id = \"" + [i] + "\">" +
+                    "<a href=\"/images/" + currentUser._id + "/" + i + "\">" +
                     "<img src=\"" + currentUser.images[i].url + "\"/>" +
                     "<span class=\"text-content\"><span>" + currentUser.images[i].title + "<\/span><\/span>" +
                     "</a>" +
@@ -35,7 +33,6 @@ $(document).ready(function () {
         //adding photos to page on DOM
         $("#list").html(images);
     }
-
     // Replace source
     $('img').error(function(){
         $(this).attr('src', '/img/templogo.png');

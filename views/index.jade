@@ -4,6 +4,8 @@ block extraHeader
     title #{user.username}
   if(!user)
     title Prism
+block extraScript
+    script(src="/js/notifications.js")
 block content
   #top
   if (!user)
@@ -52,6 +54,8 @@ block content
             button.btn.btn-primary(type="button") Upload
           a(href="/logout")
             button.btn.btn-primary(type="button") Logout
+          #notifications
+              #notifs
             script.
               currentUser= !{JSON.stringify(user)};
               thisimage = " ";
