@@ -56,7 +56,7 @@ block content
             button.btn.btn-primary(type="button") Logout
           a(href="/user/#{user.username}/notifications")
             button.btn.btn-primary(type="button" id="notifbut")
-          #notifications
+                #notifications
             script.
               currentUser= !{JSON.stringify(user)};
               thisimage = " ";
