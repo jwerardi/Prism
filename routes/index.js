@@ -67,24 +67,40 @@ router.get('/user/:username/following', function(req, res){
 
 });
 */
+
+router.get("/user/:username/notifications", function (req, res){
+  if(req.params.username == req.user.username){
+    Account.findByUsername(req.params.username, function(err, usr){
+      if(usr){
+        console.log("successful notif page");
+        res.render('notifications', {user: usr});
+      }else{
+        console.log("error");
+      }
+    });
+  }else{
+    res.render('error', {message: "can't access the notifications of someone that isn't you."})
+  }
+
+});
 //seen a comment
 router.post("/notification/:userid/:notificationid/seen", function(req, res){
-  Notification.findById(req.params.notificationid, function(err, notif){
+  Notification.findById("56e0ccf00e4b0c970af285fe", function(err, notif){
     if(notif){
       console.log("found notif");
       notif.seen = true;
       notif.save(function(err){
         if(err){
-          console.log("error seeing notif");
+          console.log("error seesing notif");
         }else{
           console.log("successful notif thing");
         }
       });
       Account.findOneAndUpdate(
-          { "_id": req.params.userid, "notification._id": req.params.notificationid},
+          { "_id": req.params.userid, "notifications._id": req.params.notificationid},
           {
             "$set": {
-              "notification.$": notif
+              "notifications.$": notif
             }
           },
           function(err,doc) {
@@ -94,6 +110,8 @@ router.post("/notification/:userid/:notificationid/seen", function(req, res){
           }
       );
       res.sendStatus(200)
+    }else{
+      console.log("couldnt find it");
     }
   });
 
