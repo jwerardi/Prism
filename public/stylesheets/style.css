@@ -29,6 +29,10 @@ body {
     min-height: 90%;
     margin: 0 auto -180px;
 }
+
+img:after {
+    content: "\f127" " Broken Image of " attr(alt);
+}
 #headerImg {
     background-image: url("img/background2.jpg");
     width: 100%;

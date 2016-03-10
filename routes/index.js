@@ -3,6 +3,7 @@ var passport = require('passport');
 var Account = require('../models/account');
 var Image = require('../models/image-model.js');
 var Comment = require('../models/comment.js');
+var async = require('async');
 var router = express.Router();
 
 //receives the index view along with request.user, the jade file will then decide which version of the home page to display depending
@@ -40,7 +41,31 @@ router.get("/feed", function (req,res){
 
 });
 */
+/*
+router.get('/user/:username/following', function(req, res){
+  Account.findByUsername(req.params.username, function(err, usr){
+    if(usr){
+      var usernames = [];
+      async.series([
+        function(){
+          for(var i =0; i < usr.following.length; i++){
+            Account.findById(usr.following[i], function(err, usr){
+              usernames.push(usr.username);
+            });
+          }
+        },
+        function(){
+          console.log("hello");
+          console.log(usernames.toString());
+        }
+      ]);
+    }else{
+      console.log("error");
+    }
+  });
 
+});
+*/
 //follow a user
 router.post('/follow/:targetid', function (req, res){
   //Account.findById(req.params.id, function(err, usr) {

@@ -54,7 +54,7 @@ block content
                         .form-group
                             input.form-control(type='text', name="comment", placeholder="comment")
                         .errors
-                        button.btn.btn-default(type='submit') Comment
+                        button.btn.btn-default(type='submit' id='submitComment') Comment
                     if(currentuser.username === user.username)
                         a(href="/delete/#{usrimage.id}" class="confirm")
                             button.btn.btn-primary(type="button") delete

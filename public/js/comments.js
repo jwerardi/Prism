@@ -5,7 +5,7 @@
  * Created by tyler on 2/21/16.
  */
 
-//VERY simple way of adding the images to the profile
+//VERY simple way of adding comments to page
 $(document).ready(function () {
     var comments ="";
     if(thisimage != " "){
@@ -22,5 +22,10 @@ $(document).ready(function () {
         console.log(comments);
         $("#comments").html(comments);
     }
+
+    // Replace source
+    $('img').error(function(){
+        $(this).attr('src', '/img/templogo.png');
+    });
 });
 

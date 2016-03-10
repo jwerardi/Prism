@@ -36,6 +36,10 @@ $(document).ready(function () {
         $("#list").html(images);
     }
 
+    // Replace source
+    $('img').error(function(){
+        $(this).attr('src', '/img/templogo.png');
+    });
 
 
 });
