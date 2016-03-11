@@ -1,29 +1,22 @@
 extends layout
 block extraHeader
-    title Explore
+    title Feed
+block extraScript
+    script(src="/js/newsfeed.js")
 block content
     script.
-        var randusers = !{JSON.stringify(users)};
+        var newsFeed = !{JSON.stringify( newsfeed )};
     a(href="/")
         #logoText
             p prism
-    if(currentuser)
+    if(user)
         #selLog
             a(href="/")
                 button.btn.btn-primary(type="button") My Profile
             a(href="/logout")
                 button.btn.btn-primary(type="button") Logout
         #myStyle
-            h1 Explore
-        #wrapper
-            #feed
-    if(!currentuser)
-        #selLog
-            a(href="/login")
-                button.btn.btn-primary(type="button") Login
+            h1 News Feed
         #myStyle
-            h1 Explore
-
-        #wrapper
-            #feed
+            #newsfeed
 

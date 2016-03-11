@@ -26,6 +26,38 @@ router.get('/search', function (req, res) {
   res.render('search');
 });
 
+router.get('/feed', function (req, res){
+  if(req.user){
+    Account.find({
+      '_id': { $in: req.user.following
+      }
+    }, function(err, docs){
+      var feed = [];
+      //console.log(docs[0].images);
+      for(var i= 0; i < docs.length; i++){
+        console.log(docs[i].images.length);
+        for(var j =0; j <docs[i].images.length; j++){
+          var feedobject = {
+            userid: docs[i]._id,
+            username:docs[i].username,
+            title:docs[i].images[j].title,
+            picture :docs[i].images[j].url,
+            time:docs[i].images[j]._id.getTimestamp(),
+            comments: docs[i].images[j].comments
+          };
+          feed.push(feedobject);
+          //console.log(feed);
+        }
+      }
+      feed.sort(function(x, y){
+        return x.time - y.time;
+      });
+
+      res.render('feed', {newsfeed: feed, user: req.user})
+    });
+  }
+
+});
 
 router.get("/user/:username/following", function (req,res){
   console.log(req.user.following);
@@ -179,6 +211,8 @@ router.post('/searchby/username', function (req, res) {
       console.log("find by partial failed");
     }
   });
+
+  //by username instead of by
   /*
   Account.findByUsername(req.body.username, function(err, usr){
     if(!err){
@@ -199,51 +233,6 @@ router.get('/updatephoto/:imageid', function (req, res){
   });
 });
 
-/*
- router.post('/delete/:commentid/:imageid/:userid/:index', function (req, res){
- Image.findById(req.params.imageid,function(err, img){
- if(img){
- if(req.user){
-
- Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,model){
- if(err){
- return res.render('error', {message: "Could not retrieve account"});
- }else{
- Comment.findById(req.params.imageid, function(err, comt) {
- if (comt) {
- comt.remove();
- }
- });
- }
- });
-
- //finally, update the account with the updated image
- Account.findOneAndUpdate(
- { "_id": req.params.userid, "images._id": req.params.imageid},
- {
- "$set": {
- "images.$": img
- }
- },
- function(err,doc) {
- if(err){
- res.render('error', {message: "ERROR"});
- }
- }
- );
- res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
- console.log("congrats");
- }else{
- return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
- }
-
- }else{
- console.log("cannot find image");
- }
-
- });
- });
- */
 router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){

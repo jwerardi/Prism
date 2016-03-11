@@ -24,6 +24,22 @@ body {
     align-content: center;
     width: 65%
 }
+#newsfeed img{
+    align-content: center;
+    vertical-align: top;
+    margin: 0 auto;
+    max-height: 500px;
+    max-width: 650px;
+    height: auto;
+    width: auto;
+    margin-bottom: 50px;
+    border: solid #ffffff 10px;
+}
+#newsFeedObject a{
+    color: #ffffff;
+    text-decoration: none;
+    display: inline;
+}
 .cont {
     height: auto !important;
     min-height: 90%;
