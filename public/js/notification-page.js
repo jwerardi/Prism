@@ -7,9 +7,9 @@ $( window ).load( function(){
 
     if (typeof notifuser.notifications != 'undefined') {
         for(var i=notifuser.notifications.length-1; i >= 0; i--) {
-            console.log(notifuser.notifications[i].content);
-
-            console.log(notifications);
+            //console.log(notifuser.notifications[i].content);
+            //var diff = Math.abs((notifuser.notifications[i].updated).getTime() - 1);
+            //console.log(diff);
             notifications +=
                 "<a href=\"" + notifuser.notifications[i].link + "\">" +
                 "<img src=\"" + notifuser.notifications[i].preview + "\" width=\"100\" height=\"auto\"/>"+

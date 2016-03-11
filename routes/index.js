@@ -26,47 +26,41 @@ router.get('/search', function (req, res) {
   res.render('search');
 });
 
-/*
-router.get("/feed", function (req,res){
-  var newsfeedcontent =[];
-  for(var i=0; i< req.user.following.length; i++){
-    Account.findById(req.user.following[i], function (err, usr){
-      if(usr){
-        newsfeedcontent.push(usr);
-        console.log(usr.username);
-      }else{
-        console.log("some sort of error");
-      }
-    });
-  }
 
-});
-*/
-/*
-router.get('/user/:username/following', function(req, res){
+router.get("/user/:username/following", function (req,res){
+  console.log(req.user.following);
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr){
-      var usernames = [];
-      async.series([
-        function(){
-          for(var i =0; i < usr.following.length; i++){
-            Account.findById(usr.following[i], function(err, usr){
-              usernames.push(usr.username);
-            });
-          }
-        },
-        function(){
-          console.log("hello");
-          console.log(usernames.toString());
+      Account.find({
+        '_id': { $in: usr.following
         }
-      ]);
+      }, function(err, docs){
+        res.render('following', {users: docs, username: usr.username})
+      });
     }else{
-      console.log("error");
+      res.render('error', {message: "can't find user"});
     }
   });
 
 });
-*/
+
+router.get("/user/:username/followers", function (req,res){
+  console.log(req.user.followers);
+  Account.findByUsername(req.params.username, function(err, usr){
+    if(usr){
+      Account.find({
+        '_id': { $in: usr.followers
+        }
+      }, function(err, docs){
+        res.render('followers', {users: docs, username: usr.username})
+      });
+    }else{
+      res.render('error', {message: "can't find user"});
+    }
+  });
+
+});
+
 
 router.get("/user/:username/notifications", function (req, res){
   if(req.params.username == req.user.username){
@@ -675,27 +669,35 @@ router.get('/user/:username', function (req, res, next) {
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr)
     {
-      /*
+
       var followingbool = false;
       console.log("should be here");
-      if(req.user.following != "undefined"){
-        if(req.user.following.length > 0){
-          for(var i = 0; i <req.user.following.length; i++){
-            if(req.user.following[i] == usr.id){
-              followingbool = true;
-              console.log("YES");
-            }else{
-              console.log("no");
-              console.log(req.user.following[i]);
-              console.log(usr.id);
-            }
+      if(typeof req.user != "undefined") {
+        if (typeof req.user.following != "undefined") {
+          if (req.user.following.length > 0) {
+            for (var i = 0; i < req.user.following.length; i++) {
+              if (req.user.following[i] == usr.id) {
+                followingbool = true;
+                console.log("YES");
+              } else {
+                console.log("no");
+                console.log(req.user.following[i]);
+                console.log(usr.id);
+              }
 
+            }
           }
+          //, following: followingbool
+          return res.render("user", {usr: usr, currentuser: req.user, following: followingbool});
+        }else{
+          return res.render("user", {usr: usr, currentuser: false, following: false});
         }
+
+      }else{
+        return res.render("user", {usr: usr, currentuser: false, following: false});
       }
-      */
-      //, following: followingbool
-      return res.render("user", {usr: usr, currentuser: req.user});
+
+
     }else{
       return res.render("error", {message: req.params.username + " is not a registered user"});
     }

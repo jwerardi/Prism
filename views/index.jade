@@ -37,23 +37,33 @@ block content
           #logoimg
             img(src= "/img/templogo.png")
         .container
-          #myStyle
+        #profileCont
+          #profileInfo
             img#proP.myClass(src= " " + user.propic)
             .myClass
               #fullName
                 h1 #{user.fullname}
               #myUserTitle
                 p <em>#{user.title}</em>
+          #profileInfoRight
+              a(href="/user/#{user.username}/following")
+                  button#footbtn(type="button") Following #{user.following.length}
+
+              a(href="/user/#{user.username}/followers")
+                  button#footbtn(type="button") Followers #{user.followers.length}
             #emptyareaindex
         #wrapper
             #list
         #selLog
           a(href="/update")
             button.btn.btn-primary(type="button") Edit
+
           a(href="/upload")
             button.btn.btn-primary(type="button") Upload
+
           a(href="/logout")
             button.btn.btn-primary(type="button") Logout
+
           a(href="/user/#{user.username}/notifications")
             button.btn.btn-primary(type="button" id="notifbut")
                 #notifications

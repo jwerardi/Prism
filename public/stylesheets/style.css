@@ -131,6 +131,36 @@ a {
     font-family: Ubuntu;
     letter-spacing: 5px;
 }
+#profileCont{
+    width: auto;
+    //border: 1px solid black;
+    overflow: hidden; /* will contain if #first is longer than #second */
+}
+#profileInfo{
+    float: left;
+    text-align: left;
+    margin-left: 140px;
+    align-content: center;
+    padding-top: 60px;
+    width: auto;
+    color: #ffffff;
+    font: 14px;
+    font-family: Ubuntu;
+    letter-spacing: 5px;
+}
+
+#profileInfoRight{
+    padding-top: 170px;
+    float: right;
+    text-align: right;
+    margin-right: 110px;
+    align-content: center;
+    width: auto;
+    color: #ffffff;
+    font: 14px;
+    font-family: Ubuntu;
+    letter-spacing: 5px;
+}
 #feed{
   text-decoration: none;
 }
