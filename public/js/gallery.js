@@ -27,7 +27,7 @@ $(document).ready(function () {
                     "</a>" +
                     "</div>";
             }
-            console.log(images);
+            //console.log(images);
         }
         //console.log(images);
         //adding photos to page on DOM

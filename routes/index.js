@@ -67,6 +67,8 @@ router.get('/feed', function (req, res){
 
       res.render('feed', {newsfeed: feed, user: req.user})
     });
+  }else{
+    res.redirect('/login');
   }
 
 });

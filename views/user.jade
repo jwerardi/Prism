@@ -29,17 +29,18 @@ block content
                             h1 #{usr.fullname}
                         #myUserTitle
                             p <em>#{usr.title}</em>
+            #btnspace  
+                  #profileInfoRight
                     if(currentuser)
                         if(following == false)
                             #flw
-                              form(action='/follow/#{usr._id}', method='post')
-                                  button.btn.btn-primary(name='followBTN', value='follow') Follow
+                                form(action='/follow/#{usr._id}', method='post')
+                                    button.btn.btn-primary(name='followBTN', value='follow') Follow
                         if(following == true)
                             #flw
-                              form(action='/unfollow/#{usr._id}', method='post')
-                                  button.btn.btn-primary(name='followBTN', value='follow') Unfollow
-            #btnspace  
-                  #profileInfoRight
+                                form(action='/unfollow/#{usr._id}', method='post')
+                                    button.btn.btn-primary(name='followBTN', value='follow') Unfollow
+                    br
                     a(href="/user/#{usr.username}/following")
                         button#followbtnuser(type="button") Following #{usr.following.length}
               

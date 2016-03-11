@@ -2,9 +2,11 @@ extends layout
 block extraHeader
     title Feed
 block extraScript
+    //script(src="/js/notifications.js")
     script(src="/js/newsfeed.js")
 block content
     script.
+        var currentUser = !{JSON.stringify( user )}
         var newsFeed = !{JSON.stringify( newsfeed )};
     a(href="/")
         #logoText
@@ -15,8 +17,15 @@ block content
                 button.btn.btn-primary(type="button") My Profile
             a(href="/logout")
                 button.btn.btn-primary(type="button") Logout
+           // a(href="/user/#{user.username}/notifications")
+                button.btn.btn-primary(type="button" id="notifbut")
+                    #notifications
         #myStyle
-            h1 News Feed
+            h1 #{newsfeed.length} Images
         #myStyle
             #newsfeed
+
+        .back-to-top
+            a(href="#")
+                .back-to-top ^
 

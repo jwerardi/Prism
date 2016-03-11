@@ -28,10 +28,14 @@ $( window ).load( function(){
 
                 if(newsFeed[i].comments.length == 1){
                     feed +=
-                        "<div id=\"newsFeedComments\">" + newsFeed[i].comments.length + " Comment <\/div><br><br>";
+                        "<a href=\"/img/" + newsFeed[i].imageid+ "\">" +
+                        "<div id=\"newsFeedComments\">" + newsFeed[i].comments.length + " Comment <\/div><br><br>" +
+                        "</a>";
                 }else{
                     feed+=
-                        "<div id=\"newsFeedComments\">" + newsFeed[i].comments.length + " Comments <\/div><br><br>";
+                        "<a href=\"/img/" + newsFeed[i].imageid+ "\">" +
+                        "<div id=\"newsFeedComments\">" + newsFeed[i].comments.length + " Comments <\/div><br><br>" +
+                        "</a>";
                 }
 
                 feed +="</div>";

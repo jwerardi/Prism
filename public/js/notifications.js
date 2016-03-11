@@ -4,7 +4,7 @@
 
 //VERY simple way of adding the images to the profile
 $(document).ready(function () {
-
+    console.log("hello");
     if(currentUser != " ") {
         var notifNum = 0;
         if (typeof currentUser.notifications != 'undefined') {
