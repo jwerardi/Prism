@@ -147,35 +147,35 @@ a {
     font-family: Ubuntu;
     letter-spacing: 5px;
 }
-#profileCont{
-    width: auto;
-    //border: 1px solid black;
-    overflow: hidden; /* will contain if #first is longer than #second */
+.profileCont{
+    padding-right: 5%;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    position: relative;
+    padding-bottom: 25px;
+    /*position: relative;
+    overflow: hidden;*/ /* will contain if #first is longer than #second */
 }
 #profileInfo{
-    float: left;
-    text-align: left;
-    margin-left: 140px;
-    align-content: center;
     padding-top: 60px;
-    width: auto;
+    margin-left: 140px;
+    flex: 1;
     color: #ffffff;
     font: 14px;
     font-family: Ubuntu;
     letter-spacing: 5px;
-}
 
+}
+#flw{
+  padding-left: 15px;
+}
 #profileInfoRight{
-    padding-top: 170px;
-    float: right;
-    text-align: right;
-    margin-right: 110px;
-    align-content: center;
-    width: auto;
-    color: #ffffff;
-    font: 14px;
-    font-family: Ubuntu;
-    letter-spacing: 5px;
+    position: inherit;
+    width: 195px;
+    bottom: 20px;
+    right: 0;
+    vertical-align: bottom;
 }
 #feed{
   text-decoration: none;
@@ -281,7 +281,7 @@ a {
 }
 #wrapper {
     min-height: 100%;
-    padding-top: 15px;
+    padding-top: 35px;
     margin: 0 auto;
 }
 #hide {
@@ -429,6 +429,46 @@ logoimg {
     background: none;
     border: none;
 }
+#followbtn {
+    position: absolute;
+    bottom: 0;
+    vertical-align: bottom;
+    color: grey;
+    transition: all 0.2s ease-out;
+    display: inline-table;
+    cursor: pointer;
+    font-size: 16px;
+    background: none;
+    border: none;
+    margin: 0;
+    background-color: none;
+}
+#followbtn:hover {
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    color: white;
+    background: none;
+    border: none;
+}
+#btnspace{
+  right: 10%;;
+  position: absolute;
+  width: 100%;
+}
+#followbtnuser {
+    position: relative;
+    transition: all 0.2s ease-in;
+    color: grey;
+    border: none;
+    background: none;
+}
+#followbtnuser:hover {
+    transition: all 0.2s ease-in;
+    cursor: pointer;
+    color: white;
+    background: none;
+    border: none;
+}
 #footbtn {
     color: grey;
     transition: all 0.2s ease-out;
@@ -513,7 +553,6 @@ textarea {
     vertical-align: top;
     padding-left: 20px;
     padding-right: 20px;
-    padding-bottom: 20px;
     display: inline-block;
     align-content: left;
     width: 190px;
@@ -586,9 +625,7 @@ form {
 form .progress {
     line-height: 15px;
 }
-<<<<<<< HEAD======
-}
->>>>>>> 826f804f72af0519e56fa382b7497161001ded08 .progress {
+.progress {
     display: inline-block;
     width: 100px;
     border: 3px groove #CCC;
@@ -640,22 +677,20 @@ form .progress {
         width: 100px;
         height: 100px;
         object-fit: cover;
+        vertical-align: middle;
     }
     #fullName {
         font-family: "alegreya-sans.thin";
-        text-align: center;
         color: #ffffff;
-        font: 14px;
+        font-size: 14px;
         letter-spacing: 3px;
     }
     .myClass {
         display: inline-block;
     }
     #myUserTitle {
-        text-align: center;
-        float: inherit;
         color: #ffffff;
-        font: 20px;
+        font-size: 12px;
         font-family: 'alegreya-sans.thin';
         display: block;
     }
@@ -773,6 +808,34 @@ form .progress {
     }
     #emptyareaindex {
         padding-bottom: 10px;
+    }
+    .profileCont{
+      margin: 0 auto;
+        display: inline-block;
+        padding-right: 0;
+        position: static;
+        overflow: hidden;
+        padding-bottom: 0px;
+    }
+    #profileInfo{
+        padding-top: 0px;
+        padding-bottom: 30px;
+        color: #ffffff;
+        font: 14px;
+        font-family: Ubuntu;
+        letter-spacing: 5px;
+    }
+
+    #profileInfoRight{
+      left: 50%;
+        padding-top: 20px;
+        width: 100%;
+        vertical-align: bottom;
+        position: relative;
+    }
+    #profileInfo:after{
+      content: '\A';
+      white-space: pre;
     }
     #backmobile {
         visibility: visible;
