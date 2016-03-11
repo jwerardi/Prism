@@ -165,6 +165,22 @@ router.post('/follow/:targetid', function (req, res){
         if(requser){
           requser.following.push(usr.id);
           usr.followers.push(requser.id);
+          var link = ('/user/'+req.user.username);
+          //make content more dynamic in the future
+          var newNotification = new Notification
+          ({content: req.user.username + " followed you",
+            from: req.user.username,
+            seen: false,
+            link: link,
+            preview: req.user.propic});
+          newNotification.save(function(err){
+            if(err){
+              console.log("error notifying");
+            }else{
+              console.log("successful notifying");
+            }
+          });
+          usr.notifications.push(newNotification);
           usr.save(function(err){
             if(err){
               console.log("error following");
