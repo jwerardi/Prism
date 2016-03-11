@@ -26,8 +26,19 @@ router.get('/search', function (req, res) {
   res.render('search');
 });
 
+router.get('/img/:imageid', function(req, res){
+    Image.findById(req.params.imageid, function(err, img){
+      if(img){
+        //return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic, index: index});
+        res.render("img", {usrimage: img, currentuser: req.user});
+      }else{
+        res.render('error', {message: "Cannot find image"})
+      }
+    });
+});
 router.get('/feed', function (req, res){
   if(req.user){
+    req.user.following.push(req.user.id);
     Account.find({
       '_id': { $in: req.user.following
       }
@@ -39,6 +50,7 @@ router.get('/feed', function (req, res){
         for(var j =0; j <docs[i].images.length; j++){
           var feedobject = {
             userid: docs[i]._id,
+            imageid: docs[i].images[j]._id,
             username:docs[i].username,
             title:docs[i].images[j].title,
             picture :docs[i].images[j].url,
@@ -233,6 +245,84 @@ router.get('/updatephoto/:imageid', function (req, res){
   });
 });
 
+router.post('/comment/:imageid/:username/', function (req, res){
+  Image.findById(req.params.imageid,function(err, img){
+    if(img){
+      if(req.user){
+        //create a new comment
+        var comment = new Comment({userid: req.user.id, content: req.body.comment, image: req.params.imageid, username: req.user.username, propic: req.user.propic});
+        //save it in the database
+        comment.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        //add it to the image
+        img.comments.push(comment);
+        //save the changes
+        img.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        var link = ('/img/'+req.params.imageid);
+        //make content more dynamic in the future
+        var newNotification = new Notification
+        ({content: req.user.username + " commented \"" + req.body.comment + "\" on your photo.",
+          from: req.user.username,
+          seen: false,
+          link: link,
+          preview: img.url});
+        newNotification.save(function(err){
+          if(err){
+            console.log("error notifying");
+          }else{
+            console.log("successful notifying");
+          }
+        });
+        Account.findByUsername(req.params.username, function(err, usr){
+          if(req.user.username != usr.username){
+            usr.notifications.push(newNotification);
+            usr.save(function(err){
+              if(err){
+                console.log("error commenting");
+              }else{
+                console.log("successful comment");
+              }
+            });
+          }
+
+        });
+        //finally, update the account with the updated image
+        Account.findOneAndUpdate(
+            { "username": req.params.username, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$": img
+              }
+            },
+            function(err,doc) {
+              if(err){
+                res.render('error', {message: "ERROR"});
+              }
+            }
+        );
+        res.redirect('/img/'+req.params.imageid);
+        console.log("congrats");
+      }else{
+        return res.render('error', {message: "Must be logged in to comment", picture: '/img/'+req.params.imageid});
+      }
+
+    }else{
+      console.log("cannot find image");
+    }
+
+  });
+});
 router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){
@@ -257,7 +347,7 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
             console.log("successful comment");
           }
         });
-        var link = ('/images/'+req.params.userid + '/' + (parseInt(req.params.index))).toString();
+        var link = ('/img/'+req.params.imageid);
         //make content more dynamic in the future
         var newNotification = new Notification
         ({content: req.user.username + " commented \"" + req.body.comment + "\" on your photo.",

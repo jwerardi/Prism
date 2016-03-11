@@ -16,13 +16,25 @@ $( window ).load( function(){
     if (typeof newsFeed != 'undefined') {
         for(var i=newsFeed.length-1; i >= 0; i--) {
             feed +=
+
                 "<div id =\"newsFeedObject\">" +
-                "<img src=\"" + newsFeed[i].picture + "\"/>"+
-                "<br><div id=\"newsFeedTitle\"><h1>" + newsFeed[i].title + "</h1><\/div><br><br>" +
-                "<a href=\"/user/" + newsFeed[i].username+ "\">" +
-                "<div id=\"newsFeedUser\"> By: " + newsFeed[i].username + "<\/div><br><br>" +
-                "</a>" +
-                "</div>";
+                    "<a href=\"/img/" + newsFeed[i].imageid+ "\">" +
+                        "<img src=\"" + newsFeed[i].picture + "\"/>"+
+                    "</a>" +
+                    "<br><div id=\"newsFeedTitle\"><h1>" + newsFeed[i].title + "</h1><\/div><br><br>" +
+                    "<a href=\"/user/" + newsFeed[i].username+ "\">" +
+                        "<div id=\"newsFeedUser\"> By: " + newsFeed[i].username + "<\/div><br><br>" +
+                    "</a>";
+
+                if(newsFeed[i].comments.length == 1){
+                    feed +=
+                        "<div id=\"newsFeedComments\">" + newsFeed[i].comments.length + " Comment <\/div><br><br>";
+                }else{
+                    feed+=
+                        "<div id=\"newsFeedComments\">" + newsFeed[i].comments.length + " Comments <\/div><br><br>";
+                }
+
+                feed +="</div>";
             //console.log(feed);
         }
         if(newsFeed == " "){
