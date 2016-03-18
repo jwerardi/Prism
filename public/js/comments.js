@@ -23,6 +23,8 @@ $(document).ready(function () {
         $("#comments").html(comments);
     }
 
+
+
     // Replace source
     $('img').error(function(){
         $(this).attr('src', '/img/templogo.png');

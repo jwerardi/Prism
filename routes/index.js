@@ -74,7 +74,7 @@ router.get('/feed', function (req, res){
 });
 
 router.get("/user/:username/following", function (req,res){
-  console.log(req.user.following);
+  //console.log(req.user.following);
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr){
       Account.find({
@@ -91,7 +91,7 @@ router.get("/user/:username/following", function (req,res){
 });
 
 router.get("/user/:username/followers", function (req,res){
-  console.log(req.user.followers);
+  //console.log(req.user.followers);
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr){
       Account.find({

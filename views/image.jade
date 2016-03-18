@@ -25,6 +25,8 @@ block content
                     a#hideonmob(href="/images/#{user.id}/#{backPicture}")
                             img(src= "/img/left.png", id="back")
                     script.
+                        user = !{JSON.stringify(currentuser)}
+                        index = !{JSON.stringify(index)}
                         thisimage = !{JSON.stringify(usrimage)};
                         currentUser = " ";
                     img.photoStyle#forMobile(src= " " + usrimage.url)
@@ -48,7 +50,7 @@ block content
                     #comments
                 #com2
                 if(currentuser)
-                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
+                    form(role='form', action="/" ,method="post", id='comment-photo',style='max-width: 300px;')
                         br
                         br
                         .form-group

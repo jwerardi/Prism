@@ -21,7 +21,7 @@ $( window ).load( function(){
             console.log(following);
         }
         if(following == ""){
-            $('#following').html("No notifications to show.");
+            $('#following').html("This user is not following anyone yet.");
         }else{
             $('#following').html(following);
         }
