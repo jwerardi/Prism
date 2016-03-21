@@ -76,6 +76,7 @@ exports.s3 = function(req, res) {
             });
 
             res.redirect('/');
+            console.log(file.path);
             fs.unlink(file.path, function(err){
                 console.log("somethung");
             });
