@@ -12,7 +12,7 @@ block content
             p.lead pre alpha build
             h4 #{info}
             br
-            form(role='form', action="/newregister",method="post", id='register',enctype="multipart/form-data",style='max-width: 300px;')
+            form(role='form', action="/register",method="post", id='register',style='max-width: 300px;')
                 .form-group
                     br
                     input.form-control(type='text', name="username", placeholder='Enter Username')
@@ -22,13 +22,11 @@ block content
                     input.form-control(type='password', name="password", placeholder='Password')
                 .form-group
                     input.form-control(type='text', name="title", placeholder='Title')
-                //.form-group
-                    //input(type="file", name="singleFile", id="filesize")
-                    //input.form-control(type='text', name="propic", placeholder='Profile Picture(png/jpg)')
+                .form-group
+                    input.form-control(type='text', name="propic", placeholder='Profile Picture(png/jpg)')
                     br
-                //.errors
-                //div.actions
-                    button.btn.primary(type="submit" id="submitbtn") Upload
+                .errors
+                button.btn.btn-default(type='submit') Submit
                 a(href='/')
                     button.btn.btn-primary(type="button") Cancel
         #footerindex
