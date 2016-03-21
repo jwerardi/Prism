@@ -149,8 +149,7 @@ $(document).ready(function () {
                 required: false
             },
             "singleFile": {
-                required: true,
-                extension: "jpg|png|gif"
+                required: true
             }
         },
         messages: {
@@ -158,8 +157,7 @@ $(document).ready(function () {
                 required: "TITLE REQUIRED"
             },
             "singleFile": {
-                required: "FILE REQUIRED",
-                extension: "JPG/PNG/GIF REQUIRED"
+                required: "FILE REQUIRED"
             }
         },
         errorElement : 'div',
