@@ -41,6 +41,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/upload', uploader.single('singleFile'), upload.s3); //"singleFile" is the field name
 app.post('/delete/:key/:imageid', upload.delete);
+app.post('/uploadpropic', uploader.single('singleFile'), upload.profilePicture); //"singleFile" is the field name
 app.use('/', routes);
 
 

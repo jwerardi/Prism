@@ -17,6 +17,7 @@ var Account = new Schema({
     following: [String],
     followers: [String],
     title: String,
+    profilepicture: Image,
     propic: String,
     images: [Image],
     notifications: [Notification]

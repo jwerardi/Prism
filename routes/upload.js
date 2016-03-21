@@ -85,6 +85,73 @@ exports.s3 = function(req, res) {
         });
 };
 
+exports.profilePicture = function(req, res) {
+    var s3 = new AWS.S3(),
+        file = req.file,
+        result = {
+            error: 0,
+            uploaded: []
+        };
+    var unique_id = '_' + Math.random().toString(36).substr(2, 9);
+    var uniquekey = unique_id + "_" + file.originalname;
+    flow.exec(
+        function() { // Read temp File
+            fs.readFile(file.path, this);
+        },
+        function(err, data) { // Upload file to S3
+            s3.putObject({
+                Bucket: 'prismapp', //Bucket Name
+                Key: uniquekey, //Upload File Name, Default the original name
+                Body: data,
+                ContentType: 'image/jpeg',
+                ACL: 'public-read'
+            }, this);
+        },
+        function(err, data) { //Upload Callback
+            if (err) {
+                console.error('Error : ' + err);
+                result.error++;
+            }
+            result.uploaded.push(data.ETag);
+            this();
+        },
+        function() {
+
+            if(!req.body.title){
+                var newImage = new Image({username: req.user.username, userid: req.user.id, key: uniquekey,
+                    title: "Untitled.", url: "https://s3-us-west-2.amazonaws.com/prismapp/" + uniquekey});
+            }else{
+                var newImage = new Image({username: req.user.username, userid: req.user.id, key: uniquekey,
+                    title: req.body.title, url: "https://s3-us-west-2.amazonaws.com/prismapp/" + uniquekey});
+            }
+            newImage.save(function(err) {
+                if (err) throw err;
+
+                console.log('Image created!');
+            });
+
+            //push the new image onto the user's image array
+            req.user.propic = "https://s3-us-west-2.amazonaws.com/prismapp/" + uniquekey;
+
+            //save user to have the new image object
+            req.user.save(function(err) {
+                if (err)
+                    console.log('error while attempting to update' + req.user.username);
+                else{
+                    console.log("updated: " + req.user.username);
+                }
+            });
+
+            res.redirect('/');
+            console.log(file.path);
+            fs.unlink(file.path, function(err){
+                console.log("somethung");
+            });
+        });
+};
+
+
+
 exports.delete = function(req, res) {
     console.log("hello");
     var s3 = new AWS.S3();

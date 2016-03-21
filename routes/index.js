@@ -431,7 +431,6 @@ router.get('/register', function(req, res) {
   res.render('register', { });
 });
 
-//receives the register view which has a register form
 router.get('/explore', function(req, res) {
   // Find "limit" random documents (defaults to array of 1)
 
@@ -497,6 +496,10 @@ router.get('/update', function(req, res) {
 //IN PROGRESS
 router.get('/upload', function(req, res) {
   res.render('upload', { user : req.user});
+});
+
+router.get('/uploadpropic', function(req, res) {
+  res.render('propic', { user : req.user});
 });
 
 //send a request to login and handle any errors that may arise
