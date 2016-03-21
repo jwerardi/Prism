@@ -21,15 +21,14 @@ configPath = path.join(__dirname, '..', "config.json");
 AWS.config.loadFromPath(configPath);
 
 exports.s3 = function(req, res) {
-    var unique_id = '_' + Math.random().toString(36).substr(2, 9);
-    unique_id+=".jpg";
     var s3 = new AWS.S3(),
         file = req.file,
         result = {
             error: 0,
             uploaded: []
         };
-
+    var unique_id = '_' + Math.random().toString(36).substr(2, 9);
+    var uniquekey = unique_id + file.originalname;
     flow.exec(
         function() { // Read temp File
             fs.readFile(file.path, this);
@@ -37,7 +36,7 @@ exports.s3 = function(req, res) {
         function(err, data) { // Upload file to S3
             s3.putObject({
                 Bucket: 'prismapp', //Bucket Name
-                Key: unique_id, //Upload File Name, Default the original name
+                Key: uniquekey, //Upload File Name, Default the original name
                 Body: data
             }, this);
         },
@@ -52,11 +51,11 @@ exports.s3 = function(req, res) {
         function() {
 
             if(!req.body.title){
-                var newImage = new Image({username: req.user.username, userid: req.user.id, key: unique_id,
-                    title: "Untitled.", url: "https://s3-us-west-2.amazonaws.com/prismapp/" + file.originalname});
+                var newImage = new Image({username: req.user.username, userid: req.user.id, key: uniquekey,
+                    title: "Untitled.", url: "https://s3-us-west-2.amazonaws.com/prismapp/" + uniquekey});
             }else{
-                var newImage = new Image({username: req.user.username, userid: req.user.id, key: unique_id,
-                    title: req.body.title, url: "https://s3-us-west-2.amazonaws.com/prismapp/" + file.originalname});
+                var newImage = new Image({username: req.user.username, userid: req.user.id, key: uniquekey,
+                    title: req.body.title, url: "https://s3-us-west-2.amazonaws.com/prismapp/" + uniquekey});
             }
             newImage.save(function(err) {
                 if (err) throw err;
