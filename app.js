@@ -9,9 +9,17 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/users'),
+    multer = require('multer'),
+    upload = require('./routes/upload'),
+    http = require('http'),
+    path = require('path');
 
 var app = express();
+
+uploader = multer({
+  dest: 'uploads/'
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -31,8 +39,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.post('/upload', uploader.single('singleFile'), upload.s3); //"singleFile" is the field name
+app.post('/delete/:key/:imageid', upload.delete);
 app.use('/', routes);
+
 
 // passport config
 var Account = require('./models/account');

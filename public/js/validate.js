@@ -143,14 +143,13 @@ $(document).ready(function () {
         errorElement : 'div',
         errorLabelContainer: '.errors'
     });
-    $("#upload").validate({
+    $("#uploadform").validate({
         rules: {
              "title" : {
                 required: false
             },
-            "photo": {
+            "singleFile": {
                 required: true,
-                url: true,
                 extension: "jpg|png|gif"
             }
         },
@@ -158,14 +157,26 @@ $(document).ready(function () {
             "title": {
                 required: "TITLE REQUIRED"
             },
-            "photo": {
-                required: "URL REQUIRED",
-                url:"VALID URL REQUIRED",
+            "singleFile": {
+                required: "FILE REQUIRED",
                 extension: "JPG/PNG/GIF REQUIRED"
             }
         },
         errorElement : 'div',
         errorLabelContainer: '.errors' 
         
+    });
+
+    $('#filesize').bind('change', function() {
+        if(this.files[0].size>10485760){
+            //alert("MAX FILE SIZE: 10mb");
+            document.getElementById("submitbtn").disabled = true;
+            $('#error').html("MAX FILE SIZE: 10mb");
+        }else{
+            document.getElementById("submitbtn").disabled = false;
+            $('#error').html("");
+        }
+        //this.files[0].size gets the size of your file.
+
     });
 });
