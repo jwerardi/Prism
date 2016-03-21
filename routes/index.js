@@ -76,6 +76,7 @@ router.get('/feed', function (req, res){
 
 router.get("/user/:username/following", function (req,res){
   //console.log(req.user.following);
+
   Account.findByUsername(req.params.username, function(err, usr){
     if(usr){
       Account.find({
@@ -767,9 +768,6 @@ router.post('/user/:id/update', function (req, res) {
 
 //IN PROGRESS when a user wants to see another user's profile
 router.get('/user/:username', function (req, res, next) {
-  if(req.user.username === req.params.username){
-    return res.redirect('/');
-  }else{
     Account.findByUsername(req.params.username, function(err, usr){
       if(usr)
       {
@@ -807,7 +805,7 @@ router.get('/user/:username', function (req, res, next) {
       }
 
     });
-  }
+
 });
 
 
