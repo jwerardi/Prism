@@ -764,43 +764,47 @@ router.post('/user/:id/update', function (req, res) {
 
 //IN PROGRESS when a user wants to see another user's profile
 router.get('/user/:username', function (req, res, next) {
-  Account.findByUsername(req.params.username, function(err, usr){
-    if(usr)
-    {
+  if(req.user.username === req.params.username){
+    return res.redirect('/');
+  }else{
+    Account.findByUsername(req.params.username, function(err, usr){
+      if(usr)
+      {
 
-      var followingbool = false;
-      console.log("should be here");
-      if(typeof req.user != "undefined") {
-        if (typeof req.user.following != "undefined") {
-          if (req.user.following.length > 0) {
-            for (var i = 0; i < req.user.following.length; i++) {
-              if (req.user.following[i] == usr.id) {
-                followingbool = true;
-                console.log("YES");
-              } else {
-                console.log("no");
-                console.log(req.user.following[i]);
-                console.log(usr.id);
+        var followingbool = false;
+        console.log("should be here");
+        if(typeof req.user != "undefined") {
+          if (typeof req.user.following != "undefined") {
+            if (req.user.following.length > 0) {
+              for (var i = 0; i < req.user.following.length; i++) {
+                if (req.user.following[i] == usr.id) {
+                  followingbool = true;
+                  console.log("YES");
+                } else {
+                  console.log("no");
+                  console.log(req.user.following[i]);
+                  console.log(usr.id);
+                }
+
               }
-
             }
+            //, following: followingbool
+            return res.render("user", {usr: usr, currentuser: req.user, following: followingbool});
+          }else{
+            return res.render("user", {usr: usr, currentuser: false, following: false});
           }
-          //, following: followingbool
-          return res.render("user", {usr: usr, currentuser: req.user, following: followingbool});
+
         }else{
           return res.render("user", {usr: usr, currentuser: false, following: false});
         }
 
+
       }else{
-        return res.render("user", {usr: usr, currentuser: false, following: false});
+        return res.render("error", {message: req.params.username + " is not a registered user"});
       }
 
-
-    }else{
-      return res.render("error", {message: req.params.username + " is not a registered user"});
-    }
-
-  });
+    });
+  }
 });
 
 
