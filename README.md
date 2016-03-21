@@ -6,7 +6,7 @@ Functionality as of (3/12/2016):
 - Create an account
 - Login
 - Update your profile
-- Post pictures from a direct URL
+- Upload images from desktop or smartphone
 - Comment on pictures
 - Update picture title
 - Delete pictures
