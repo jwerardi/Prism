@@ -28,7 +28,7 @@ exports.s3 = function(req, res) {
             uploaded: []
         };
     var unique_id = '_' + Math.random().toString(36).substr(2, 9);
-    var uniquekey = unique_id + file.originalname;
+    var uniquekey = unique_id + "_" + file.originalname;
     flow.exec(
         function() { // Read temp File
             fs.readFile(file.path, this);
@@ -37,7 +37,9 @@ exports.s3 = function(req, res) {
             s3.putObject({
                 Bucket: 'prismapp', //Bucket Name
                 Key: uniquekey, //Upload File Name, Default the original name
-                Body: data
+                Body: data,
+                ContentType: 'image/jpeg',
+                ACL: 'public-read'
             }, this);
         },
         function(err, data) { //Upload Callback

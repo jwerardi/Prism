@@ -10,6 +10,7 @@ var router = express.Router();
 //receives the index view along with request.user, the jade file will then decide which version of the home page to display depending
 //on if the user is currently authenticated.
 router.get('/', function (req, res) {
+
   res.render('index', { user : req.user });
 });
 
