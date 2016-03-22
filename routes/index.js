@@ -553,6 +553,42 @@ router.get('/delete/:imageid',function (req, res, next) {
   });
 });
 
+//DELETE PHOTO
+router.get('/delete/:userid/:imageid/:commentid',function (req, res) {
+  Account.findById(req.params.userid, function (err, usr) {
+    if (usr) {
+      Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,img){
+        if(err){
+          return res.render('error', {message: "Could not retrieve account"});
+        }else{
+          console.log("pulled");
+          Comment.findById(req.params.commentid, function(err, cmt) {
+            if (cmt) {
+              cmt.remove();
+            }else{
+              console.log("error removing comment");
+            }
+          });
+          Account.findOneAndUpdate(
+              { "_id": req.user.id, "images._id": req.params.imageid},
+              {
+                "$set": {
+                  "images.$": img
+                }
+              },
+              function(err,doc) {
+                if(err){
+                  res.render('error', {message: "ERROR updating photo"});
+                }
+              }
+          );
+          return res.redirect("/img/" + req.params.imageid);
+        }
+      });
+    }
+  });
+});
+
 //IMAGE UPDATE
 router.post('/image/:imageid/update',function (req, res, next) {
   Image.findById(req.params.imageid, function(err, img){
@@ -807,6 +843,8 @@ router.get('/user/:username', function (req, res, next) {
     });
 
 });
+
+
 
 
 //logout user and redirect to home

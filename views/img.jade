@@ -23,6 +23,7 @@ block content
             #myStyle
                 .imagewithbuttons
                     script.
+                        loggeduser = !{JSON.stringify(currentuser)};
                         thisimage = !{JSON.stringify(usrimage)};
                         currentUser = " ";
                     img.photoStyle#forMobile(src= " " + usrimage.url)
