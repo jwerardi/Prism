@@ -3,11 +3,14 @@ var passport = require('passport');
 var Account = require('../models/account');
 var Image = require('../models/image-model.js');
 var Comment = require('../models/comment.js');
+var Notification = require('../models/notification.js');
+var async = require('async');
 var router = express.Router();
 
 //receives the index view along with request.user, the jade file will then decide which version of the home page to display depending
 //on if the user is currently authenticated.
 router.get('/', function (req, res) {
+
   res.render('index', { user : req.user });
 });
 
@@ -24,23 +27,137 @@ router.get('/search', function (req, res) {
   res.render('search');
 });
 
-/*
-router.get("/feed", function (req,res){
-  var newsfeedcontent =[];
-  for(var i=0; i< req.user.following.length; i++){
-    Account.findById(req.user.following[i], function (err, usr){
-      if(usr){
-        newsfeedcontent.push(usr);
-        console.log(usr.username);
+router.get('/img/:imageid', function(req, res){
+    Image.findById(req.params.imageid, function(err, img){
+      if(img){
+        //return res.render("image", {usrimage: image, user: usr, currentuser: req.user, nextPicture: backPic, backPicture: nextPic, index: index});
+        res.render("img", {usrimage: img, currentuser: req.user});
       }else{
-        console.log("some sort of error");
+        res.render('error', {message: "Cannot find image"})
       }
     });
+});
+router.get('/feed', function (req, res){
+  if(req.user){
+    req.user.following.push(req.user.id);
+    Account.find({
+      '_id': { $in: req.user.following
+      }
+    }, function(err, docs){
+      var feed = [];
+      //console.log(docs[0].images);
+      for(var i= 0; i < docs.length; i++){
+        console.log(docs[i].images.length);
+        for(var j =0; j <docs[i].images.length; j++){
+          var feedobject = {
+            userid: docs[i]._id,
+            imageid: docs[i].images[j]._id,
+            username:docs[i].username,
+            title:docs[i].images[j].title,
+            picture :docs[i].images[j].url,
+            time:docs[i].images[j]._id.getTimestamp(),
+            comments: docs[i].images[j].comments
+          };
+          feed.push(feedobject);
+          //console.log(feed);
+        }
+      }
+      feed.sort(function(x, y){
+        return x.time - y.time;
+      });
+
+      res.render('feed', {newsfeed: feed, user: req.user})
+    });
+  }else{
+    res.redirect('/login');
   }
 
 });
-*/
 
+router.get("/user/:username/following", function (req,res){
+  //console.log(req.user.following);
+
+  Account.findByUsername(req.params.username, function(err, usr){
+    if(usr){
+      Account.find({
+        '_id': { $in: usr.following
+        }
+      }, function(err, docs){
+        res.render('following', {users: docs, username: usr.username})
+      });
+    }else{
+      res.render('error', {message: "can't find user"});
+    }
+  });
+
+});
+
+router.get("/user/:username/followers", function (req,res){
+  //console.log(req.user.followers);
+  Account.findByUsername(req.params.username, function(err, usr){
+    if(usr){
+      Account.find({
+        '_id': { $in: usr.followers
+        }
+      }, function(err, docs){
+        res.render('followers', {users: docs, username: usr.username})
+      });
+    }else{
+      res.render('error', {message: "can't find user"});
+    }
+  });
+
+});
+
+
+router.get("/user/:username/notifications", function (req, res){
+  if(req.params.username == req.user.username){
+    Account.findByUsername(req.params.username, function(err, usr){
+      if(usr){
+        console.log("successful notif page");
+        res.render('notifications', {user: usr});
+      }else{
+        console.log("error");
+      }
+    });
+  }else{
+    res.render('error', {message: "can't access the notifications of someone that isn't you."})
+  }
+
+});
+//seen a comment
+router.post("/notification/:userid/:notificationid/seen", function(req, res){
+  Notification.findById(req.params.notificationid, function(err, notif){
+    if(notif){
+      console.log("found notif");
+      notif.seen = true;
+      notif.save(function(err){
+        if(err){
+          console.log("error seesing notif");
+        }else{
+          console.log("successful notif thing");
+        }
+      });
+      Account.findOneAndUpdate(
+          { "_id": req.params.userid, "notifications._id": req.params.notificationid},
+          {
+            "$set": {
+              "notifications.$": notif
+            }
+          },
+          function(err,doc) {
+            if(err){
+              res.render('error', {message: "ERROR"});
+            }
+          }
+      );
+      res.sendStatus(200)
+    }else{
+      console.log("couldnt find it");
+    }
+  });
+
+});
 //follow a user
 router.post('/follow/:targetid', function (req, res){
   //Account.findById(req.params.id, function(err, usr) {
@@ -50,6 +167,22 @@ router.post('/follow/:targetid', function (req, res){
         if(requser){
           requser.following.push(usr.id);
           usr.followers.push(requser.id);
+          var link = ('/user/'+req.user.username);
+          //make content more dynamic in the future
+          var newNotification = new Notification
+          ({content: req.user.username + " followed you",
+            from: req.user.username,
+            seen: false,
+            link: link,
+            preview: req.user.propic});
+          newNotification.save(function(err){
+            if(err){
+              console.log("error notifying");
+            }else{
+              console.log("successful notifying");
+            }
+          });
+          usr.notifications.push(newNotification);
           usr.save(function(err){
             if(err){
               console.log("error following");
@@ -110,6 +243,8 @@ router.post('/searchby/username', function (req, res) {
       console.log("find by partial failed");
     }
   });
+
+  //by username instead of by
   /*
   Account.findByUsername(req.body.username, function(err, usr){
     if(!err){
@@ -130,51 +265,84 @@ router.get('/updatephoto/:imageid', function (req, res){
   });
 });
 
-/*
- router.post('/delete/:commentid/:imageid/:userid/:index', function (req, res){
- Image.findById(req.params.imageid,function(err, img){
- if(img){
- if(req.user){
+router.post('/comment/:imageid/:username/', function (req, res){
+  Image.findById(req.params.imageid,function(err, img){
+    if(img){
+      if(req.user){
+        //create a new comment
+        var comment = new Comment({userid: req.user.id, content: req.body.comment, image: req.params.imageid, username: req.user.username, propic: req.user.propic});
+        //save it in the database
+        comment.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        //add it to the image
+        img.comments.push(comment);
+        //save the changes
+        img.save(function(err){
+          if(err){
+            console.log("error commenting");
+          }else{
+            console.log("successful comment");
+          }
+        });
+        var link = ('/img/'+req.params.imageid);
+        //make content more dynamic in the future
+        var newNotification = new Notification
+        ({content: req.user.username + " commented \"" + req.body.comment + "\" on your photo.",
+          from: req.user.username,
+          seen: false,
+          link: link,
+          preview: img.url});
+        newNotification.save(function(err){
+          if(err){
+            console.log("error notifying");
+          }else{
+            console.log("successful notifying");
+          }
+        });
+        Account.findByUsername(req.params.username, function(err, usr){
+          if(req.user.username != usr.username){
+            usr.notifications.push(newNotification);
+            usr.save(function(err){
+              if(err){
+                console.log("error commenting");
+              }else{
+                console.log("successful comment");
+              }
+            });
+          }
 
- Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,model){
- if(err){
- return res.render('error', {message: "Could not retrieve account"});
- }else{
- Comment.findById(req.params.imageid, function(err, comt) {
- if (comt) {
- comt.remove();
- }
- });
- }
- });
+        });
+        //finally, update the account with the updated image
+        Account.findOneAndUpdate(
+            { "username": req.params.username, "images._id": req.params.imageid},
+            {
+              "$set": {
+                "images.$": img
+              }
+            },
+            function(err,doc) {
+              if(err){
+                res.render('error', {message: "ERROR"});
+              }
+            }
+        );
+        res.redirect('/img/'+req.params.imageid);
+        console.log("congrats");
+      }else{
+        return res.render('error', {message: "Must be logged in to comment", picture: '/img/'+req.params.imageid});
+      }
 
- //finally, update the account with the updated image
- Account.findOneAndUpdate(
- { "_id": req.params.userid, "images._id": req.params.imageid},
- {
- "$set": {
- "images.$": img
- }
- },
- function(err,doc) {
- if(err){
- res.render('error', {message: "ERROR"});
- }
- }
- );
- res.redirect('/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1));
- console.log("congrats");
- }else{
- return res.render('error', {message: "Must be logged in to comment", picture: '/images/'+req.params.userid + '/' + (parseInt(req.params.index)+1)});
- }
+    }else{
+      console.log("cannot find image");
+    }
 
- }else{
- console.log("cannot find image");
- }
-
- });
- });
- */
+  });
+});
 router.post('/comment/:imageid/:userid/:index', function (req, res){
   Image.findById(req.params.imageid,function(err, img){
     if(img){
@@ -198,6 +366,34 @@ router.post('/comment/:imageid/:userid/:index', function (req, res){
           }else{
             console.log("successful comment");
           }
+        });
+        var link = ('/img/'+req.params.imageid);
+        //make content more dynamic in the future
+        var newNotification = new Notification
+        ({content: req.user.username + " commented \"" + req.body.comment + "\" on your photo.",
+        from: req.user.username,
+        seen: false,
+        link: link,
+        preview: img.url});
+        newNotification.save(function(err){
+          if(err){
+            console.log("error notifying");
+          }else{
+            console.log("successful notifying");
+          }
+        });
+        Account.findById(req.params.userid, function(err, usr){
+          if(req.user.username != usr.username){
+            usr.notifications.push(newNotification);
+            usr.save(function(err){
+              if(err){
+                console.log("error commenting");
+              }else{
+                console.log("successful comment");
+              }
+            });
+          }
+
         });
         //finally, update the account with the updated image
         Account.findOneAndUpdate(
@@ -236,7 +432,6 @@ router.get('/register', function(req, res) {
   res.render('register', { });
 });
 
-//receives the register view which has a register form
 router.get('/explore', function(req, res) {
   // Find "limit" random documents (defaults to array of 1)
 
@@ -304,6 +499,10 @@ router.get('/upload', function(req, res) {
   res.render('upload', { user : req.user});
 });
 
+router.get('/uploadpropic', function(req, res) {
+  res.render('propic', { user : req.user});
+});
+
 //send a request to login and handle any errors that may arise
 router.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
@@ -348,6 +547,42 @@ router.get('/delete/:imageid',function (req, res, next) {
             }
           });
           return res.redirect("/");
+        }
+      });
+    }
+  });
+});
+
+//DELETE PHOTO
+router.get('/delete/:userid/:imageid/:commentid',function (req, res) {
+  Account.findById(req.params.userid, function (err, usr) {
+    if (usr) {
+      Image.findByIdAndUpdate(req.params.imageid, { $pull: { 'comments': { _id: req.params.commentid } }}, function(err,img){
+        if(err){
+          return res.render('error', {message: "Could not retrieve account"});
+        }else{
+          console.log("pulled");
+          Comment.findById(req.params.commentid, function(err, cmt) {
+            if (cmt) {
+              cmt.remove();
+            }else{
+              console.log("error removing comment");
+            }
+          });
+          Account.findOneAndUpdate(
+              { "_id": req.user.id, "images._id": req.params.imageid},
+              {
+                "$set": {
+                  "images.$": img
+                }
+              },
+              function(err,doc) {
+                if(err){
+                  res.render('error', {message: "ERROR updating photo"});
+                }
+              }
+          );
+          return res.redirect("/img/" + req.params.imageid);
         }
       });
     }
@@ -569,36 +804,47 @@ router.post('/user/:id/update', function (req, res) {
 
 //IN PROGRESS when a user wants to see another user's profile
 router.get('/user/:username', function (req, res, next) {
-  Account.findByUsername(req.params.username, function(err, usr){
-    if(usr)
-    {
-      /*
-      var followingbool = false;
-      console.log("should be here");
-      if(req.user.following != "undefined"){
-        if(req.user.following.length > 0){
-          for(var i = 0; i <req.user.following.length; i++){
-            if(req.user.following[i] == usr.id){
-              followingbool = true;
-              console.log("YES");
-            }else{
-              console.log("no");
-              console.log(req.user.following[i]);
-              console.log(usr.id);
+    Account.findByUsername(req.params.username, function(err, usr){
+      if(usr)
+      {
+
+        var followingbool = false;
+        console.log("should be here");
+        if(typeof req.user != "undefined") {
+          if (typeof req.user.following != "undefined") {
+            if (req.user.following.length > 0) {
+              for (var i = 0; i < req.user.following.length; i++) {
+                if (req.user.following[i] == usr.id) {
+                  followingbool = true;
+                  console.log("YES");
+                } else {
+                  console.log("no");
+                  console.log(req.user.following[i]);
+                  console.log(usr.id);
+                }
+
+              }
             }
-
+            //, following: followingbool
+            return res.render("user", {usr: usr, currentuser: req.user, following: followingbool});
+          }else{
+            return res.render("user", {usr: usr, currentuser: false, following: false});
           }
-        }
-      }
-      */
-      //, following: followingbool
-      return res.render("user", {usr: usr, currentuser: req.user});
-    }else{
-      return res.render("error", {message: req.params.username + " is not a registered user"});
-    }
 
-  });
+        }else{
+          return res.render("user", {usr: usr, currentuser: false, following: false});
+        }
+
+
+      }else{
+        return res.render("error", {message: req.params.username + " is not a registered user"});
+      }
+
+    });
+
 });
+
+
 
 
 //logout user and redirect to home

@@ -25,6 +25,8 @@ block content
                     a#hideonmob(href="/images/#{user.id}/#{backPicture}")
                             img(src= "/img/left.png", id="back")
                     script.
+                        loggeduser = !{JSON.stringify(currentuser)}
+                        index = !{JSON.stringify(index)}
                         thisimage = !{JSON.stringify(usrimage)};
                         currentUser = " ";
                     img.photoStyle#forMobile(src= " " + usrimage.url)
@@ -48,16 +50,19 @@ block content
                     #comments
                 #com2
                 if(currentuser)
-                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}" ,method="post", id='comment-photo',style='max-width: 300px;')
+                    form(role='form', action="/comment/#{usrimage.id}/#{user.id}/#{index}'" ,method="post", id='comment-photo',style='max-width: 300px;')
                         br
                         br
                         .form-group
                             input.form-control(type='text', name="comment", placeholder="comment")
                         .errors
-                        button.btn.btn-default(type='submit') Comment
+                        button.btn.btn-default(type='submit' id='submitComment') Comment
                     if(currentuser.username === user.username)
-                        a(href="/delete/#{usrimage.id}" class="confirm")
+                        //a(href="/delete/#{usrimage.id}" class="confirm")
                             button.btn.btn-primary(type="button") delete
+                        form(method="post", name="delete", action="/delete/#{usrimage.key}/#{usrimage.id}", enctype="multipart/form-data", style='max-width: 300px;')
+                             div.actions
+                                 button.btn.primary(type="submit") delete
                         a(href="/updatephoto/#{usrimage.id}")
                             button.btn.btn-primary(type="button") update
                 if(!currentuser)

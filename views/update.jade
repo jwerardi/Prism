@@ -21,10 +21,14 @@ block content
                     .form-group
                         input.form-control(type='text', name="title", value="#{user.title}")
                     .form-group
-                        input.form-control(type='text', name="propic", value= "#{user.propic}")
-                        br
+                        a(href="/uploadpropic")
+                            button.btn.btn-primary(type="button") Change Profile picture
                     .errors
                     button.btn.btn-default(type='submit') Submit
                     a(href='/')
                         button.btn.btn-primary(type="button") Cancel
                 &nbsp;
+
+//.form-group
+    a(href="/uploadpropic")
+        button.btn.btn-primary(type="button") Change Profile picture

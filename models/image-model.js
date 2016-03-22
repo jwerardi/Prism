@@ -10,6 +10,7 @@ var Image = new Schema({
     updated: { type: Date, default: Date.now },
     url: String,
     tags: [String],
+    key: String,
     comments: [Comment]
 });
 
