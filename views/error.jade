@@ -1,6 +1,11 @@
 extends layout
-
+block extraHeader
+  title Error
 block content
-  h1= message
-  h2= error.status
-  pre #{error.stack}
+  #myStyle
+    h1 #{message}
+    if(picture)
+      a(href="#{picture}")
+        button.btn.btn-primary(type="button") Back
+    a(href="/")
+      button.btn.btn-primary(type="button") Home

@@ -1,0 +1,64 @@
+extends layout
+block extraHeader
+    title #{usrimage.title}
+block content
+    a(href="/")
+        #logoText
+            p prism
+    a#hide(href="/")
+        #logoimg
+            img(src= "/img/templogo.png")
+    if(currentuser)
+        #selLog
+            a(href="/")
+                button.btn.btn-primary(type="button") My Profile
+            a(href="/logout")
+                button.btn.btn-primary(type="button") Logout
+    if(!currentuser)
+        #selLog
+            a(href="/login")
+                button.btn.btn-primary(type="button") Login
+    if(usrimage)
+        .container
+            #myStyle
+                .imagewithbuttons
+                    script.
+                        loggeduser = !{JSON.stringify(currentuser)};
+                        thisimage = !{JSON.stringify(usrimage)};
+                        currentUser = " ";
+                    img.photoStyle#forMobile(src= " " + usrimage.url)
+                #commentsection
+                    p #{usrimage.title}
+                    p #{usrimage.updated.toDateString()}
+                    p #{usrimage.tags}
+                    #howmanycomments
+                a#hideonmob(href="/user/#{usrimage.username}")
+                    button.name(type="button" ) #{usrimage.username}
+                #com
+                form()
+                    #comments
+                #com2
+                if(currentuser)
+                    form(role='form', action="/comment/#{usrimage.id}/#{usrimage.username}" ,method="post", id='comment-photo',style='max-width: 300px;')
+                        br
+                        br
+                        .form-group
+                            input.form-control(type='text', name="comment", placeholder="comment")
+                        .errors
+                        button.btn.btn-default(type='submit' id='submitComment') Comment
+                    if(usrimage.username === currentuser.username)
+                        a(href="/delete/#{usrimage.id}" class="confirm")
+                            button.btn.btn-primary(type="button") delete
+                        a(href="/updatephoto/#{usrimage.id}")
+                            button.btn.btn-primary(type="button") update
+                if(!currentuser)
+                    p Must be logged in to comment.
+                    a(href="/login")
+                        button.btn.btn-primary(type="button") Login
+
+    if(!usrimage)
+        #myStyle
+            h1 #{message}
+            a(href="/")
+                button.btn.btn-primary(type="button") Home
+    br

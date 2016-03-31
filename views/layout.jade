@@ -1,12 +1,27 @@
 doctype html
 html
   head
-    title= title
     meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', media='screen')
+    meta(name='viewport', content='width=device-width')
+    link(rel='shortcut icon', type='png', href='http://i.imgur.com/5QESlNJ.png')
+    link(rel='shortcut icon', type='image/png', href='/img/tablogo.png')
+    //link(href='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css', rel='stylesheet', media='screen')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    block extraHeader
   body
     block content
-
-  script(src='http://code.jquery.com/jquery.js')
-  script(src='http://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+  link(href='https://fonts.googleapis.com/css?family=Ubuntu', rel='stylesheet', type='text/css')
+  script(src='https://code.jquery.com/jquery.js')
+  script(src="https://code.jquery.com/jquery-1.11.1.min.js")
+  script(src="https://jqueryvalidation.org/files/dist/jquery.validate.min.js")
+  script(src="https://jqueryvalidation.org/files/dist/additional-methods.min.js")
+  script(src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.2.2/masonry.pkgd.min.js")
+  script(src="/js/validate.js")
+  script(src="/js/gallery.js")
+  script(src="/js/comments.js")
+  script(src="/js/search.js")
+  script(src="/js/explore.js")
+  script(src="/js/totop.js")
+  script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js')
+  block extraScript
+  block extraScript2

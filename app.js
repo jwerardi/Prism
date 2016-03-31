@@ -9,14 +9,21 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var routes = require('./routes/index');
-var users = require('./routes/users');
+var users = require('./routes/users'),
+    multer = require('multer'),
+    upload = require('./routes/upload'),
+    http = require('http'),
+    path = require('path');
 
 var app = express();
+
+uploader = multer({
+  dest: 'uploads/'
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
-
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
@@ -32,8 +39,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.post('/upload', uploader.single('singleFile'), upload.s3); //"singleFile" is the field name
+app.post('/delete/:key/:imageid', upload.delete);
+app.post('/uploadpropic', uploader.single('singleFile'), upload.profilePicture); //"singleFile" is the field name
 app.use('/', routes);
+
 
 // passport config
 var Account = require('./models/account');

@@ -1,16 +1,87 @@
 extends layout
-<link type="text/css" rel="stylesheet" href="public/stylesheets/style.css" />
+block extraHeader
+  if(user)
+    title #{user.username}
+  if(!user)
+    title Prism
+block extraScript
+    script(src="/js/notifications.js")
 block content
+  #top
   if (!user)
-    a(href="/login") Login
-    br
-    a(href="/register") Register
+    //img(src="/img/background2.jpg", id="bg", alt="")
+    .container
+      #myStyle
+        #bigLogo
+          h1 prism
+        p.lead A Photo Sharing Application
+      #btn
+        a(href="/login")
+          button.btn(type="button") Login
+      #btn
+        a(href="/register")
+          button.btn(type="button") Register
+          
+      #footerindex
+          #myStyle
+              a(href="/about")
+                  button#footbtn(type="button") About
+              a(href="/explore")
+                  button#footbtn(type="button") Explore
   if (user)
-    #logoText
-      .lead prism
-    #myStyle
-      p
-      h1 #{user.username}
-      #myTitle
-        p <em>#{user.title}</em>
-    a(href="/logout") Logout
+    .cont
+        a(href="/")
+          #logoText
+            p prism
+        a#hide(href="/")
+          #logoimg
+            img(src= "/img/templogo.png")
+        .container
+        .profileCont
+          #profileInfo
+            img#proP.myClass(src= " " + user.propic)
+            .myClass
+              #fullName
+                h1 #{user.fullname}
+              #myUserTitle
+                p <em>#{user.title}</em>
+          #profileInfoRight
+            a(href="/user/#{user.username}/following")
+              button#followbtn(type="button") Following #{user.following.length}
+          #profileInfoRight
+            a(href="/user/#{user.username}/followers")
+              button#followbtn(type="button") Followers #{user.followers.length}
+            #emptyareaindex
+        #wrapper
+            #list
+                if(gallery)
+                    #{gallery}
+        #selLog
+          a(href="/feed")
+            button.btn.btn-primary(type="button") Feed
+          a(href="/update")
+            button.btn.btn-primary(type="button") Edit
+
+          a(href="/upload")
+            button.btn.btn-primary(type="button") Upload
+
+          a(href="/logout")
+            button.btn.btn-primary(type="button") Logout
+
+          a(href="/user/#{user.username}/notifications")
+            button.btn.btn-primary(type="button" id="notifbut")
+                #notifications
+            script.
+              currentUser= !{JSON.stringify(user)};
+              thisimage = " ";
+        .back-to-top 
+          a(href="#")  
+            .back-to-top ^
+        br
+        br
+    #footer
+        #myStyle
+            a(href="/about")
+                button#footbtn(type="button") About
+            a(href="/explore")
+                button#footbtn(type="button") Explore

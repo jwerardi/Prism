@@ -1,0 +1,21 @@
+extends layout
+block extraHeader
+    title Notifications
+block extraScript
+    script(src="/js/notification-page.js")
+block content
+    script.
+        var notifuser = !{JSON.stringify(user)};
+    a(href="/")
+        #logoText
+            p prism
+    a#hide(href="/")
+        #logoimg
+            img(src= "/img/templogo.png")
+    #selLog
+        a(href="/")
+            button.btn.btn-primary(type="button") Back
+    #myStyle
+      h1 Notifications
+      #myFeedStyle
+          #feed
