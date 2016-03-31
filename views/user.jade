@@ -1,8 +1,13 @@
 extends layout
+block extraHeader
+    title #{usr.username}
 block content
     a(href="/")
         #logoText
             p prism
+    a#hide(href="/")
+          #logoimg
+            img(src= "/img/templogo.png")
     if(currentuser)
         #selLog
             a(href="/")
@@ -13,21 +18,57 @@ block content
         #selLog
             a(href="/login")
                 button.btn.btn-primary(type="button") Login
+                
     if(usr)
         .container
-            #myStyle
-                img#proP.myClass(src= " " + usr.propic)
-                .myClass
-                    #fullName
-                        h1 #{usr.fullname}
-                    #myUserTitle
-                        p <em>#{usr.title}</em>
+            #profileCont
+                #profileInfo
+                    img#proP.myClass(src= " " + usr.propic)
+                    .myClass
+                        #fullName
+                            h1 #{usr.fullname}
+                        #myUserTitle
+                            p <em>#{usr.title}</em>
+            #btnspace  
+                  #profileInfoRight
+                    if(currentuser)
+                        if(following == false)
+                            #flw
+                                form(action='/follow/#{usr._id}', method='post')
+                                    button.btn.btn-primary(name='followBTN', value='follow') Follow
+                        if(following == true)
+                            #flw
+                                form(action='/unfollow/#{usr._id}', method='post')
+                                    button.btn.btn-primary(name='followBTN', value='follow') Unfollow
+                    br
+                    a(href="/user/#{usr.username}/following")
+                        button#followbtnuser(type="button") Following #{usr.following.length}
+              
+                      a(href="/user/#{usr.username}/followers")
+                        button#followbtnuser(type="button") Followers #{usr.followers.length}
+            #emptyareaindex
             #wrapper
                 #list
             script.
                 currentUser = !{JSON.stringify(usr)};
+        .back-to-top 
+            a(href="#")  
+                .back-to-top ^
+        #footer
+            #myStyle
+                a(href="/about")
+                    button#footbtn(type="button") About
+                a(href="/explore")
+                    button#footbtn(type="button") Explore
     if(!usr)
         #myStyle
             h1 The username, "#{urlname}", hasn't been registered yet.
             a(href="/")
                 button.btn.btn-primary(type="button") Home
+        #containfooter
+            #footer
+                #myStyle
+                    a(href="/about")
+                        button#footbtn(type="button") About
+                    a(href="/explore")
+                        button#footbtn(type="button") Explore

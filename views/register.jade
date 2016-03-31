@@ -2,7 +2,8 @@
    Created by tyler on 2/10/16. Edited by Alex C 2/19
 
 extends layout
-
+block extraHeader
+    title Register
 block content
     //img(src="/img/background.jpg", id="bg", alt="")
     .container
@@ -21,11 +22,17 @@ block content
                     input.form-control(type='password', name="password", placeholder='Password')
                 .form-group
                     input.form-control(type='text', name="title", placeholder='Title')
-                .form-group
+                //.form-group
                     input.form-control(type='text', name="propic", placeholder='Profile Picture(png/jpg)')
-                    br
+                br
                 .errors
                 button.btn.btn-default(type='submit') Submit
                 a(href='/')
                     button.btn.btn-primary(type="button") Cancel
+        #footerindex
+          #myStyle
+              a(href="/about")
+                  button#footbtn(type="button") About
+              a(href="/explore")
+                  button#footbtn(type="button") Explore
         &nbsp;

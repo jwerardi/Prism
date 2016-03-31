@@ -1,0 +1,21 @@
+extends layout
+block extraHeader
+    title Following
+block extraScript
+    script(src="/js/following.js")
+block content
+    script.
+        var userFollowing = !{JSON.stringify(users)};
+    a(href="/")
+        #logoText
+            p prism
+    a#hide(href="/")
+        #logoimg
+            img(src= "/img/templogo.png")
+    #selLog
+        a(href="/user/#{username}")
+            button.btn.btn-primary(type="button") Back
+    #myStyle
+        h1 Following
+        #myFeedStyle
+            #following

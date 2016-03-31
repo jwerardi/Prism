@@ -1,0 +1,26 @@
+extends layout
+block extraHeader
+    title Search
+block content
+    script.
+        var searchusers = !{JSON.stringify(users)};
+    
+    a(href="/")
+        #logoText
+            p prism
+    a#hide(href="/")
+          #logoimg
+            img(src= "/img/templogo.png")
+    #emptyareasearch
+    #myStyle
+        h1 Search
+        br
+        form(role='form', action="/searchby/username" ,method="post")
+            .form-group
+                input.form-control(type='text', name="username", placeholder="username")
+            .errors
+            button.btn.btn-default(type='submit') Search
+        #searchwrapper
+            #search
+        if(!users)
+            h4 #{message}
